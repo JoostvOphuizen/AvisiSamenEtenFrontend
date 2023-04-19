@@ -1,7 +1,9 @@
 @import './base.css';
 
 #app {
- 
+  background-image: url('src/assets/priscilla.jpg');
+  background-position: center;
+  background-attachment: fixed;
 }
 
 a,
@@ -13,17 +15,11 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: rgba(#1199BB, 0.5);
+    background-color: rgba(17, 153, 187, 0.5);
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    
-  }
-}
+
+  
+
