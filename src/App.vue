@@ -7,8 +7,10 @@ import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue'
 
 export default defineComponent({
   components: {
-    VoorkeurenLijst
-  },
+    VoorkeurenLijst,
+    AppButton,
+    AppOptie
+},
   setup() {
     const selectedCategories = ref<string[]>([])
 
@@ -32,15 +34,11 @@ export default defineComponent({
 
    <main class="main">
     
-
     <div class="categorybox">
     <h2>Kies je voorkeuren:</h2>
     <VoorkeurenLijst @update:selectedCategories="handleSelectedCategories" />
     <p>Geselecteerde voorkeuren: {{ selectedCategories }}</p>
   </div>
-    <AppButton label="Inloggen met Google" icon="src/assets/Google-modern-flat-icon.svg"></AppButton>
-    <AppOptie label="Vlees" ></AppOptie>
-    
   </main>
 
   <footer class="footer">
@@ -50,11 +48,4 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.categorybox{
-  max-width:fit-content;
-  border: 3px solid #1199BB;
-  padding: 10px;
-  border-radius: 5px;
-  border-style:outset
-}
 </style>

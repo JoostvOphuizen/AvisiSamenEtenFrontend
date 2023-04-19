@@ -7,7 +7,7 @@ export default {
         },
         icon: {
             type: String,
-        }
+        },
     },
 }
 
@@ -23,7 +23,7 @@ export default {
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    margin: 0 4px;
+    margin: 3px 4px;
     display: flex;
     justify-content: space-between;
 }
@@ -138,8 +138,8 @@ export default {
         <span class="optieLabel">{{ label }}</span>
     </div>
     <div class="checkbox-wrapper-46">
-        <input class="inp-cbx" id="cbx-46" type="checkbox" />
-        <label class="cbx" for="cbx-46"><span>
+        <input class="inp-cbx" :id="label" type="checkbox" />
+        <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span></span>

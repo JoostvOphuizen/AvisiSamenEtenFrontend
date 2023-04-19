@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div class="glass">
+    <div class="scroller">
+    <h2 class="optieMenuTitle">Voorkeuren</h2>
     <div v-for="(category, index) in categories" :key="index">
-      <label>
-        <input type="checkbox" :value="category" v-model="selectedCategories" @change="handleChange" />
-        {{ category }}
-      </label>
+      <Optie :label="category" :value="category" :selected="selectedCategories.includes(category)" @change="handleOptionChange" />
     </div>
-
-    <button @click="logSelectedCategories">Bewaar je keuze!
-    </button>
+    <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
+import Optie from '@/components/Optie.vue'
+import AppButton from '@/components/Button.vue'
 
 const foodCategories = [
   'Italian',
@@ -30,6 +30,10 @@ const foodCategories = [
 
 export default defineComponent({
   emits: ['update:selectedCategories'],
+  components: {
+    AppButton,
+    Optie
+  },
   setup(_, { emit }) {
     const selectedCategories = ref<string[]>([])
 
@@ -39,20 +43,54 @@ export default defineComponent({
       return shuffledCategories
     })
 
-    const handleChange = () => {
-      emit('update:selectedCategories', selectedCategories.value)
+    const handleOptionChange = (value: string, selected: boolean) => {
+      if (selected) {
+        selectedCategories.value.push(value)
+      } else {
+        const index = selectedCategories.value.indexOf(value)
+        if (index !== -1) {
+          selectedCategories.value.splice(index, 1)
+        }
+      }
     }
 
     const logSelectedCategories = () => {
-      console.log(selectedCategories.value)
+      console.log(JSON.stringify(selectedCategories.value))
     }
 
     return {
       categories,
       selectedCategories,
-      handleChange,
+      handleOptionChange,
       logSelectedCategories
     }
   }
 })
 </script>
+
+
+<style scoped>
+
+
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  padding: 10px 5px 10px 10px;
+  margin: 20px 0;
+}
+
+.scroller {
+  max-height: 20em;
+  overflow-y: auto;
+  scrollbar-color: rgb(255, 255, 255) rgba(0, 128, 0, 0);
+  scrollbar-width: thin;
+}
+
+.optieMenuTitle {
+  color: var(--vt-c-white);
+  font-size: 1.5rem;
+  margin: 4px;
+}
+
+</style>
