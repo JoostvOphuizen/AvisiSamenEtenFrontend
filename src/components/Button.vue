@@ -9,11 +9,9 @@ export default {
             type: String,
             default: 'buttonPrimary',
         },
-    },
-    methods: {
-        onClick() {
-            console.log('button clicked');
-        },
+        icon: {
+            type: String,
+        }
     },
 }
 
@@ -22,7 +20,6 @@ export default {
 <style>
 
 .buttonClass {
-    background-color: #333333;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
@@ -30,6 +27,7 @@ export default {
     cursor: pointer;
     outline: none;
     margin: 0 4px;
+    display: flex;
 }
 
 .buttonPrimary {
@@ -42,12 +40,18 @@ export default {
     color: #333333;
 }
 
+.buttonIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
 </style>
 
 <template>
 
-<button :class="['buttonClass', type]" @click="onClick">
-    {{ label }}
+<button :class="['buttonClass', type]">
+    <img v-if="icon" :src="icon" alt="icon" class="buttonIcon" /> {{ label }}
 </button>
 
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppButton from '@/components/Button.vue'
 </script>
 
 <template>
@@ -8,6 +9,8 @@
     </header>
 
    <main class="main">
+    <AppButton label="Inloggen met Google" icon="src/assets/Google-modern-flat-icon.svg"></AppButton>
+
     <GoogleLogin />
     
   </main>
