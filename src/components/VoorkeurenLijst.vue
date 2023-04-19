@@ -7,7 +7,8 @@
       </label>
     </div>
 
-    <button @click="logSelectedCategories">Bewaar je keuze!</button>
+    <button @click="logSelectedCategories">Bewaar je keuze!
+    </button>
   </div>
 </template>
 

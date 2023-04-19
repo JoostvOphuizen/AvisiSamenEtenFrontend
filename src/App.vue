@@ -3,7 +3,7 @@ import AppButton from '@/components/Button.vue'
 
 
 import { defineComponent, ref } from 'vue'
-import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue.js'
+import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue'
 
 export default defineComponent({
   components: {
@@ -35,7 +35,7 @@ export default defineComponent({
 
     <div class="categorybox">
     <h2>Kies je voorkeuren:</h2>
-    <FoodCategoryList @update:selectedCategories="handleSelectedCategories" />
+    <VoorkeurenLijst @update:selectedCategories="handleSelectedCategories" />
     <p>Geselecteerde voorkeuren: {{ selectedCategories }}</p>
   </div>
     
