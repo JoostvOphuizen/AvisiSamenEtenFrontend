@@ -3,11 +3,11 @@ import AppButton from '@/components/Button.vue'
 
 
 import { defineComponent, ref } from 'vue'
-import FoodCategoryList from '@/components/FoodCategoryList.vue'
+import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue.js'
 
 export default defineComponent({
   components: {
-    FoodCategoryList
+    VoorkeurenLijst
   },
   setup() {
     const selectedCategories = ref<string[]>([])
