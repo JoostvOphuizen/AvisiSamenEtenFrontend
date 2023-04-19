@@ -1,6 +1,6 @@
 <script lang="ts">
 import AppButton from '@/components/Button.vue'
-
+import AppOptie from '@/components/Optie.vue'
 
 import { defineComponent, ref } from 'vue'
 import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue'
@@ -38,6 +38,8 @@ export default defineComponent({
     <VoorkeurenLijst @update:selectedCategories="handleSelectedCategories" />
     <p>Geselecteerde voorkeuren: {{ selectedCategories }}</p>
   </div>
+    <AppButton label="Inloggen met Google" icon="src/assets/Google-modern-flat-icon.svg"></AppButton>
+    <AppOptie label="Vlees" ></AppOptie>
     
   </main>
 
