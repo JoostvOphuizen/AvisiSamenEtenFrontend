@@ -1,17 +1,20 @@
 @import './base.css';
 
-#app {
+
+.main {
+  flex:auto;
+  padding: 20px;
   background-image: url('src/assets/priscilla.jpg');
   background-position: center;
   background-attachment: fixed;
+  background-color: rgba(0,0,150,0.3);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: #1199BB;
-  transition: 0.4s;
-}
 
 @media (hover: hover) {
   a:hover {
@@ -19,7 +22,36 @@ a,
   }
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 20px;
+
+}
 
 
+.footer {
+  background-color: #ffffff;
+  padding: 20px;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+}
   
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
 
