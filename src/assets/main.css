@@ -13,7 +13,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: #1199BB;
+    background-color: rgba(#1199BB, 0.5);
   }
 }
 
