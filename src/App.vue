@@ -1,51 +1,30 @@
-<script lang="ts">
-import AppButton from '@/components/Button.vue'
-import AppOptie from '@/components/Optie.vue'
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
 
-import { defineComponent, ref } from 'vue'
-import VoorkeurenLijst from '@/components/VoorkeurenLijst.vue'
-
-export default defineComponent({
-  components: {
-    VoorkeurenLijst,
-    AppButton,
-    AppOptie
-},
-  setup() {
-    const selectedCategories = ref<string[]>([])
-
-    const handleSelectedCategories = (categories: string[]) => {
-      selectedCategories.value = categories
-    }
-
-    return {
-      selectedCategories,
-      handleSelectedCategories
-    }
-  }
-})
 </script>
 
 <template>
   <div class="wrapper">
     <header class="header">
-     <img alt="Logo Samen Eten" class="logo" src="./assets/AvisiSamenEtenLogo.svg" />
+    <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
     </header>
-
-   <main class="main">
+    <main class="main">
     
-    <div class="categorybox">
-    <h2>Kies je voorkeuren:</h2>
-    <VoorkeurenLijst @update:selectedCategories="handleSelectedCategories" />
-    <p>Geselecteerde voorkeuren: {{ selectedCategories }}</p>
-  </div>
-  </main>
+    <div>
+      <nav class="nav">
+        <RouterLink to="/" class="nav-item">Home</RouterLink>
+        <RouterLink to="/login" class="nav-item">Login</RouterLink>
+        <RouterLink to="/voorkeur" class="nav-item">Voorkeur</RouterLink>
+      </nav>
+    </div>
 
+
+    <RouterView />
+
+
+  </main>
   <footer class="footer">
-      <img src="src/assets/AvisiSamenEtenLogo.svg" alt="Logo" class="footer-logo" />
+      <img src="@/assets/AvisiSamenEtenLogo.svg" alt="Logo" class="footer-logo" />
     </footer>
   </div>
 </template>
-
-<style scoped>
-</style>

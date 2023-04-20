@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+<script lang="ts">
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>Home</h1>
+  <p>Dit is een testpagina. Gebruik het bovenste menu om te verplaatsen over de pagina's</p>
 </template>
