@@ -11,6 +11,6 @@ export default ({
 <template>
   <div class="categorybox">
     <h2>Kies je voorkeuren:</h2>
-    <VoorkeurenLijst />
+    <VoorkeurenLijst/>
   </div>
 </template>
