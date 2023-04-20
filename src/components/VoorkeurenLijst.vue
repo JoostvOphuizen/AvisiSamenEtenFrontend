@@ -1,17 +1,5 @@
-<template>
-  <div class="glass">
-    <div class="scroller">
-    <h2 class="optieMenuTitle">Voorkeuren</h2>
-    <div v-for="(category, index) in categories" :key="index">
-      <Optie :label="category" :value="category" :selected="selectedCategories.includes(category)" @change="handleOptionChange" />
-    </div>
-    <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 
@@ -29,48 +17,56 @@ const foodCategories = [
 ]
 
 export default defineComponent({
-  emits: ['update:selectedCategories'],
   components: {
     AppButton,
     Optie
   },
-  setup(_, { emit }) {
-    const selectedCategories = ref<string[]>([])
-
-    const categories = computed(() => {
-      // Shuffle the food categories array to randomize the order
-      const shuffledCategories = [...foodCategories].sort(() => Math.random() - 0.5)
-      return shuffledCategories
-    })
-
-    const handleOptionChange = (value: string, selected: boolean) => {
-      if (selected) {
-        selectedCategories.value.push(value)
-      } else {
-        const index = selectedCategories.value.indexOf(value)
+  data() {
+    return {
+      selectedCategories: ref<string[]>([]),
+      foodCategories
+    }
+  },
+  methods: {
+    handleOptionChange(category: string) {
+      var element = <HTMLInputElement> document.getElementById(category);
+      if(element.checked) {
+        this.selectedCategories.push(category)
+        console.log(this.selectedCategories)
+      } 
+      else {
+        const index = this.selectedCategories.indexOf(category)
         if (index !== -1) {
-          selectedCategories.value.splice(index, 1)
+          this.selectedCategories.splice(index, 1)
+          console.log(this.selectedCategories)
         }
       }
+    },
+    logSelectedCategories() {
+      console.log(JSON.stringify(this.selectedCategories))
     }
 
-    const logSelectedCategories = () => {
-      console.log(JSON.stringify(selectedCategories.value))
-    }
-
-    return {
-      categories,
-      selectedCategories,
-      handleOptionChange,
-      logSelectedCategories
-    }
   }
 })
 </script>
 
 
-<style scoped>
 
+<template>
+  <div class="glass">
+    <div class="scroller">
+    <h2 class="optieMenuTitle">Voorkeuren</h2>
+    <div v-for="(category) in foodCategories" @change="handleOptionChange(category)">
+      <Optie :label="category" :value="category" />
+    </div>
+    <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
+    </div>
+  </div>
+</template>
+
+
+
+<style scoped>
 
 .glass {
   background: rgba(255, 255, 255, 0.2);
