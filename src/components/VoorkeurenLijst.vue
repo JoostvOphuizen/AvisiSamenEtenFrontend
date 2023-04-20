@@ -3,18 +3,20 @@ import { defineComponent, ref } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 
-const foodCategories = [
-  'Italian',
-  'Mexican',
-  'Chinese',
-  'Japanese',
-  'Thai',
-  'Indian',
-  'Greek',
-  'French',
-  'American',
-  'Mediterranean'
-]
+// const foodCategories = [
+//   'Italian',
+//   'Mexican',
+//   'Chinese',
+//   'Japanese',
+//   'Thai',
+//   'Indian',
+//   'Greek',
+//   'French',
+//   'American',
+//   'Mediterranean'
+// ]
+
+const baseURL = "http://localhost:8080";
 
 export default defineComponent({
   components: {
@@ -23,8 +25,9 @@ export default defineComponent({
   },
   data() {
     return {
+      getResult: null,
       selectedCategories: ref<string[]>([]),
-      foodCategories
+      // foodCategories
     }
   },
   methods: {
@@ -44,8 +47,41 @@ export default defineComponent({
     },
     logSelectedCategories() {
       console.log(JSON.stringify(this.selectedCategories))
-    }
+    },
 
+    fortmatResponse(res: Response) {
+      return JSON.stringify(res, null, 2);
+    }
+  },
+
+  async created () {
+    try {
+      const res = await fetch(`${baseURL}/voorkeuren`);
+
+      if (!res.ok) {
+        const message = `An error has occured: ${res.status} - ${res.statusText}`;
+        throw new Error(message);
+      }
+
+      const data = await res.json();
+      console.log(data)
+
+      const result = {
+      //   // status: res.status + "-" + res.statusText,
+      //   // headers: {
+      //   //   "Content-Type": res.headers.get("Content-Type"),
+      //   //   "Content-Length": res.headers.get("Content-Length"),
+      //   // },
+      //   // length: res.headers.get("Content-Length"),
+        data: data
+      }
+
+      // this.getResult = this.fortmatResponse(result);
+      this.getResult = result
+
+    } catch (err) {
+      this.getResult = err.message;
+    }
   }
 })
 </script>
@@ -55,11 +91,11 @@ export default defineComponent({
 <template>
   <div class="glass">
     <div class="scroller">
-    <h2 class="optieMenuTitle">Voorkeuren</h2>
-    <div v-for="(category) in foodCategories" @change="handleOptionChange(category)">
-      <Optie :label="category" :value="category" />
-    </div>
-    <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
+      <h2 class="optieMenuTitle">Voorkeuren</h2>
+      <div v-for="voorkeur in this.getResult.voorkeuren" @change="handleOptionChange(voorkeur)">
+        <Optie :label="voorkeur" :value="voorkeur" />
+      </div>
+      <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
     </div>
   </div>
 </template>
