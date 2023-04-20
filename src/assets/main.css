@@ -55,5 +55,21 @@
   width: 150px;
   
 }
+
+.nav {
+  background-color: var(--vt-c-white);
+  padding: 5px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.nav-item {
+  margin-left: 10px;
+  margin-right: 10px;
+}
   
 
