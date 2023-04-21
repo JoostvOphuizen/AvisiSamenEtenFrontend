@@ -26,8 +26,9 @@ export default {
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    margin: 0 4px;
+    margin: 4px;
     display: flex;
+    align-items: center;
 }
 
 .buttonPrimary {

@@ -15,6 +15,7 @@ export default defineComponent({
   data() {
     return {
       getResult: null,
+      postResult: null,
       selectedCategories: ref<string[]>([]),
       foodCategories
     }
@@ -34,14 +35,56 @@ export default defineComponent({
         }
       }
     },
-    logSelectedCategories() {
-      console.log(JSON.stringify(this.selectedCategories))
-    }
+    // logSelectedCategories() {
+    //   console.log(JSON.stringify(this.selectedCategories))
+    // }
     // ,
 
     // fortmatResponse(res: Response) {
     //   return JSON.stringify(res, null, 2);
     // }
+
+    postData () {
+      const postData = {
+        postCategories : this.selectedCategories
+      };
+
+      try {
+        const res = fetch(`${baseURL}/gebruiker/profiel?id=2`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": "token-value",
+          },
+          body: JSON.stringify(postData),
+        });
+        console.log(res)
+
+
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+
+        const data = res.json();
+        console.log(data)
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          data: data,
+        };
+
+        this.postResult = result;
+
+      } catch (err) {
+        this.postResult = err.message;
+      }
+    }
+
   },
 
   async created () {
@@ -84,10 +127,10 @@ export default defineComponent({
     <div class="scroller">
       <h2 class="optieMenuTitle">Voorkeuren</h2>
       <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
-        <Optie :label="naam" :value="naam" />
+        <Optie :label="naam" :value="naam" :checked="naam"/>
       </div>
-      <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
     </div>
+    <AppButton label="Bewaar je keuze!" @click="postData" />
   </div>
 </template>
 
