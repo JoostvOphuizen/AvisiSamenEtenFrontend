@@ -1,11 +1,13 @@
 <script lang="ts">
 import GlassObject from '@/components/Glass.vue'
 import AppButton from '@/components/Button.vue'
+import GlassTile from '@/components/GlassTile.vue'
 
 export default ({
   components: {
     GlassObject,
-    AppButton
+    AppButton,
+    GlassTile
   },
   methods: {
     gotoGroep () {
@@ -23,20 +25,22 @@ export default ({
 
 <template>
   <div class="center">
-    <div class="glass">
+    <GlassTile class="glass">
       <span class="title">
         <h1 class="h1text">Samen eten</h1>
         <h1 class="blueText">?</h1>
       </span>
       <AppButton label="Selecteer groep" @click="gotoGroep" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
-    </div>
-    <div class="glass">
+    </GlassTile>
+
+    <GlassTile class="glass">
       <span class="title">
         <h1 class="h1text">Voorkeuren</h1>
         <h1 class="blueText">?</h1>
       </span>
       <AppButton label="Aanpassen" @click="gotoVoorkeuren" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
-    </div>
+    </GlassTile>
+
   </div>
 </template>
 
@@ -46,13 +50,10 @@ export default ({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .glass {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    border-radius: 10px;
     padding: 5px 10px 10px 10px;
     margin: 20px;
     display: flex;

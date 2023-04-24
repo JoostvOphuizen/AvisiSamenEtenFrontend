@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
+import GlassTile from '@/components/GlassTile.vue'
 
 const baseURL = "http://localhost:8080";
 
@@ -10,7 +11,8 @@ var foodCategories = <string[]>([])
 export default defineComponent({
   components: {
     AppButton,
-    Optie
+    Optie,
+    GlassTile
   },
   data() {
     return {
@@ -123,7 +125,7 @@ export default defineComponent({
 
 
 <template>
-  <div class="glass">
+  <GlassTile class="glass">
     <div class="scroller">
       <h2 class="optieMenuTitle">Voorkeuren</h2>
       <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
@@ -131,7 +133,7 @@ export default defineComponent({
       </div>
     </div>
     <AppButton label="Bewaar je keuze!" @click="postData" />
-  </div>
+  </GlassTile>
 </template>
 
 
