@@ -9,6 +9,20 @@ export default {
             type: String,
         },
     },
+    methods: {
+    onCheckboxChange(event: Event) {
+      const checkbox = event.target as HTMLInputElement;
+      const parentElement = checkbox.closest('.optieClass');
+
+      if (parentElement) {
+        if (checkbox.checked) {
+          parentElement.classList.add('checked');
+        } else {
+          parentElement.classList.remove('checked');
+        }
+      }
+    },
+  },
 }
 
 </script>
@@ -65,6 +79,8 @@ export default {
     transform: translate3d(0, 0, 0);
   }
   .checkbox-wrapper-46 .cbx span:first-child {
+    /* shadow inside the checkbox */
+    box-shadow: inset 0 0 5px 3px #26282b60;
     position: relative;
     width: 18px;
     height: 18px;
@@ -126,6 +142,11 @@ export default {
     }
   }
 
+  .optieClass.checked {
+    background-color: var(--vt-c-indigo);
+  }
+
+
 
 
 </style>
@@ -138,7 +159,7 @@ export default {
         <span class="optieLabel">{{ label }}</span>
     </div>
     <div class="checkbox-wrapper-46">
-        <input class="inp-cbx" :id="label" type="checkbox" />
+        <input class="inp-cbx" :id="label" type="checkbox" @change="onCheckboxChange" />
         <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
