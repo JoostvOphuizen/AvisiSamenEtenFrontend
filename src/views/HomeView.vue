@@ -1,7 +1,137 @@
 <script lang="ts">
+import GlassObject from '@/components/Glass.vue'
+import AppButton from '@/components/Button.vue'
+
+export default ({
+  components: {
+    GlassObject,
+    AppButton
+  },
+  methods: {
+    gotoGroep () {
+        this.$router.push("/groep")
+    },
+    gotoVoorkeuren () {
+        this.$router.push("/voorkeur")
+    }
+  }  
+
+
+})
+
 </script>
 
 <template>
-  <h1>Home</h1>
-  <p>Dit is een testpagina. Gebruik het bovenste menu om te verplaatsen over de pagina's</p>
+  <div class="center">
+    <div class="glass">
+      <span class="title">
+        <h1 class="h1text">Samen eten</h1>
+        <h1 class="blueText">?</h1>
+      </span>
+      <AppButton label="Selecteer groep" @click="gotoGroep" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+    </div>
+    <div class="glass">
+      <span class="title">
+        <h1 class="h1text">Voorkeuren</h1>
+        <h1 class="blueText">?</h1>
+      </span>
+      <AppButton label="Aanpassen" @click="gotoVoorkeuren" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+    </div>
+  </div>
 </template>
+
+<style>
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    padding: 5px 10px 10px 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+.h1text {
+    color: var(--vt-c-white);
+    margin: 0;
+    display: inline;
+    font-weight: 600;
+}
+
+.blueText {
+    color: var(--vt-c-blue);
+    margin: 0;
+    display: inline;
+    font-weight: 600;
+}
+
+.title {
+  margin: 5px 50px 30px 50px;
+}
+
+.button {
+  margin: 0px 50px 15px 50px;
+}
+
+/* scale down if screen is too small */
+@media screen and (max-width: 500px) {
+
+  .title {
+    margin: 5px 20px 30px 20px;
+  }
+
+  .button {
+    margin: 0px 20px 15px 20px;
+  }
+
+  .glass{
+    padding: 0;
+  }
+
+}
+
+@media screen and (max-width: 275px) {
+
+  .glass{
+    scale: 0.9;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .title {
+    font-size: .8rem;
+    margin: 5px 10px 30px 10px;
+  }
+
+  .button {
+    margin: 0px 10px 15px 10px;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+
+  .center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+}
+
+
+</style>
+
