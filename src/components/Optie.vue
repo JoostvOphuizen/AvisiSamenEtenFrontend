@@ -1,5 +1,6 @@
 <script lang="ts">
 export default {
+    name: 'Optie',
     props: {
         label: {
             type: String,
@@ -27,7 +28,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 .optieClass {
     background-color: var(--vt-c-black-soft);
@@ -47,7 +48,7 @@ export default {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    margin: 0;
+    margin: 0 100px 0 0;
     display: flex;
 }
 

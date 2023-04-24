@@ -1,4 +1,3 @@
-<!-- GlassTile.vue -->
 <template>
     <div class="glass-tile" :style="glassTileStyle">
       <slot></slot>
@@ -9,6 +8,7 @@
   import { defineComponent, computed } from 'vue';
   
   export default defineComponent({
+    name: 'GlassTile',
     props: {
       borderRadius: {
         type: String,
