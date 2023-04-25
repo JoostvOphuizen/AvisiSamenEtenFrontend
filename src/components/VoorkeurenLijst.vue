@@ -4,8 +4,7 @@ import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 
 const baseURL = "http://localhost:8080";
-
-var foodCategories = <string[]>([])
+const USERID = 2;
 
 export default defineComponent({
   components: {
@@ -14,9 +13,12 @@ export default defineComponent({
   },
   data() {
     return {
-      getResult: null,
+      gekozenVoorkeurenData: null,
+      alleVoorkeurenData: null,
+      gebruikersVoorkeurenData: null,
+      voorgeselecteerdeVoorkeuren: ref<string[]>([]),
       selectedCategories: ref<string[]>([]),
-      foodCategories
+      foodCategories: ref<string[]>([]),
     }
   },
   methods: {
@@ -34,46 +36,108 @@ export default defineComponent({
         }
       }
     },
-    logSelectedCategories() {
-      console.log(JSON.stringify(this.selectedCategories))
-    }
-    // ,
+    async postData() {
+      const postData = {
+        voorkeuren: this.selectedCategories
+      }
+      try {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
+          method: "POST", 
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": "token-value"
+          }, 
+          body: JSON.stringify(postData)
+        });
+        console.log(JSON.stringify(postData))
 
-    // fortmatResponse(res: Response) {
-    //   return JSON.stringify(res, null, 2);
-    // }
+        if (!res.ok) {
+          console.log('error ')
+
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+        const data = await res.json();
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          data: data,
+        };
+
+        this.gekozenVoorkeurenData = result;
+      } catch (err) {
+        this.gekozenVoorkeurenData = err.message;
+      }
+    },
+    async getAlleGebruikersVoorkeuren () {
+      try {
+        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+USERID);
+
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+
+        const data = await res.json();
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          length: res.headers.get("Content-Length"),
+          data: data
+        }
+
+        this.gebruikersVoorkeurenData = result.data
+        this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
+             this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+        });
+      } catch (err) {
+        this.gebruikersVoorkeurenData = err.message;
+      }
+    },
+    async getAlleVoorkeuren () {
+      try {
+        const res = await fetch(`${baseURL}/voorkeuren`);
+
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+
+        const data = await res.json();
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          length: res.headers.get("Content-Length"),
+          data: data
+        }
+
+        this.alleVoorkeurenData = result.data
+        
+        this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
+          this.foodCategories.push(voorkeur.naam)
+        });
+
+      } catch (err) {
+        this.alleVoorkeurenData = err.message;
+      }
+    }
   },
 
   async created () {
-    try {
-      const res = await fetch(`${baseURL}/voorkeuren`);
-
-      if (!res.ok) {
-        const message = `An error has occured: ${res.status} - ${res.statusText}`;
-        throw new Error(message);
-      }
-
-      const data = await res.json();
-
-      const result = {
-        status: res.status + "-" + res.statusText,
-        headers: {
-          "Content-Type": res.headers.get("Content-Type"),
-          "Content-Length": res.headers.get("Content-Length"),
-        },
-        length: res.headers.get("Content-Length"),
-        data: data
-      }
-
-      this.getResult = result.data
-      
-      this.getResult.voorkeuren.forEach(voorkeur => {
-        this.foodCategories.push(voorkeur.naam)
-      });
-
-    } catch (err) {
-      this.getResult = err.message;
-    }
+    this.getAlleVoorkeuren()
+    this.getAlleGebruikersVoorkeuren()
   }
 })
 </script>
@@ -86,11 +150,10 @@ export default defineComponent({
       <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
         <Optie :label="naam" :value="naam" />
       </div>
-      <AppButton label="Bewaar je keuze!" @click="logSelectedCategories" />
     </div>
+    <AppButton label="Bewaar je keuze!" @click="postData" />
   </div>
 </template>
-
 
 
 <style scoped>
