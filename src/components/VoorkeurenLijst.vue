@@ -4,8 +4,7 @@ import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 
 const baseURL = "http://localhost:8080";
-
-var foodCategories = <string[]>([])
+const userID = 2;
 
 export default defineComponent({
   components: {
@@ -14,10 +13,12 @@ export default defineComponent({
   },
   data() {
     return {
-      getResult: null,
-      postResult: null,
+      gekozenVoorkeurenData: null,
+      alleVoorkeurenData: null,
+      gebruikersVoorkeurenData: null,
+      voorgeselecteerdeVoorkeuren: ref<string[]>([]),
       selectedCategories: ref<string[]>([]),
-      foodCategories
+      foodCategories: ref<string[]>([]),
     }
   },
   methods: {
@@ -39,9 +40,8 @@ export default defineComponent({
       const postData = {
         voorkeuren: this.selectedCategories
       }
-
       try {
-        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=2`, {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+userID, {
           method: "POST", 
           headers: {
             "Content-Type": "application/json",
@@ -57,9 +57,7 @@ export default defineComponent({
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
-        // const data = await res.json();
-        const data = await res.text();
-        console.log(data)
+        const data = await res.json();
 
         const result = {
           status: res.status + "-" + res.statusText,
@@ -70,44 +68,76 @@ export default defineComponent({
           data: data,
         };
 
-        this.postResult = result;
+        this.gekozenVoorkeurenData = result;
       } catch (err) {
-        this.postResult = err.message;
+        this.gekozenVoorkeurenData = err.message;
       }
-      console.log(this.postResult)
+    },
+    async getAlleGebruikersVoorkeuren () {
+      try {
+        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+userID);
 
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+
+        const data = await res.json();
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          length: res.headers.get("Content-Length"),
+          data: data
+        }
+
+        this.gebruikersVoorkeurenData = result.data
+        this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
+             this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+        });
+      } catch (err) {
+        this.gebruikersVoorkeurenData = err.message;
+      }
+    },
+    async getAlleVoorkeuren () {
+      try {
+        const res = await fetch(`${baseURL}/voorkeuren`);
+
+        if (!res.ok) {
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          throw new Error(message);
+        }
+
+        const data = await res.json();
+
+        const result = {
+          status: res.status + "-" + res.statusText,
+          headers: {
+            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Length": res.headers.get("Content-Length"),
+          },
+          length: res.headers.get("Content-Length"),
+          data: data
+        }
+
+        this.alleVoorkeurenData = result.data
+        
+        this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
+          this.foodCategories.push(voorkeur.naam)
+        });
+
+      } catch (err) {
+        this.alleVoorkeurenData = err.message;
+      }
     }
   },
+
   async created () {
-    try {
-      const res = await fetch(`${baseURL}/voorkeuren`);
-
-      if (!res.ok) {
-        const message = `An error has occured: ${res.status} - ${res.statusText}`;
-        throw new Error(message);
-      }
-
-      const data = await res.json();
-
-      const result = {
-        status: res.status + "-" + res.statusText,
-        headers: {
-          "Content-Type": res.headers.get("Content-Type"),
-          "Content-Length": res.headers.get("Content-Length"),
-        },
-        length: res.headers.get("Content-Length"),
-        data: data
-      }
-
-      this.getResult = result.data
-      
-      this.getResult.voorkeuren.forEach(voorkeur => {
-        this.foodCategories.push(voorkeur.naam)
-      });
-
-    } catch (err) {
-      this.getResult = err.message;
-    }
+    this.getAlleVoorkeuren()
+    this.getAlleGebruikersVoorkeuren()
   }
 })
 </script>
