@@ -35,14 +35,6 @@ export default defineComponent({
         }
       }
     },
-    // logSelectedCategories() {
-    //   console.log(JSON.stringify(this.selectedCategories))
-    // }
-    // ,
-
-    // fortmatResponse(res: Response) {
-    //   return JSON.stringify(res, null, 2);
-    // }
     async postData() {
       const postData = {
         voorkeuren: this.selectedCategories
@@ -131,10 +123,7 @@ export default defineComponent({
     </div>
     <AppButton label="Bewaar je keuze!" @click="postData" />
   </div>
-
-  {{postResult }}
 </template>
-
 
 
 <style scoped>
