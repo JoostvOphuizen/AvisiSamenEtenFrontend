@@ -25,7 +25,11 @@ export default defineComponent({
     }
   },
   methods: {
+    gotoHome () {
+      this.$router.push("/")
+    },
     handleOptionChange(category: string, checked: boolean) {
+      console.log(category, checked);
       if (checked) {
         this.selectedCategories.push(category);
         console.log(this.selectedCategories);
@@ -41,6 +45,7 @@ export default defineComponent({
       const postData = {
         voorkeuren: this.selectedCategories
       }
+
       try {
         const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
           method: "POST", 
@@ -70,6 +75,7 @@ export default defineComponent({
         };
 
         this.gekozenVoorkeurenData = result;
+
       } catch (err) {
         this.gekozenVoorkeurenData = err.message;
       }
@@ -99,6 +105,9 @@ export default defineComponent({
         this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
              this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
+
+        this.selectedCategories = this.voorgeselecteerdeVoorkeuren
+
       } catch (err) {
         this.gebruikersVoorkeurenData = err.message;
       }
@@ -130,6 +139,8 @@ export default defineComponent({
           this.foodCategories.push(voorkeur.naam)
         });
 
+
+
       } catch (err) {
         this.alleVoorkeurenData = err.message;
       }
@@ -149,12 +160,12 @@ export default defineComponent({
     <GlassTile class="glass">
       <div class="scroller">
         <h2 class="optieMenuTitle">Voorkeuren</h2>
-        <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
+        <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam, $event.target.checked)">
           <Optie :label="naam" :value="naam" :checked="voorgeselecteerdeVoorkeuren.includes(naam)" />
         </div>
       </div>
     </GlassTile>
-    <AppButton label="Bewaar je keuze!" @click="postData" class="endButton" />
+    <AppButton label="Bewaar je keuze!" @click="postData(); gotoHome()" class="endButton" />
   </div>
 </template>
 
@@ -225,5 +236,6 @@ export default defineComponent({
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
 }
+
 
 </style>

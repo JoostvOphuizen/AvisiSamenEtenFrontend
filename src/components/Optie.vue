@@ -41,13 +41,10 @@
         checkbox.click();
       },
     },
-    mounted() {
-      const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
-      const parentElement = checkbox.closest('.optieClass');
-
-      if (parentElement && this.checked) {
-        parentElement.classList.add('checked');
-      }
+    computed: {
+      optieClass() {
+        return this.checked ? 'optieClass checked' : 'optieClass';
+        },
     },
   };
 </script>
@@ -176,7 +173,7 @@
 </style>
 
 <template>
-    <div class="optieClass" @click="checkCheckbox($event)">
+  <div :class="optieClass" @click="checkCheckbox($event)">
     <div class="optieTitle">
       <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
       <span class="optieLabel">{{ label }}</span>

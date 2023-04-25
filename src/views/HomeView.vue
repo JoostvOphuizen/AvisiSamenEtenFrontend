@@ -1,11 +1,13 @@
 <script lang="ts">
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
+import Notificatie from '@/components/Notificatie.vue'
 
 export default ({
   components: {
     AppButton,
-    GlassTile
+    GlassTile,
+    Notificatie
   },
   methods: {
     gotoGroep () {
@@ -23,6 +25,8 @@ export default ({
 
 <template>
   <div class="center">
+    <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png"></Notificatie>
+
     <GlassTile class="glass">
       <span class="title">
         <h1 class="h1text">Samen eten</h1>
