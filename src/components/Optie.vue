@@ -1,31 +1,34 @@
 <script lang="ts">
-export default {
+  export default {
     name: 'Optie',
     props: {
-        label: {
-            type: String,
-            required: true,
-        },
-        icon: {
-            type: String,
-        },
+      label: {
+        type: String,
+        required: true,
+      },
+      icon: {
+        type: String,
+      },
     },
     methods: {
-    onCheckboxChange(event: Event) {
-      const checkbox = event.target as HTMLInputElement;
-      const parentElement = checkbox.closest('.optieClass');
+      onCheckboxChange(event: Event) {
+        const checkbox = event.target as HTMLInputElement;
+        const parentElement = checkbox.closest('.optieClass');
 
-      if (parentElement) {
-        if (checkbox.checked) {
-          parentElement.classList.add('checked');
-        } else {
-          parentElement.classList.remove('checked');
+        if (parentElement) {
+          if (checkbox.checked) {
+            parentElement.classList.add('checked');
+          } else {
+            parentElement.classList.remove('checked');
+          }
         }
-      }
+      },
+      checkCheckbox() {
+        const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+        checkbox.click();
+      },
     },
-  },
-}
-
+  };
 </script>
 
 <style scoped>
@@ -153,21 +156,19 @@ export default {
 </style>
 
 <template>
-
-<div class="optieClass">
+  <div class="optieClass" @click="checkCheckbox">
     <div class="optieTitle">
-        <img v-if="icon" :src="icon" alt="icon" class="optieIcon" /> 
-        <span class="optieLabel">{{ label }}</span>
+      <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
+      <span class="optieLabel">{{ label }}</span>
     </div>
     <div class="checkbox-wrapper-46">
-        <input class="inp-cbx" :id="label" type="checkbox" @change="onCheckboxChange" />
-        <label class="cbx" :for="label"><span>
+      <input class="inp-cbx" :id="label" type="checkbox" @change="onCheckboxChange" />
+      <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span></span>
-        </label>
+      </label>
     </div>
-</div>
-
+  </div>
 </template>
 

@@ -1,11 +1,9 @@
 <script lang="ts">
-import GlassObject from '@/components/Glass.vue'
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
 
 export default ({
   components: {
-    GlassObject,
     AppButton,
     GlassTile
   },

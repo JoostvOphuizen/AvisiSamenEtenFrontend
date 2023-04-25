@@ -1,6 +1,5 @@
 <script lang="ts">
 export default {
-    name: 'Button',
     props: {
         label: {
             type: String,
@@ -35,6 +34,7 @@ export default {
     align-items: center;
     justify-content: center;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    
 }
 
 .buttonPrimary {
@@ -67,6 +67,7 @@ export default {
 .buttonClass:active {
     box-shadow: none;
     transform: translateY(0);
+    /*scale: 0.95;*/
 }
 
 </style>

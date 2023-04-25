@@ -111,7 +111,7 @@ export default defineComponent({
       }
 
       this.getResult = result.data
-      
+      this.foodCategories = []
       this.getResult.voorkeuren.forEach(voorkeur => {
         this.foodCategories.push(voorkeur.naam)
       });
@@ -125,15 +125,17 @@ export default defineComponent({
 
 
 <template>
-  <GlassTile class="glass">
-    <div class="scroller">
-      <h2 class="optieMenuTitle">Voorkeuren</h2>
-      <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
-        <Optie :label="naam" :value="naam" :checked="naam"/>
+  <div class="centeredItems">
+    <GlassTile class="glass">
+      <div class="scroller">
+        <h2 class="optieMenuTitle">Voorkeuren</h2>
+        <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
+          <Optie :label="naam" :value="naam" :checked="naam"/>
+        </div>
       </div>
-    </div>
-    <AppButton label="Bewaar je keuze!" @click="postData" />
-  </GlassTile>
+    </GlassTile>
+    <AppButton label="Bewaar je keuze!" @click="postData" class="endButton" />
+  </div>
 </template>
 
 
@@ -146,6 +148,9 @@ export default defineComponent({
   border-radius: 10px;
   padding: 10px 5px 10px 10px;
   margin: 20px 0;
+  width: 100%;
+  height: 100%;
+  min-width: 300px;
 }
 
 .scroller {
@@ -159,6 +164,31 @@ export default defineComponent({
   color: var(--vt-c-white);
   font-size: 1.5rem;
   margin: 4px;
+}
+
+.endButton {
+  margin-left: 0;
+}
+.centeredItems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaaaaa00; /* or add it to the track */
+}
+.scroller::-webkit-scrollbar-thumb {
+  background-color: var(--vt-c-white);
+  border-radius: 20px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background: #f1f1f100;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
 }
 
 </style>
