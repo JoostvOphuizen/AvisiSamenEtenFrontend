@@ -48,8 +48,8 @@ export default {
 }
 
 .buttonIconLeft {
-    width: 13px;
-    height: 13px;
+    width: 20px;
+    height: 20px;
     margin-right: 8px;
 }
 
