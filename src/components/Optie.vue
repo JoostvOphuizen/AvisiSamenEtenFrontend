@@ -1,19 +1,58 @@
 <script lang="ts">
-export default {
+  export default {
+    name: 'Optie',
     props: {
-        label: {
-            type: String,
-            required: true,
-        },
-        icon: {
-            type: String,
-        },
+      label: {
+        type: String,
+        required: true,
+      },
+      icon: {
+        type: String,
+      },
+      checked: {
+        type: Boolean,
+        default: false,
+      },
     },
-}
+    methods: {
+        onCheckboxChange(event: Event) {
+          const checkbox = event.target as HTMLInputElement;
+          const parentElement = checkbox.closest('.optieClass');
 
+          if (parentElement) {
+            if (checkbox.checked) {
+            parentElement.classList.add('checked');
+          } else {
+            parentElement.classList.remove('checked');
+          }
+      }
+
+      this.$emit('change', checkbox.checked);
+    },
+    checkCheckbox(event: MouseEvent) {
+        const target = event.target as HTMLElement;
+        if (target.classList.contains('cbx') || target.closest('.cbx')) {
+          // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
+          event.stopPropagation();
+          return;
+        }
+
+        const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+        checkbox.click();
+      },
+    },
+    mounted() {
+      const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+      const parentElement = checkbox.closest('.optieClass');
+
+      if (parentElement && this.checked) {
+        parentElement.classList.add('checked');
+      }
+    },
+  };
 </script>
 
-<style>
+<style scoped>
 
 .optieClass {
     background-color: var(--vt-c-black-soft);
@@ -33,7 +72,7 @@ export default {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    margin: 0;
+    margin: 0 100px 0 0;
     display: flex;
 }
 
@@ -65,6 +104,8 @@ export default {
     transform: translate3d(0, 0, 0);
   }
   .checkbox-wrapper-46 .cbx span:first-child {
+    /* shadow inside the checkbox */
+    box-shadow: inset 0 0 5px 3px #26282b60;
     position: relative;
     width: 18px;
     height: 18px;
@@ -126,26 +167,28 @@ export default {
     }
   }
 
+  .optieClass.checked {
+    background-color: var(--vt-c-indigo);
+  }
+
 
 
 </style>
 
 <template>
-
-<div class="optieClass">
+    <div class="optieClass" @click="checkCheckbox($event)">
     <div class="optieTitle">
-        <img v-if="icon" :src="icon" alt="icon" class="optieIcon" /> 
-        <span class="optieLabel">{{ label }}</span>
+      <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
+      <span class="optieLabel">{{ label }}</span>
     </div>
     <div class="checkbox-wrapper-46">
-        <input class="inp-cbx" :id="label" type="checkbox" />
-        <label class="cbx" :for="label"><span>
+      <input class="inp-cbx" :id="label" type="checkbox" :checked="checked" @change="onCheckboxChange" />
+      <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span></span>
-        </label>
+      </label>
     </div>
-</div>
-
+  </div>
 </template>
 

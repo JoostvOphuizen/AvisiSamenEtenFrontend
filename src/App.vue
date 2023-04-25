@@ -6,25 +6,33 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <div class="wrapper">
     <header class="header">
-    <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
+    <RouterLink to="/" class="link">
+      <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
+    </RouterLink>
     </header>
     <main class="main">
-    
-    <div>
-      <nav class="nav">
-        <RouterLink to="/" class="nav-item">Home</RouterLink>
-        <RouterLink to="/login" class="nav-item">Login</RouterLink>
-        <RouterLink to="/voorkeur" class="nav-item">Voorkeur</RouterLink>
-      </nav>
-    </div>
-
 
     <RouterView />
 
 
   </main>
+
   <footer class="footer">
+    <RouterLink to="/" class="link">
       <img src="@/assets/AvisiSamenEtenLogo.svg" alt="Logo" class="footer-logo" />
+    </RouterLink>
     </footer>
   </div>
 </template>
+
+<style scoped>
+
+.link {
+  text-decoration: none;
+
+}
+.link:hover {
+  background-color: #ffffff00;
+}
+
+</style>

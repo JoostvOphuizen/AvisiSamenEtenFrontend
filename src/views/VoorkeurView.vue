@@ -10,7 +10,16 @@ export default ({
 
 <template>
   <div class="categorybox">
-    <h2>Kies je voorkeuren:</h2>
     <VoorkeurenLijst/>
   </div>
 </template>
+
+<style scoped>
+
+/* fills screen */
+.categorybox {
+  width: 100%;
+  height: 100%;
+}
+
+</style>
