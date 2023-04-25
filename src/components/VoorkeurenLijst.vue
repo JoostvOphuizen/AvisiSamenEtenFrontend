@@ -154,6 +154,22 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   min-width: 300px;
+  max-width: 50%;
+}
+
+/* media queries */
+@media only screen and (max-width: 450px) {
+  .glass {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .glass {
+    /* scale based on width */
+    transform: scale(0.8);
+  }
+
 }
 
 .scroller {
