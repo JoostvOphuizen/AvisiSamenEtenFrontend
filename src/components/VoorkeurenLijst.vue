@@ -4,7 +4,7 @@ import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 
 const baseURL = "http://localhost:8080";
-const userID = 2;
+const USERID = 2;
 
 export default defineComponent({
   components: {
@@ -41,7 +41,7 @@ export default defineComponent({
         voorkeuren: this.selectedCategories
       }
       try {
-        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+userID, {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
           method: "POST", 
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export default defineComponent({
     },
     async getAlleGebruikersVoorkeuren () {
       try {
-        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+userID);
+        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+USERID);
 
         if (!res.ok) {
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
