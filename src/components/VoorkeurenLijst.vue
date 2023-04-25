@@ -8,6 +8,9 @@ const baseURL = "http://localhost:8080";
 
 var foodCategories = <string[]>([])
 
+/* example data */
+var preCheckedCategories = ["kip", "pizza", "plantaardig"]
+
 export default defineComponent({
   components: {
     AppButton,
@@ -19,21 +22,20 @@ export default defineComponent({
       getResult: null,
       postResult: null,
       selectedCategories: ref<string[]>([]),
-      foodCategories
+      foodCategories,
+      preCheckedCategories
     }
   },
   methods: {
-    handleOptionChange(category: string) {
-      var element = <HTMLInputElement> document.getElementById(category);
-      if(element.checked) {
-        this.selectedCategories.push(category)
-        console.log(this.selectedCategories)
-      } 
-      else {
-        const index = this.selectedCategories.indexOf(category)
+    handleOptionChange(category: string, checked: boolean) {
+      if (checked) {
+        this.selectedCategories.push(category);
+        console.log(this.selectedCategories);
+      } else {
+        const index = this.selectedCategories.indexOf(category);
         if (index !== -1) {
-          this.selectedCategories.splice(index, 1)
-          console.log(this.selectedCategories)
+          this.selectedCategories.splice(index, 1);
+          console.log(this.selectedCategories);
         }
       }
     },
@@ -116,6 +118,7 @@ export default defineComponent({
         this.foodCategories.push(voorkeur.naam)
       });
 
+
     } catch (err) {
       this.getResult = err.message;
     }
@@ -130,7 +133,7 @@ export default defineComponent({
       <div class="scroller">
         <h2 class="optieMenuTitle">Voorkeuren</h2>
         <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
-          <Optie :label="naam" :value="naam" :checked="naam"/>
+          <Optie :label="naam" :value="naam" :checked="preCheckedCategories.includes(naam)" />
         </div>
       </div>
     </GlassTile>

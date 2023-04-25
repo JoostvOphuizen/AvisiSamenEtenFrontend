@@ -9,24 +9,45 @@
       icon: {
         type: String,
       },
+      checked: {
+        type: Boolean,
+        default: false,
+      },
     },
     methods: {
-      onCheckboxChange(event: Event) {
-        const checkbox = event.target as HTMLInputElement;
-        const parentElement = checkbox.closest('.optieClass');
+        onCheckboxChange(event: Event) {
+          const checkbox = event.target as HTMLInputElement;
+          const parentElement = checkbox.closest('.optieClass');
 
-        if (parentElement) {
-          if (checkbox.checked) {
+          if (parentElement) {
+            if (checkbox.checked) {
             parentElement.classList.add('checked');
           } else {
             parentElement.classList.remove('checked');
           }
+      }
+
+      this.$emit('change', checkbox.checked);
+    },
+    checkCheckbox(event: MouseEvent) {
+        const target = event.target as HTMLElement;
+        if (target.classList.contains('cbx') || target.closest('.cbx')) {
+          // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
+          event.stopPropagation();
+          return;
         }
-      },
-      checkCheckbox() {
+
         const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
         checkbox.click();
       },
+    },
+    mounted() {
+      const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+      const parentElement = checkbox.closest('.optieClass');
+
+      if (parentElement && this.checked) {
+        parentElement.classList.add('checked');
+      }
     },
   };
 </script>
@@ -152,17 +173,16 @@
 
 
 
-
 </style>
 
 <template>
-  <div class="optieClass" @click="checkCheckbox">
+    <div class="optieClass" @click="checkCheckbox($event)">
     <div class="optieTitle">
       <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
       <span class="optieLabel">{{ label }}</span>
     </div>
     <div class="checkbox-wrapper-46">
-      <input class="inp-cbx" :id="label" type="checkbox" @change="onCheckboxChange" />
+      <input class="inp-cbx" :id="label" type="checkbox" :checked="checked" @change="onCheckboxChange" />
       <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
