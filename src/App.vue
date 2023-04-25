@@ -1,38 +1,67 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-
-</script>
-
 <template>
   <div class="wrapper">
     <header class="header">
-    <RouterLink to="/" class="link">
-      <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
-    </RouterLink>
+      <router-link to="/" class="link">
+        <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
+      </router-link>
+      <img v-if="isLoggedIn" alt="Profile icon" class="profileIcon" src="src\assets\profile-user.png" />
     </header>
     <main class="main">
-
-    <RouterView />
-
-
-  </main>
-
-  <footer class="footer">
-    <RouterLink to="/" class="link">
-      <img src="@/assets/AvisiSamenEtenLogo.svg" alt="Logo" class="footer-logo" />
-    </RouterLink>
+      <router-view />
+    </main>
+    <footer class="footer">
+      <router-link to="/" class="link">
+        <img src="@/assets/AvisiSamenEtenLogo.svg" alt="Logo" class="footer-logo" />
+      </router-link>
     </footer>
   </div>
 </template>
 
-<style scoped>
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { mapGetters } from 'vuex'
 
+export default defineComponent({
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
+  setup() {
+    const route = useRoute()
+    const router = useRouter()
+
+    return {
+      route,
+      router
+    }
+  }
+})
+</script>
+
+<style scoped>
 .link {
   text-decoration: none;
-
 }
 .link:hover {
   background-color: #ffffff00;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.profileIcon {
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
 }
 
 </style>
