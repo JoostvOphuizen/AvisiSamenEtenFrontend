@@ -43,30 +43,30 @@ export default defineComponent({
     // fortmatResponse(res: Response) {
     //   return JSON.stringify(res, null, 2);
     // }
-
-    postData () {
+    async postData() {
       const postData = {
-        postCategories : this.selectedCategories
-      };
+        voorkeuren: this.selectedCategories
+      }
 
       try {
-        const res = fetch(`${baseURL}/gebruiker/profiel?id=2`, {
-          method: "post",
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=2`, {
+          method: "POST", 
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": "token-value",
-          },
-          body: JSON.stringify(postData),
+            "x-access-token": "token-value"
+          }, 
+          body: JSON.stringify(postData)
         });
-        console.log(res)
-
+        console.log(JSON.stringify(postData))
 
         if (!res.ok) {
+          console.log('error ')
+
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
-
-        const data = res.json();
+        // const data = await res.json();
+        const data = await res.text();
         console.log(data)
 
         const result = {
@@ -79,14 +79,13 @@ export default defineComponent({
         };
 
         this.postResult = result;
-
       } catch (err) {
         this.postResult = err.message;
       }
+      console.log(this.postResult)
+
     }
-
   },
-
   async created () {
     try {
       const res = await fetch(`${baseURL}/voorkeuren`);
@@ -127,11 +126,13 @@ export default defineComponent({
     <div class="scroller">
       <h2 class="optieMenuTitle">Voorkeuren</h2>
       <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam)">
-        <Optie :label="naam" :value="naam" :checked="naam"/>
+        <Optie :label="naam" :value="naam" />
       </div>
     </div>
     <AppButton label="Bewaar je keuze!" @click="postData" />
   </div>
+
+  {{postResult }}
 </template>
 
 
