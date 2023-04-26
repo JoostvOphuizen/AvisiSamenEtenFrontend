@@ -1,5 +1,5 @@
 <script lang="ts">
-import {defineComponent, ref} from 'vue'
+import { defineComponent, ref } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
@@ -14,7 +14,7 @@ export default defineComponent({
     Optie,
     GlassTile
   },
-  data(this) {
+  data() {
     return {
       gekozenVoorkeurenData: null,
       alleVoorkeurenData: null,
@@ -61,13 +61,11 @@ export default defineComponent({
           console.log('error ')
 
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
-
           throw new Error(message);
         }
         const data = await res.json();
 
-// @ts-ignore
-        this.gekozenVoorkeurenData = {
+        const result = {
           status: res.status + "-" + res.statusText,
           headers: {
             "Content-Type": res.headers.get("Content-Type"),
@@ -76,8 +74,9 @@ export default defineComponent({
           data: data,
         };
 
+        this.gekozenVoorkeurenData = result;
+
       } catch (err) {
-        // @ts-ignore
         this.gekozenVoorkeurenData = err.message;
       }
     },
@@ -103,7 +102,6 @@ export default defineComponent({
         }
 
         this.gebruikersVoorkeurenData = result.data
-        // @ts-ignore
         this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
@@ -111,7 +109,6 @@ export default defineComponent({
         this.selectedCategories = this.voorgeselecteerdeVoorkeuren
 
       } catch (err) {
-        // @ts-ignore
         this.gebruikersVoorkeurenData = err.message;
       }
     },
@@ -137,7 +134,7 @@ export default defineComponent({
         }
 
         this.alleVoorkeurenData = result.data
-// @ts-ignore
+
         this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.foodCategories.push(voorkeur.naam)
         });
@@ -147,13 +144,17 @@ export default defineComponent({
       } catch (err) {
         let errorMessage = "Failed to do something exceptional";
         if (err instanceof Error) {
-          // @ts-ignore
           this.alleVoorkeurenData = err.message;
         }
         console.log(errorMessage);
       }
 
     }
+  },
+
+  async created () {
+    this.getAlleVoorkeuren()
+    this.getAlleGebruikersVoorkeuren()
   }
 })
 </script>
@@ -164,7 +165,7 @@ export default defineComponent({
     <GlassTile class="glass">
       <div class="scroller">
         <h2 class="optieMenuTitle">Voorkeuren</h2>
-        <div v-for="naam in this.foodCategories " :key="naam" @change="handleOptionChange(naam, $event.target.checked)">
+        <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam, $event.target.checked)">
           <Optie :label="naam" :value="naam" :checked="voorgeselecteerdeVoorkeuren.includes(naam)" />
         </div>
       </div>

@@ -18,6 +18,8 @@
     methods: {
         onCheckboxChange(event: Event) {
           const checkbox = event.target as HTMLInputElement;
+
+
           const parentElement = checkbox.closest('.optieClass');
 
           if (parentElement) {
