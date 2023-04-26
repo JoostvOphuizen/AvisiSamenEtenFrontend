@@ -19,7 +19,6 @@ interface AlleVoorkeurenData {
   voorkeuren: Voorkeur[];
 }
 
-
 interface Result {
   status: string;
   headers: {
@@ -81,7 +80,7 @@ export default defineComponent({
         if (!res.ok) {
           console.log('error ');
 
-          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
         const data = await res.json();
@@ -170,10 +169,10 @@ export default defineComponent({
   },
 
   async created () {
-    this.getAlleVoorkeuren()
-    this.getAlleGebruikersVoorkeuren()
+    await this.getAlleVoorkeuren();
+    await this.getAlleGebruikersVoorkeuren();
   }
-})
+});
 </script>
 
 
