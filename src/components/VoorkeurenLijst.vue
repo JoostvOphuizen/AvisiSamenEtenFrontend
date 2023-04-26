@@ -61,9 +61,9 @@ export default defineComponent({
         }
       }
     },
-    async postData() {
+    async postData(): Promise<void> {
       const postData = {
-        voorkeuren: this.selectedCategories,
+        voorkeuren: this.selectedCategories.values,
       };
 
       try {
@@ -122,16 +122,17 @@ export default defineComponent({
 
         this.gebruikersVoorkeurenData = result.data
         this.gebruikersVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
-          this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+          this.voorgeselecteerdeVoorkeuren.value.push(voorkeur.naam)
         });
 
-        this.selectedCategories = this.voorgeselecteerdeVoorkeuren
+        this.selectedCategories.value = this.voorgeselecteerdeVoorkeuren.value
 
       } catch (err) {
         this.gebruikersVoorkeurenData = err.message;
       }
-    },
-    async getAlleVoorkeuren () {
+    }
+    ,
+    async getAlleVoorkeuren (): Promise<void> {
       try {
         const res = await fetch(`${baseURL}/voorkeuren`);
 
@@ -142,31 +143,25 @@ export default defineComponent({
 
         const data = await res.json();
 
-        const result = {
+        const result: Result = {
           status: res.status + "-" + res.statusText,
           headers: {
-            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Type": res.headers.get("Content-Type")!,
             "Content-Length": res.headers.get("Content-Length"),
           },
-          length: res.headers.get("Content-Length"),
-          data: data
-        }
+          data: data,
+        };
 
-        this.alleVoorkeurenData = result.data
+        this.alleVoorkeurenData = result.data;
 
-        this.alleVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
-          this.foodCategories.push(voorkeur.naam)
-        });
-
+        this.foodCategories = this.alleVoorkeurenData.voorkeuren.map(
+            (voorkeur: Voorkeur) => voorkeur.naam
+        );
       } catch (err) {
-        let errorMessage = "Failed to do something exceptional";
-        if (err instanceof Error) {
-          this.alleVoorkeurenData = err.message;
-        }
-        console.log(errorMessage);
+        this.alleVoorkeurenData = err.message;
+        console.log("Failed to get all preferences", err);
       }
-    }
-  },
+    },
 
   async created () {
     await this.getAlleVoorkeuren();
