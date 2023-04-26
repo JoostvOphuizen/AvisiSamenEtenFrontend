@@ -25,7 +25,8 @@ export default defineComponent({
     }
   },
   methods: {
-    gotoHome () {
+    gotoHome () {// @ts-ignore
+
       this.$router.push("/")
     },
     handleOptionChange(category: string, checked: boolean) {
