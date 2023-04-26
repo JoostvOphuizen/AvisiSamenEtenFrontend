@@ -99,7 +99,7 @@ export default defineComponent({
         this.gekozenVoorkeurenData = err.message;
       }
     },
-    async getAlleGebruikersVoorkeuren (): Promise<void> {
+    async getAlleGebruikersVoorkeuren(): Promise<void> {
       try {
         const res = await fetch(`${baseURL}/gebruikers/voorkeuren`);
 
@@ -132,7 +132,7 @@ export default defineComponent({
       }
     }
     ,
-    async getAlleVoorkeuren (): Promise<void> {
+    async getAlleVoorkeuren(): Promise<void> {
       try {
         const res = await fetch(`${baseURL}/voorkeuren`);
 
@@ -163,11 +163,11 @@ export default defineComponent({
       }
     },
 
-  async created () {
-    await this.getAlleVoorkeuren();
-    await this.getAlleGebruikersVoorkeuren();
-  }
-});
+    async created() {
+      await this.getAlleVoorkeuren();
+      await this.getAlleGebruikersVoorkeuren();
+    }
+  }});
 </script>
 
 
