@@ -2,6 +2,7 @@
 import AppButton from '@/components/Button.vue'
 import { decodeCredential, googleAuthCodeLogin } from 'vue3-google-login'
 import GlassTile from '@/components/GlassTile.vue'
+import type { CallbackTypes } from 'vue3-google-login'
 
 export default ({
   components: {
@@ -10,12 +11,15 @@ export default ({
 },
   methods: {
     login (response: any) {
+
       googleAuthCodeLogin().then((response) => {
         console.log("Handle the response", response)
-      })
-    }
+        
+    })
   },
+  }
 })
+
 
 </script>
 

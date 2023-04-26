@@ -21,7 +21,7 @@ export default {
 
 <template>
   <div class="categorybox">
-    <VoorkeurenLijst/>
+    <VoorkeurenLijst v-if="isLoggedIn" />
   </div>
 </template>
 
