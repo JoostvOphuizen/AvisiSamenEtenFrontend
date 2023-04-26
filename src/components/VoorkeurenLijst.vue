@@ -14,7 +14,7 @@ export default defineComponent({
     Optie,
     GlassTile
   },
-  data() {
+  data(this) {
     return {
       gekozenVoorkeurenData: null,
       alleVoorkeurenData: null,
@@ -25,11 +25,11 @@ export default defineComponent({
     }
   },
   methods: {
-    gotoHome () {// @ts-ignore
+    gotoHome () {
 
       this.$router.push("/")
     },
-    handleOptionChange(category: string, event: Event) {
+    handleOptionChange(category: string, event: Event) {// @ts-ignore
       const checked = (event.target as HTMLInputElement)?.checked;
       console.log(category, checked);
       if (checked != null) {
