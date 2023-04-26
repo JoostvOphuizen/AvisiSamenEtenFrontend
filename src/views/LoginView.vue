@@ -7,7 +7,6 @@ export default ({
 },
   methods: {
     gotoLogin () {
-      // @ts-ignore
         this.$router.push("/voorkeur")
     }
   }

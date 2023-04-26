@@ -11,11 +11,9 @@ export default ({
   },
   methods: {
     gotoGroep () {
-      // @ts-ignore
         this.$router.push("/groep")
     },
     gotoVoorkeuren () {
-      // @ts-ignore
         this.$router.push("/voorkeur")
     }
   }  
