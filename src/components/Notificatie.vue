@@ -29,8 +29,8 @@ export default {
   margin: 4px;
   display: flex;
   align-items: center;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
   max-height: 5px;
+  width: 60%;
 }
 
 .notificatie:hover {
@@ -75,27 +75,21 @@ export default {
   padding: 10px;
   border-radius: 5px;
   z-index: 1;
-  width: 200%;
-    margin-left: -50%;
-}
-
-/* media query */
-@media screen and (max-width: 500px) {
-  .notificatieBox {
-    width: 300%;
-    margin-left: -40%;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .notificatieBox {
-    width: 180%;
-    margin-left: -40%;
-  }
+  width: 60%;
 }
 
 .notificatie:hover .notificatieBox {
   display: block;
+}
+
+/* media queries */
+@media screen and (max-width: 600px) {
+  .notificatie {
+    width: 100%;
+  }
+  .notificatieBox {
+    width: 100%;
+  }
 }
 
 </style>

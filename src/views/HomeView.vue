@@ -25,7 +25,9 @@ export default ({
 
 <template>
   <div class="center">
-    <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png"></Notificatie>
+      <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png" class="notificatie"></Notificatie>
+    </div>
+  <div class="center">
 
     <GlassTile class="glass">
       <span class="title">
@@ -86,6 +88,11 @@ export default ({
 .button {
   margin: 0px 50px 15px 50px;
 }
+
+.notificatie {
+  display: flex;
+}
+
 
 /* scale down if screen is too small */
 @media screen and (max-width: 500px) {
