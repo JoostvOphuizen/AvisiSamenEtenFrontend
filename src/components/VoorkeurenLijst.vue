@@ -1,52 +1,32 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import Optie from '@/components/Optie.vue';
-import AppButton from '@/components/Button.vue';
-import GlassTile from '@/components/GlassTile.vue';
+import { defineComponent, ref } from 'vue'
+import Optie from '@/components/Optie.vue'
+import AppButton from '@/components/Button.vue'
+import GlassTile from '@/components/GlassTile.vue'
 
 const baseURL = "http://localhost:8080";
 const USERID = 2;
 
-interface Voorkeur {
-  naam: string;
-}
-
-interface GebruikersVoorkeurenData {
-  voorkeuren: Voorkeur[];
-}
-
-interface AlleVoorkeurenData {
-  voorkeuren: Voorkeur[];
-}
-
-interface Result {
-  status: string;
-  headers: {
-    "Content-Type": string;
-    "Content-Length": string | null;
-  };
-  data: any;
-}
 
 export default defineComponent({
   components: {
     AppButton,
     Optie,
-    GlassTile,
+    GlassTile
   },
   data() {
     return {
-      gekozenVoorkeurenData: null as Result | string | null,
-      alleVoorkeurenData: null as AlleVoorkeurenData | string | null,
-      gebruikersVoorkeurenData: null as GebruikersVoorkeurenData | string | null,
-      voorgeselecteerdeVoorkeuren: ref([] as string[]),
-      selectedCategories: ref([] as string[]),
-      foodCategories: ref([] as string[]),
-    };
+      gekozenVoorkeurenData: null,
+      alleVoorkeurenData: null,
+      gebruikersVoorkeurenData: null,
+      voorgeselecteerdeVoorkeuren: ref<string[]>([]),
+      selectedCategories: ref<string[]>([]),
+      foodCategories: ref<string[]>([])
+    }
   },
   methods: {
-    gotoHome() {
-      this.$router.push("/");
+    gotoHome () {
+      this.$router.push("/")
     },
     handleOptionChange(category: string, checked: boolean) {
       console.log(category, checked);
@@ -61,26 +41,26 @@ export default defineComponent({
         }
       }
     },
-    async postData(): Promise<void> {
+    async postData() {
       const postData = {
-        voorkeuren: this.selectedCategories.value,
-      };
+        voorkeuren: this.selectedCategories
+      }
 
       try {
-        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=` + USERID, {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": "token-value",
+            "x-access-token": "token-value"
           },
-          body: JSON.stringify(postData),
+          body: JSON.stringify(postData)
         });
-        console.log(JSON.stringify(postData));
+        console.log(JSON.stringify(postData))
 
         if (!res.ok) {
-          console.log('error ');
+          console.log('error ')
 
-          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
         const data = await res.json();
@@ -88,24 +68,24 @@ export default defineComponent({
         const result = {
           status: res.status + "-" + res.statusText,
           headers: {
-            "Content-Type": res.headers.get("Content-Type")!,
+            "Content-Type": res.headers.get("Content-Type"),
             "Content-Length": res.headers.get("Content-Length"),
           },
           data: data,
         };
 
         this.gekozenVoorkeurenData = result;
+
       } catch (err) {
         this.gekozenVoorkeurenData = err.message;
       }
     },
-
-    async getAlleGebruikersVoorkeuren(): Promise<void> {
+    async getAlleGebruikersVoorkeuren () {
       try {
-        const res = await fetch(`${baseURL}/gebruikers/voorkeuren`);
+        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+USERID);
 
         if (!res.ok) {
-          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
 
@@ -121,53 +101,62 @@ export default defineComponent({
           data: data
         }
 
-        this.gebruikersVoorkeurenData = result.data;
-        this.voorgeselecteerdeVoorkeuren.value = this.gebruikersVoorkeurenData.voorkeuren.map((voorkeur: Voorkeur) => voorkeur.naam);
+        this.gebruikersVoorkeurenData = result.data
+        this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
+          this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+        });
 
-        this.selectedCategories.value = this.voorgeselecteerdeVoorkeuren.value;
+        this.selectedCategories = this.voorgeselecteerdeVoorkeuren
 
       } catch (err) {
         this.gebruikersVoorkeurenData = err.message;
       }
     },
-
-    async getAlleVoorkeuren(): Promise<void> {
+    async getAlleVoorkeuren () {
       try {
         const res = await fetch(`${baseURL}/voorkeuren`);
 
         if (!res.ok) {
-          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
+          const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
 
         const data = await res.json();
 
-        const result: Result = {
+        const result = {
           status: res.status + "-" + res.statusText,
           headers: {
-            "Content-Type": res.headers.get("Content-Type")!,
+            "Content-Type": res.headers.get("Content-Type"),
             "Content-Length": res.headers.get("Content-Length"),
           },
-          data: data,
-        };
+          length: res.headers.get("Content-Length"),
+          data: data
+        }
 
-        this.alleVoorkeurenData = result.data;
+        this.alleVoorkeurenData = result.data
 
-        this.foodCategories.value = this.alleVoorkeurenData.voorkeuren.map(
-            (voorkeur: Voorkeur) => voorkeur.naam
-        );
+        this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
+          this.foodCategories.push(voorkeur.naam)
+        });
+
+
+
       } catch (err) {
-        this.alleVoorkeurenData = err.message;
-        console.log("Failed to get all preferences", err);
+        let errorMessage = "Failed to do something exceptional";
+        if (err instanceof Error) {
+          this.alleVoorkeurenData = err.message;
+        }
+        console.log(errorMessage);
       }
-    },
 
-    async created(): Promise<void> {
-      await this.getAlleVoorkeuren();
-      await this.getAlleGebruikersVoorkeuren();
     }
+  },
+
+  async created () {
+    this.getAlleVoorkeuren()
+    this.getAlleGebruikersVoorkeuren()
   }
-});
+})
 </script>
 
 
