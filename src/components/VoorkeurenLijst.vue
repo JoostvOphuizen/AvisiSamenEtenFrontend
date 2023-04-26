@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, type ComponentCustomProperties } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
@@ -14,7 +14,7 @@ export default defineComponent({
     Optie,
     GlassTile
   },
-  data(this) {
+  data(this: ComponentCustomProperties) {
     return {
       gekozenVoorkeurenData: null,
       alleVoorkeurenData: null,
@@ -30,7 +30,7 @@ export default defineComponent({
       this.$router.push("/")
     },
     handleOptionChange(category: string, event: Event) {// @ts-ignore
-      const checked = (event.target as HTMLInputElement)?.checked;
+      const checked = event.target instanceof HTMLInputElement ? event.target.checked : false;
       console.log(category, checked);
       if (checked != null) {
         if (checked) {
@@ -179,7 +179,7 @@ export default defineComponent({
     <GlassTile class="glass">
       <div class="scroller">
         <h2 class="optieMenuTitle">Voorkeuren</h2>
-        <div v-for="naam in this.foodCategories " @change="handleOptionChange(naam, $event.target.checked)">
+        <div v-for="naam in this.foodCategories " :key="naam" @change="handleOptionChange(naam, $event.target.checked)">
           <Optie :label="naam" :value="naam" :checked="voorgeselecteerdeVoorkeuren.includes(naam)" />
         </div>
       </div>
