@@ -152,6 +152,16 @@ export default defineComponent({
     this.getAlleGebruikersVoorkeuren()
   }
 })
+
+try {
+  // try something exceptional here
+} catch (error) {
+  let errorMessage = "Failed to do something exceptional";
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  }
+  console.log(errorMessage);
+}
 </script>
 
 
