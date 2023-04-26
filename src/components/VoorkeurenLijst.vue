@@ -29,8 +29,8 @@ export default defineComponent({
 
       this.$router.push("/")
     },
-    handleOptionChange(category: string, event: Event) {// @ts-ignore
-      const checked = event.target instanceof HTMLInputElement ? event.target.checked : false;
+    handleOptionChange(category: string, event: Event): void {
+      const checked = (event.target as HTMLInputElement)?.checked ?? false;
       console.log(category, checked);
       if (checked != null) {
         if (checked) {
@@ -44,8 +44,7 @@ export default defineComponent({
           }
         }
       }
-    }
-    ,
+    },
     async postData() {
       const postData = {
         voorkeuren: this.selectedCategories
