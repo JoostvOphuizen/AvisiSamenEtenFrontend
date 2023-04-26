@@ -29,19 +29,23 @@ export default defineComponent({
 
       this.$router.push("/")
     },
-    handleOptionChange(category: string, checked: boolean) {
+    handleOptionChange(category: string, event: Event) {
+      const checked = (event.target as HTMLInputElement)?.checked;
       console.log(category, checked);
-      if (checked) {
-        this.selectedCategories.push(category);
-        console.log(this.selectedCategories);
-      } else {
-        const index = this.selectedCategories.indexOf(category);
-        if (index !== -1) {
-          this.selectedCategories.splice(index, 1);
+      if (checked != null) {
+        if (checked) {
+          this.selectedCategories.push(category);
           console.log(this.selectedCategories);
+        } else {
+          const index = this.selectedCategories.indexOf(category);
+          if (index !== -1) {
+            this.selectedCategories.splice(index, 1);
+            console.log(this.selectedCategories);
+          }
         }
       }
-    },
+    }
+    ,
     async postData() {
       const postData = {
         voorkeuren: this.selectedCategories
