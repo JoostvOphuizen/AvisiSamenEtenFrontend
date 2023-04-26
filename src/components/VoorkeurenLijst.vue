@@ -111,24 +111,25 @@ export default defineComponent({
         const data = await res.json();
 
         const result = {
-          status: res.status + "-" + res.statusText,
+          status: `${res.status}-${res.statusText}`,
           headers: {
             "Content-Type": res.headers.get("Content-Type"),
             "Content-Length": res.headers.get("Content-Length"),
           },
           length: res.headers.get("Content-Length"),
-          data: data
-        }
+          data: data,
+        };
 
-        this.gebruikersVoorkeurenData = result.data
+        this.gebruikersVoorkeurenData = result.data;
         this.gebruikersVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
-          this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+          this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam);
         });
 
-        this.selectedCategories = this.voorgeselecteerdeVoorkeuren
-
-      } catch (err) {
-        this.gebruikersVoorkeurenData = err.message;
+        this.selectedCategories = this.voorgeselecteerdeVoorkeuren;
+      } catch (fetchError) {
+        console.error(`Error fetching gebruikersvoorkeuren: ${fetchError.message}`);
+      } catch (jsonError) {
+        console.error(`Error parsing JSON: ${jsonError.message}`);
       }
     },
     async getAlleVoorkeuren () {
