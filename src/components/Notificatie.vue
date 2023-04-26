@@ -30,12 +30,9 @@ export default {
   display: flex;
   align-items: center;
   max-height: 5px;
-  width: 60%;
+  width: fit-content;
 }
 
-.notificatie:hover {
-  background-color: var(--vt-c-indigo);
-}
 
 .notificatieIconLeft {
   width: 13px;
@@ -75,7 +72,7 @@ export default {
   padding: 10px;
   border-radius: 5px;
   z-index: 1;
-  width: 60%;
+  width: 50vw;
 }
 
 .notificatie:hover .notificatieBox {

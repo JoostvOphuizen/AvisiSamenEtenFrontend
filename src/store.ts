@@ -16,8 +16,10 @@ const store = createStore<State>({
     }
   },
   actions: {
-    async login({ commit }, { email, password }: { email: string, password: string }) {
-        console.log('login' + email + password)
+    async login({ commit }, { email, password, picture }: { email: string, password: string, picture: string }) {
+      const user = { email, password, picture } // create a new user object with the picture attribute
+      commit('setUser', user) // commit the user object to the store
+      console.log('login', email, password)
     },
     async signup({ commit }, { name, email, password }: { name: string, email: string, password: string }) {
         console.log('signup')
@@ -28,7 +30,7 @@ const store = createStore<State>({
   },
   getters: {
     isLoggedIn(state) {
-      return /*state.user !== null*/ true
+      return /*state.user !== null*/ false
     }
   }
 })

@@ -11,14 +11,11 @@ export default ({
 },
   methods: {
     login (response: any) {
-
-      googleAuthCodeLogin().then((response) => {
-        console.log("Handle the response", response)
-        
-    })
+      const userData = decodeCredential(response.credential)
+      console.log("Handle the userData", userData)
+    }
   },
-  }
-})
+  })
 
 
 </script>
@@ -27,7 +24,8 @@ export default ({
   <div class="center">
     <GlassTile class="glass" >
       <h1 class="titletext">Login</h1>
-      <AppButton @click="login" label="Login with Google" iconLeft="src\assets\Google-modern-flat-icon.svg" class="button"></AppButton>
+      <GoogleLogin :callback="login"/>
+      <!-- <AppButton @click="login" label="Login with Google" iconLeft="src\assets\Google-modern-flat-icon.svg" class="button"></AppButton> -->
     </GlassTile>
   </div>
 </template>

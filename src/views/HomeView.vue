@@ -24,9 +24,9 @@ export default ({
 </script>
 
 <template>
-  <div class="center">
+  <!-- <div class="center">
       <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png" class="notificatie"></Notificatie>
-    </div>
+    </div> -->
   <div class="center">
 
     <GlassTile class="glass">
