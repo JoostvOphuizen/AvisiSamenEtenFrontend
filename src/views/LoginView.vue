@@ -11,7 +11,6 @@ export default ({
   components: {
     AppButton,
     GlassTile,
-
   },
   methods: {
     login (response: any) {

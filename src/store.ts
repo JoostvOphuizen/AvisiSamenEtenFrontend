@@ -31,6 +31,15 @@ function getUserPictureCookie() {
   return picture
 }
 
+function setUserIDCookie(id: string) {
+  Cookies.set('user_id', id, { expires: 7 }) // Set the user picture as a cookie with a 7 day expiry
+}
+
+function getUserIDCookie() {
+  const id = Cookies.get('user_id') // Get the user picture from the cookie
+  return id
+}
+
 const SESSIONID = '1234567890'
 const baseURL = "http://localhost:8080";
 
@@ -50,7 +59,8 @@ const store = createStore<State>({
       const user = getUserCookie() 
       if (user) {
         const pictureString = getUserPictureCookie()
-        state.user = { ...user, picture: pictureString }
+        const id = getUserIDCookie()
+        state.user = { ...user, picture: pictureString, id: id }
       }
     },
     setUser(state, user: User) {
@@ -61,6 +71,9 @@ const store = createStore<State>({
     },
     clearSessionId(state) {
       state.sessionId = null
+    },
+    setUserID(state, id: number) {
+      state.user!.id = id
     }
   },
   actions: {
@@ -70,33 +83,43 @@ const store = createStore<State>({
       commit('setSessionId', SESSIONID)
       setUserCookie(user)
       setUserPictureCookie(picture)
-      // try {
-      //   const res = await fetch(`${baseURL}/login?email=`+email+`naam=`+naam, {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "x-access-token": "token-value"
-      //     },
-      //   });
 
-      //   if (!res.ok) {
-      //     console.log('error ')
+      const loginDTO = { naam, email }
 
-      //     const message = `An error has occured: ${res.status} - ${res.statusText}`;
-      //     throw new Error(message);
-      //   }
-      //   const data = await res.json();
+      try {
+        const responds = await fetch(`${baseURL}/gebruiker/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": "token-value"
+          },
+          body: JSON.stringify(loginDTO),
+        });
 
-      //   const result = {
-      //     status: res.status + "-" + res.statusText,
-      //     headers: {
-      //       "Content-Type": res.headers.get("Content-Type"),
-      //       "Content-Length": res.headers.get("Content-Length"),
-      //     },
-      //     data: data,
-      //   };
-      // } catch (err) {
-      // }
+        if (!responds.ok) {
+          console.log('error ')
+
+          const message = `An error has occured: ${responds.status} - ${responds.statusText}`;
+          throw new Error(message);
+        }
+        const data = await responds.json();
+
+        const result = {
+          status: responds.status + "-" + responds.statusText,
+          headers: {
+            "Content-Type": responds.headers.get("Content-Type"),
+            "Content-Length": responds.headers.get("Content-Length"),
+          },
+          data: data,
+        };
+
+        console.log(result);
+
+        commit('setUserID', data.id)
+        setUserIDCookie(result.data.id)
+
+      } catch (err) {
+      }
     },
     async signup({ commit }, { name, email, password }: { name: string, email: string, password: string }) {
         console.log('signup')
@@ -117,6 +140,12 @@ const store = createStore<State>({
     },
     userName(state) {
       return state.user?.name || null
+    },
+    userEmail(state) {
+      return state.user?.email || null
+    },
+    getUserID(state) {
+      return state.user?.id || null
     }
   }
 })

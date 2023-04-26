@@ -3,16 +3,20 @@ import { defineComponent, ref } from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
+import { mapGetters } from 'vuex'
 
 const baseURL = "http://localhost:8080";
-const USERID = 2;
 
 
 export default defineComponent({
+  name: 'VoorkeurenLijst',
   components: {
     AppButton,
     Optie,
     GlassTile
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn', 'getUserID'])
   },
   data() {
     return {
@@ -47,7 +51,7 @@ export default defineComponent({
       }
 
       try {
-        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+this.getUserID, {
           method: "POST", 
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +85,7 @@ export default defineComponent({
     },
     async getAlleGebruikersVoorkeuren () {
       try {
-        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+USERID);
+        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+this.getUserID);
 
         if (!res.ok) {
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
