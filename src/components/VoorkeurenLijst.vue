@@ -39,9 +39,9 @@ export default defineComponent({
       gekozenVoorkeurenData: null as Result | string | null,
       alleVoorkeurenData: null as AlleVoorkeurenData | string | null,
       gebruikersVoorkeurenData: null as GebruikersVoorkeurenData | string | null,
-      voorgeselecteerdeVoorkeuren: ref<string[]>([]),
-      selectedCategories: ref<string[]>([]),
-      foodCategories: ref<string[]>([]),
+      voorgeselecteerdeVoorkeuren: ref([] as string[]),
+      selectedCategories: ref([] as string[]),
+      foodCategories: ref([] as string[]),
     };
   },
   methods: {
@@ -63,7 +63,7 @@ export default defineComponent({
     },
     async postData(): Promise<void> {
       const postData = {
-        voorkeuren: this.selectedCategories.values,
+        voorkeuren: this.selectedCategories.value,
       };
 
       try {
@@ -99,6 +99,7 @@ export default defineComponent({
         this.gekozenVoorkeurenData = err.message;
       }
     },
+
     async getAlleGebruikersVoorkeuren(): Promise<void> {
       try {
         const res = await fetch(`${baseURL}/gebruikers/voorkeuren`);
@@ -120,18 +121,16 @@ export default defineComponent({
           data: data
         }
 
-        this.gebruikersVoorkeurenData = result.data
-        this.gebruikersVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
-          this.voorgeselecteerdeVoorkeuren.value.push(voorkeur.naam)
-        });
+        this.gebruikersVoorkeurenData = result.data;
+        this.voorgeselecteerdeVoorkeuren.value = this.gebruikersVoorkeurenData.voorkeuren.map((voorkeur: Voorkeur) => voorkeur.naam);
 
-        this.selectedCategories.value = this.voorgeselecteerdeVoorkeuren.value
+        this.selectedCategories.value = this.voorgeselecteerdeVoorkeuren.value;
 
       } catch (err) {
         this.gebruikersVoorkeurenData = err.message;
       }
-    }
-    ,
+    },
+
     async getAlleVoorkeuren(): Promise<void> {
       try {
         const res = await fetch(`${baseURL}/voorkeuren`);
@@ -154,7 +153,7 @@ export default defineComponent({
 
         this.alleVoorkeurenData = result.data;
 
-        this.foodCategories = this.alleVoorkeurenData.voorkeuren.map(
+        this.foodCategories.value = this.alleVoorkeurenData.voorkeuren.map(
             (voorkeur: Voorkeur) => voorkeur.naam
         );
       } catch (err) {
@@ -163,11 +162,12 @@ export default defineComponent({
       }
     },
 
-    async created() {
+    async created(): Promise<void> {
       await this.getAlleVoorkeuren();
       await this.getAlleGebruikersVoorkeuren();
     }
-  }});
+  }
+});
 </script>
 
 
