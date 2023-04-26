@@ -3,7 +3,7 @@ import AppButton from '@/components/Button.vue'
 import { decodeCredential, googleAuthCodeLogin, GoogleLogin } from 'vue3-google-login'
 import GlassTile from '@/components/GlassTile.vue'
 import type { CallbackTypes } from 'vue3-google-login'
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import store from '@/store'
 
 
@@ -20,8 +20,16 @@ export default ({
       var picture = userData.picture
       store.dispatch('login',{email, naam, picture})
       this.$router.push("/")
-  }
-  }
+    }
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+  },
+  mounted() {
+    if (this.isLoggedIn) {
+      this.$router.push('/')
+    }
+  }  
 })
 
 

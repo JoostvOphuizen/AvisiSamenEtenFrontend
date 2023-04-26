@@ -4,8 +4,7 @@
       <router-link to="/" class="link">
         <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
       </router-link>
-      <p v-if="isLoggedIn" >{{ userName }}</p>
-      <img v-if="isLoggedIn" alt="Profile icon" class="profileIcon" :src="userPicture" />
+      <img v-if="isLoggedIn" alt="Profile icon" class="profileIcon" :src="userPicture" @click="logout" />
     </header>
     <main class="main">
       <router-view />
@@ -22,10 +21,15 @@
 import { defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { mapGetters } from 'vuex'
+import store from '@/store'
+import AppButton from '@/components/Button.vue'
 
 export default defineComponent({
   computed: {
     ...mapGetters(['isLoggedIn', 'userPicture', 'userName'])
+  },
+  components: {
+    AppButton
   },
   setup() {
     const route = useRoute()
@@ -34,6 +38,12 @@ export default defineComponent({
     return {
       route,
       router
+    }
+  },
+  methods: {
+    logout() {
+      store.dispatch('logout')
+      this.router.push('/login')
     }
   }
 })

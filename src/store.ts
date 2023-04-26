@@ -97,7 +97,6 @@ const store = createStore<State>({
         });
 
         if (!responds.ok) {
-          console.log('error ')
 
           const message = `An error has occured: ${responds.status} - ${responds.statusText}`;
           throw new Error(message);
@@ -113,7 +112,6 @@ const store = createStore<State>({
           data: data,
         };
 
-        console.log(result);
 
         commit('setUserID', data.id)
         setUserIDCookie(result.data.id)
