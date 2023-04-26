@@ -1,32 +1,53 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import Optie from '@/components/Optie.vue'
-import AppButton from '@/components/Button.vue'
-import GlassTile from '@/components/GlassTile.vue'
+import { defineComponent, ref } from 'vue';
+import Optie from '@/components/Optie.vue';
+import AppButton from '@/components/Button.vue';
+import GlassTile from '@/components/GlassTile.vue';
 
 const baseURL = "http://localhost:8080";
 const USERID = 2;
 
+interface Voorkeur {
+  naam: string;
+}
+
+interface GebruikersVoorkeurenData {
+  voorkeuren: Voorkeur[];
+}
+
+interface AlleVoorkeurenData {
+  voorkeuren: Voorkeur[];
+}
+
+
+interface Result {
+  status: string;
+  headers: {
+    "Content-Type": string;
+    "Content-Length": string | null;
+  };
+  data: any;
+}
 
 export default defineComponent({
   components: {
     AppButton,
     Optie,
-    GlassTile
+    GlassTile,
   },
   data() {
     return {
-      gekozenVoorkeurenData: null as any,
-      alleVoorkeurenData: null as any,
-      gebruikersVoorkeurenData: null as any,
+      gekozenVoorkeurenData: null as Result | string | null,
+      alleVoorkeurenData: null as AlleVoorkeurenData | string | null,
+      gebruikersVoorkeurenData: null as GebruikersVoorkeurenData | string | null,
       voorgeselecteerdeVoorkeuren: ref<string[]>([]),
       selectedCategories: ref<string[]>([]),
-      foodCategories: ref<string[]>([])
-    }
+      foodCategories: ref<string[]>([]),
+    };
   },
   methods: {
-    gotoHome () {
-      this.$router.push("/")
+    gotoHome() {
+      this.$router.push("/");
     },
     handleOptionChange(category: string, checked: boolean) {
       console.log(category, checked);
@@ -43,22 +64,22 @@ export default defineComponent({
     },
     async postData() {
       const postData = {
-        voorkeuren: this.selectedCategories
-      }
+        voorkeuren: this.selectedCategories,
+      };
 
       try {
-        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
+        const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=` + USERID, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-access-token": "token-value"
+            "x-access-token": "token-value",
           },
-          body: JSON.stringify(postData)
+          body: JSON.stringify(postData),
         });
-        console.log(JSON.stringify(postData))
+        console.log(JSON.stringify(postData));
 
         if (!res.ok) {
-          console.log('error ')
+          console.log('error ');
 
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);
@@ -68,24 +89,23 @@ export default defineComponent({
         const result = {
           status: res.status + "-" + res.statusText,
           headers: {
-            "Content-Type": res.headers.get("Content-Type"),
+            "Content-Type": res.headers.get("Content-Type")!,
             "Content-Length": res.headers.get("Content-Length"),
           },
           data: data,
         };
 
         this.gekozenVoorkeurenData = result;
-
       } catch (err) {
         this.gekozenVoorkeurenData = err.message;
       }
     },
-    async getAlleGebruikersVoorkeuren () {
+    async getAlleGebruikersVoorkeuren (): Promise<void> {
       try {
-        const res = await fetch(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+USERID);
+        const res = await fetch(`${baseURL}/gebruikers/voorkeuren`);
 
         if (!res.ok) {
-          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
 
@@ -102,7 +122,7 @@ export default defineComponent({
         }
 
         this.gebruikersVoorkeurenData = result.data
-        this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
+        this.gebruikersVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
           this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
 
@@ -117,7 +137,7 @@ export default defineComponent({
         const res = await fetch(`${baseURL}/voorkeuren`);
 
         if (!res.ok) {
-          const message = `An error has occured: ${res.status} - ${res.statusText}`;
+          const message = `An error has occurred: ${res.status} - ${res.statusText}`;
           throw new Error(message);
         }
 
@@ -135,11 +155,9 @@ export default defineComponent({
 
         this.alleVoorkeurenData = result.data
 
-        this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
+        this.alleVoorkeurenData.voorkeuren.forEach((voorkeur: Voorkeur) => {
           this.foodCategories.push(voorkeur.naam)
         });
-
-
 
       } catch (err) {
         let errorMessage = "Failed to do something exceptional";
@@ -148,7 +166,6 @@ export default defineComponent({
         }
         console.log(errorMessage);
       }
-
     }
   },
 
