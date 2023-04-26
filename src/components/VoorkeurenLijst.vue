@@ -73,10 +73,13 @@ export default defineComponent({
           },
           data: data,
         };
+// @ts-ignore
 
         this.gekozenVoorkeurenData = result;
 
       } catch (err) {
+        // @ts-ignore
+
         this.gekozenVoorkeurenData = err.message;
       }
     },
@@ -102,6 +105,8 @@ export default defineComponent({
         }
 
         this.gebruikersVoorkeurenData = result.data
+        // @ts-ignore
+
         this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
@@ -109,6 +114,8 @@ export default defineComponent({
         this.selectedCategories = this.voorgeselecteerdeVoorkeuren
 
       } catch (err) {
+        // @ts-ignore
+
         this.gebruikersVoorkeurenData = err.message;
       }
     },
@@ -134,6 +141,7 @@ export default defineComponent({
         }
 
         this.alleVoorkeurenData = result.data
+// @ts-ignore
 
         this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.foodCategories.push(voorkeur.naam)
@@ -144,6 +152,7 @@ export default defineComponent({
       } catch (err) {
         let errorMessage = "Failed to do something exceptional";
         if (err instanceof Error) {
+          // @ts-ignore
           this.alleVoorkeurenData = err.message;
         }
         console.log(errorMessage);
