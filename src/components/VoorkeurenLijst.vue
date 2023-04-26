@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, type ComponentCustomProperties } from 'vue'
+import {defineComponent, ref} from 'vue'
 import Optie from '@/components/Optie.vue'
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
@@ -14,7 +14,7 @@ export default defineComponent({
     Optie,
     GlassTile
   },
-  data(this: ComponentCustomProperties) {
+  data(this) {
     return {
       gekozenVoorkeurenData: null,
       alleVoorkeurenData: null,
@@ -26,26 +26,21 @@ export default defineComponent({
   },
   methods: {
     gotoHome () {
-
       this.$router.push("/")
     },
-    handleOptionChange(category: string, event: Event) {// @ts-ignore
-      const checked = event.target instanceof HTMLInputElement ? event.target.checked : false;
+    handleOptionChange(category: string, checked: boolean) {
       console.log(category, checked);
-      if (checked != null) {
-        if (checked) {
-          this.selectedCategories.push(category);
+      if (checked) {
+        this.selectedCategories.push(category);
+        console.log(this.selectedCategories);
+      } else {
+        const index = this.selectedCategories.indexOf(category);
+        if (index !== -1) {
+          this.selectedCategories.splice(index, 1);
           console.log(this.selectedCategories);
-        } else {
-          const index = this.selectedCategories.indexOf(category);
-          if (index !== -1) {
-            this.selectedCategories.splice(index, 1);
-            console.log(this.selectedCategories);
-          }
         }
       }
-    }
-    ,
+    },
     async postData() {
       const postData = {
         voorkeuren: this.selectedCategories
@@ -66,11 +61,13 @@ export default defineComponent({
           console.log('error ')
 
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
+
           throw new Error(message);
         }
         const data = await res.json();
 
-        const result = {
+// @ts-ignore
+        this.gekozenVoorkeurenData = {
           status: res.status + "-" + res.statusText,
           headers: {
             "Content-Type": res.headers.get("Content-Type"),
@@ -78,13 +75,9 @@ export default defineComponent({
           },
           data: data,
         };
-// @ts-ignore
-
-        this.gekozenVoorkeurenData = result;
 
       } catch (err) {
         // @ts-ignore
-
         this.gekozenVoorkeurenData = err.message;
       }
     },
@@ -111,7 +104,6 @@ export default defineComponent({
 
         this.gebruikersVoorkeurenData = result.data
         // @ts-ignore
-
         this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
@@ -120,7 +112,6 @@ export default defineComponent({
 
       } catch (err) {
         // @ts-ignore
-
         this.gebruikersVoorkeurenData = err.message;
       }
     },
@@ -147,7 +138,6 @@ export default defineComponent({
 
         this.alleVoorkeurenData = result.data
 // @ts-ignore
-
         this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.foodCategories.push(voorkeur.naam)
         });
@@ -164,11 +154,6 @@ export default defineComponent({
       }
 
     }
-  },
-
-  async created () {
-    this.getAlleVoorkeuren()
-    this.getAlleGebruikersVoorkeuren()
   }
 })
 </script>

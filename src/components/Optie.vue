@@ -1,5 +1,6 @@
 <script lang="ts">
   export default {
+    // eslint-disable-next-line vue/multi-word-component-names
     name: 'Optie',
     props: {
       label: {
@@ -26,7 +27,7 @@
             parentElement.classList.remove('checked');
           }
       }
-
+// @ts-ignore
       this.$emit('change', checkbox.checked);
     },
     checkCheckbox(event: MouseEvent) {
@@ -36,13 +37,13 @@
           event.stopPropagation();
           return;
         }
-
+// @ts-ignore
         const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
         checkbox.click();
       },
     },
-    computed: {
-      optieClass() {
+    computed: {// @ts-ignore
+      optieClass() {// @ts-ignore
         return this.checked ? 'optieClass checked' : 'optieClass';
         },
     },
