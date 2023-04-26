@@ -1,21 +1,29 @@
 <script lang="ts">
 import AppButton from '@/components/Button.vue'
-import { decodeCredential, googleAuthCodeLogin } from 'vue3-google-login'
+import { decodeCredential, googleAuthCodeLogin, GoogleLogin } from 'vue3-google-login'
 import GlassTile from '@/components/GlassTile.vue'
 import type { CallbackTypes } from 'vue3-google-login'
+import { mapActions } from 'vuex';
+import store from '@/store'
+
 
 export default ({
   components: {
     AppButton,
-    GlassTile
-},
+    GlassTile,
+
+  },
   methods: {
     login (response: any) {
+
       const userData = decodeCredential(response.credential)
       console.log("Handle the userData", userData)
-    }
-  },
-  })
+      var naam = userData.name
+      var email = userData.email
+      store.dispatch('login',{email,naam})
+  }
+  }
+})
 
 
 </script>
