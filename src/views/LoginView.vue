@@ -1,22 +1,27 @@
 <script lang="ts">
 import AppButton from '@/components/Button.vue'
-import { decodeCredential, googleAuthCodeLogin } from 'vue3-google-login'
+import { decodeCredential, googleAuthCodeLogin, GoogleLogin } from 'vue3-google-login'
 import GlassTile from '@/components/GlassTile.vue'
 import type { CallbackTypes } from 'vue3-google-login'
+import { mapActions } from 'vuex';
+import store from '@/store'
+
 
 export default ({
   components: {
     AppButton,
-    GlassTile
-},
+    GlassTile,
+
+  },
   methods: {
     login (response: any) {
 
-      googleAuthCodeLogin().then((response) => {
-        console.log("Handle the response", response)
-        
-    })
-  },
+      const userData = decodeCredential(response.credential)
+      console.log("Handle the userData", userData)
+      var naam = userData.name
+      var email = userData.email
+      store.dispatch('login',{email,naam})
+  }
   }
 })
 
@@ -27,7 +32,8 @@ export default ({
   <div class="center">
     <GlassTile class="glass" >
       <h1 class="titletext">Login</h1>
-      <AppButton @click="login" label="Login with Google" iconLeft="src\assets\Google-modern-flat-icon.svg" class="button"></AppButton>
+      <GoogleLogin :callback="login" popup-type="TOKEN"></GoogleLogin>
+      <!--<AppButton @click="login" :onSuccess="onSuccess" :onFailure="onFailure" label="Login with Google" iconLeft="src\assets\Google-modern-flat-icon.svg" class="button"></AppButton>-->
     </GlassTile>
   </div>
 </template>
