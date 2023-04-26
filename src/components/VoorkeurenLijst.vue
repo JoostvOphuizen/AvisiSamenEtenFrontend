@@ -16,9 +16,9 @@ export default defineComponent({
   },
   data() {
     return {
-      gekozenVoorkeurenData: null,
-      alleVoorkeurenData: null,
-      gebruikersVoorkeurenData: null,
+      gekozenVoorkeurenData: null as any,
+      alleVoorkeurenData: null as any,
+      gebruikersVoorkeurenData: null as any,
       voorgeselecteerdeVoorkeuren: ref<string[]>([]),
       selectedCategories: ref<string[]>([]),
       foodCategories: ref<string[]>([])
@@ -48,11 +48,11 @@ export default defineComponent({
 
       try {
         const res = await fetch(`${baseURL}/gebruiker/slavoorkeurenop?id=`+USERID, {
-          method: "POST", 
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             "x-access-token": "token-value"
-          }, 
+          },
           body: JSON.stringify(postData)
         });
         console.log(JSON.stringify(postData))
@@ -103,7 +103,7 @@ export default defineComponent({
 
         this.gebruikersVoorkeurenData = result.data
         this.gebruikersVoorkeurenData.voorkeuren.forEach(voorkeur => {
-             this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
+          this.voorgeselecteerdeVoorkeuren.push(voorkeur.naam)
         });
 
         this.selectedCategories = this.voorgeselecteerdeVoorkeuren
@@ -134,7 +134,7 @@ export default defineComponent({
         }
 
         this.alleVoorkeurenData = result.data
-        
+
         this.alleVoorkeurenData.voorkeuren.forEach(voorkeur => {
           this.foodCategories.push(voorkeur.naam)
         });
@@ -144,7 +144,7 @@ export default defineComponent({
       } catch (err) {
         let errorMessage = "Failed to do something exceptional";
         if (err instanceof Error) {
-        this.alleVoorkeurenData = err.message;
+          this.alleVoorkeurenData = err.message;
         }
         console.log(errorMessage);
       }
