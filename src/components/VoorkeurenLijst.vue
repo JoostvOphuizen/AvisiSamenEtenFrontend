@@ -29,15 +29,15 @@ export default defineComponent({
       this.$router.push("/")
     },
     handleOptionChange(category: string, checked: boolean) {
-      console.log(category, checked);
+      //console.log(category, checked);
       if (checked) {
         this.selectedCategories.push(category);
-        console.log(this.selectedCategories);
+        //console.log(this.selectedCategories);
       } else {
         const index = this.selectedCategories.indexOf(category);
         if (index !== -1) {
           this.selectedCategories.splice(index, 1);
-          console.log(this.selectedCategories);
+          //console.log(this.selectedCategories);
         }
       }
     },
@@ -55,10 +55,9 @@ export default defineComponent({
           }, 
           body: JSON.stringify(postData)
         });
-        console.log(JSON.stringify(postData))
+        //console.log(JSON.stringify(postData))
 
         if (!res.ok) {
-          console.log('error ')
 
           const message = `An error has occured: ${res.status} - ${res.statusText}`;
           throw new Error(message);

@@ -15,12 +15,12 @@ export default ({
   },
   methods: {
     login (response: any) {
-
       const userData = decodeCredential(response.credential)
-      console.log("Handle the userData", userData)
       var naam = userData.name
       var email = userData.email
-      store.dispatch('login',{email,naam})
+      var picture = userData.picture
+      store.dispatch('login',{email, naam, picture})
+      this.$router.push("/")
   }
   }
 })

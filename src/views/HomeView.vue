@@ -2,6 +2,7 @@
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default ({
   components: {
@@ -15,6 +16,14 @@ export default ({
     },
     gotoVoorkeuren () {
         this.$router.push("/voorkeur")
+    }
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+  },
+  mounted() {
+    if (!this.isLoggedIn) {
+      this.$router.push('/login')
     }
   }  
 

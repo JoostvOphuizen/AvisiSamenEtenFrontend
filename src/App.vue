@@ -4,7 +4,8 @@
       <router-link to="/" class="link">
         <img alt="Logo Samen Eten" class="logo" src="@/assets/AvisiSamenEtenLogo.svg" />
       </router-link>
-      <img v-if="isLoggedIn" alt="Profile icon" class="profileIcon" :src="user.picture" />
+      <p v-if="isLoggedIn" >{{ userName }}</p>
+      <img v-if="isLoggedIn" alt="Profile icon" class="profileIcon" :src="userPicture" />
     </header>
     <main class="main">
       <router-view />
@@ -24,7 +25,7 @@ import { mapGetters } from 'vuex'
 
 export default defineComponent({
   computed: {
-    ...mapGetters(['isLoggedIn', 'user'])
+    ...mapGetters(['isLoggedIn', 'userPicture', 'userName'])
   },
   setup() {
     const route = useRoute()
@@ -62,6 +63,7 @@ export default defineComponent({
   width: 35px;
   height: 35px;
   margin-right: 20px;
+  border-radius: 20px;
 }
 
 </style>
