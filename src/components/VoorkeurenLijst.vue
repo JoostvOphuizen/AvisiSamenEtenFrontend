@@ -16,9 +16,9 @@ export default defineComponent({
   },
   data() {
     return {
-      gekozenVoorkeurenData: ref<null | { focus: () => null }>(null),
-      alleVoorkeurenData: ref<null | { focus: () => null }>(null),
-      gebruikersVoorkeurenData: ref<null | { focus: () => null }>(null),
+      gekozenVoorkeurenData: null,
+      alleVoorkeurenData: null,
+      gebruikersVoorkeurenData: null,
       voorgeselecteerdeVoorkeuren: ref<string[]>([]),
       selectedCategories: ref<string[]>([]),
       foodCategories: ref<string[]>([])
