@@ -72,7 +72,7 @@ const store = createStore<State>({
     clearSessionId(state) {
       state.sessionId = null
     },
-    setUserID(state, id: number) {
+    setUserID(state, id: string) {
       state.user!.id = id
     }
   },
