@@ -182,6 +182,11 @@ export default {
     }
   }
 
+  .optieLabel {
+      margin: 0 0 0 0;
+    }
+
+
   .optieClass.checked {
     background-color: var(--vt-c-indigo);
   }

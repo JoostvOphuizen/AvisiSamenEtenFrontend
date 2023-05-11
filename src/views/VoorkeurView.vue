@@ -1,7 +1,7 @@
 <template>
   <div class="categorybox">
-    <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" />
-    <CheckboxList :items="voedingrestrictieCheckboxItems" @update:items="handleVoedingrestrictieCheckboxItemsUpdate" />
+    <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Voorkeuren" />
+    <CheckboxList :items="voedingrestrictieCheckboxItems" @update:items="handleVoedingrestrictieCheckboxItemsUpdate" title="voedingsrestricties" />
     <AppButton label="Opslaan" @click="postUserVoorkeuren"></AppButton>
   </div>
 </template>
@@ -120,6 +120,9 @@ export default defineComponent({
   },
 
   async mounted() {
+    if (!this.isLoggedIn) {
+      this.$router.push('/login')
+    }
     await this.fetchAllVoorkeuren();
     this.fetchUserVoorkeuren();
     await this.mockGetAllRestricties();
@@ -133,5 +136,8 @@ export default defineComponent({
 .categorybox {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
