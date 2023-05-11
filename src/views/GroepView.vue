@@ -1,7 +1,7 @@
 <template>
   <div class="categorybox">
     <SearchBar class="fitcontent"></SearchBar>
-    <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
+    <CheckboxList :items="userCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
     <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
   </div>
 </template>
@@ -9,7 +9,7 @@
   <script lang="ts">
   import { defineComponent } from 'vue';
   import CheckboxList from '@/components/CheckboxList.vue';
-  import { get, post } from '@/services/apiService';
+  import { get } from '@/services/apiService';
   import { mapGetters } from 'vuex'
   import AppButton from '@/components/Button.vue';
   import SearchBar from '@/components/SearchBar.vue';
@@ -19,6 +19,7 @@
   interface CheckboxItem {
     label: string;
     value: boolean;
+    icon: string;
   }
   
   export default defineComponent({
@@ -30,108 +31,56 @@
   
     data() {
       return {
-        voorkeurCheckboxItems: [] as CheckboxItem[],
-        voedingrestrictieCheckboxItems: [] as CheckboxItem[],
+        userCheckboxItems: [] as CheckboxItem[],
       };
     },
   
     computed: {
       checkedItems(): CheckboxItem[] {
-        return this.voorkeurCheckboxItems.filter((item: CheckboxItem) => item.value);
+        return this.userCheckboxItems.filter((item: CheckboxItem) => item.value);
       },
       ...mapGetters(['isLoggedIn', 'getUserID']),
     },
   
     methods: {
       handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
-        this.voorkeurCheckboxItems = updatedItems;
+        this.userCheckboxItems = updatedItems;
       },
-  
-      handleVoedingrestrictieCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
-        this.voedingrestrictieCheckboxItems = updatedItems;
-      },
-  
-      async fetchAllVoorkeuren() {
-        try {
-          const data = await get(`${baseURL}/voorkeuren`);
-          this.voorkeurCheckboxItems = data.voorkeuren.map((item: any) => ({
-            label: item.naam,
+      async fetchAllUsers() {
+        /* mock data */
+        this.userCheckboxItems = [
+          {
+            label: "Jantje",
             value: false,
-          }));
-        } catch (error) {
-          // Handle error
-          console.log(error);
-        }
-      },
-  
-      async fetchUserVoorkeuren(){
-        try {
-          const data = await get(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+this.getUserID);
-          for (let i = 0; i < this.voorkeurCheckboxItems.length; i++) {
-            for (let j = 0; j < data.voorkeuren.length; j++) {
-              if (this.voorkeurCheckboxItems[i].label == data.voorkeuren[j].naam) {
-                this.voorkeurCheckboxItems[i].value = true;
-              }
-            }
-          }
-        } catch (error) {
-          // Handle error
-          console.log(error);
-        }
+            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+          },
+          {
+            label: "Pietje",
+            value: false,
+            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+          },
+          {
+            label: "Klaasje",
+            value: false,
+            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+          },
+        ];
       },
   
       async organiseerEtentje(){
-        try {
-          var checkedItemsWithoutValue = [];
-          for (let i = 0; i < this.checkedItems.length; i++) {
-            checkedItemsWithoutValue.push(this.checkedItems[i].label);
-          }
-          const postData = {
-            voorkeuren: checkedItemsWithoutValue
-          }
-          const data = await post(`${baseURL}/gebruiker/slavoorkeurenop?id=${this.getUserID}`, postData);
-        } catch (error) {
-          // Handle error
-          console.log(error);
-        }
+        console.log("organiseer etentje");
       },
   
-      async mockGetAllRestricties(){
-        this.voedingrestrictieCheckboxItems = [
-          { label: 'Gluten', value: false },
-          { label: 'Lactose', value: false },
-          { label: 'Noten', value: false },
-          { label: 'Pinda', value: false },
-          { label: 'Sesam', value: false },
-        ];
-      },
-      async mockGetUserRestricties(){
-        var userVoedingrestrictie = [
-          { label: 'Gluten', value: true },
-          { label: 'Noten', value: true },
-        ];
-  
-        for (let i = 0; i < this.voedingrestrictieCheckboxItems.length; i++) {
-          for (let j = 0; j < userVoedingrestrictie.length; j++) {
-            if (this.voedingrestrictieCheckboxItems[i].label == userVoedingrestrictie[j].label) {
-              this.voedingrestrictieCheckboxItems[i].value = true;
-            }
-          }
-        }
-      },
     },
   
     async mounted() {
       if (!this.isLoggedIn) {
         this.$router.push('/login')
       }
-      await this.fetchAllVoorkeuren();
-      this.fetchUserVoorkeuren();
-      await this.mockGetAllRestricties();
-      this.mockGetUserRestricties();
+      await this.fetchAllUsers();
     },
   });
-  </script>
+</script>
   
 <style scoped>
 /* fills screen */
@@ -145,6 +94,12 @@
 
 .fitcontent{
   width: 80%;
+}
+
+@media screen and (max-width: 400px) {
+    .fitcontent{
+    width: 100%;
+    }
 }
 
 

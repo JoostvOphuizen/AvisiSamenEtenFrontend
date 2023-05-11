@@ -190,4 +190,8 @@ export default {
   .optieClass.checked {
     background-color: var(--vt-c-indigo);
   }
+
+  .optieIcon {
+    border-radius: 50%;
+  }
 </style>
