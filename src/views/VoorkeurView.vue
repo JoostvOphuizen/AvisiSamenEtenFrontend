@@ -92,6 +92,8 @@ export default defineComponent({
         // Handle error
         console.log(error);
       }
+
+      this.$router.push('/');
     },
 
     async mockGetAllRestricties(){
