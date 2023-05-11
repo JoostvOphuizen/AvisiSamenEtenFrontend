@@ -1,9 +1,10 @@
 <template>
-    <div class="categorybox">
-      <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
-      <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
-    </div>
-  </template>
+  <div class="categorybox">
+    <SearchBar class="fitcontent"></SearchBar>
+    <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
+    <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+  </div>
+</template>
   
   <script lang="ts">
   import { defineComponent } from 'vue';
@@ -11,6 +12,7 @@
   import { get, post } from '@/services/apiService';
   import { mapGetters } from 'vuex'
   import AppButton from '@/components/Button.vue';
+  import SearchBar from '@/components/SearchBar.vue';
   
   const baseURL = "http://localhost:8080";
   
@@ -21,6 +23,7 @@
   
   export default defineComponent({
     components: {
+      SearchBar,
       CheckboxList,
       AppButton,
     },
@@ -130,14 +133,20 @@
   });
   </script>
   
-  <style scoped>
-  /* fills screen */
-  .categorybox {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  </style>
+<style scoped>
+/* fills screen */
+.categorybox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fitcontent{
+  width: 80%;
+}
+
+
+</style>
   
