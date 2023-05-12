@@ -77,7 +77,7 @@
   interface CheckboxItem {
     label: string;
     value: boolean;
-    icon: string;
+    icon?: string;
   }
   
   export default defineComponent({

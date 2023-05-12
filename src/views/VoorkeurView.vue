@@ -1,5 +1,6 @@
 <template>
   <div class="categorybox">
+    <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
     <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Voorkeuren" />
     <CheckboxList :items="voedingrestrictieCheckboxItems" @update:items="handleVoedingrestrictieCheckboxItemsUpdate" title="voedingsrestricties" />
     <AppButton label="Opslaan" @click="postUserVoorkeuren"></AppButton>
@@ -12,6 +13,7 @@ import CheckboxList from '@/components/CheckboxList.vue';
 import { get, post } from '@/services/apiService';
 import { mapGetters } from 'vuex'
 import AppButton from '@/components/Button.vue';
+import ErrorMessage from '@/components/ErrorMessage.vue';
 
 const baseURL = "http://localhost:8080";
 
@@ -24,12 +26,14 @@ export default defineComponent({
   components: {
     CheckboxList,
     AppButton,
+    ErrorMessage,
   },
 
   data() {
     return {
       voorkeurCheckboxItems: [] as CheckboxItem[],
       voedingrestrictieCheckboxItems: [] as CheckboxItem[],
+      errorMessage: '',
     };
   },
 
@@ -52,12 +56,16 @@ export default defineComponent({
     async fetchAllVoorkeuren() {
       try {
         const data = await get(`${baseURL}/voorkeuren`);
+        if (data.error){
+          this.errorMessage = "Er ging iets mis bij het ophalen van de voorkeuren, probeer het later opnieuw.";
+          return;
+        }
         this.voorkeurCheckboxItems = data.voorkeuren.map((item: any) => ({
           label: item.naam,
           value: false,
         }));
       } catch (error) {
-        // Handle error
+        this.errorMessage = "Er ging iets mis bij het ophalen van de voorkeuren, probeer het later opnieuw.";
         console.log(error);
       }
     },
@@ -65,6 +73,10 @@ export default defineComponent({
     async fetchUserVoorkeuren(){
       try {
         const data = await get(`${baseURL}/gebruiker/haalvoorkeurenop?id=`+this.getUserID);
+        if (data.error){
+          this.errorMessage = "Er ging iets mis bij het ophalen van de voorkeuren, probeer het later opnieuw.";
+          return;
+        }
         for (let i = 0; i < this.voorkeurCheckboxItems.length; i++) {
           for (let j = 0; j < data.voorkeuren.length; j++) {
             if (this.voorkeurCheckboxItems[i].label == data.voorkeuren[j].naam) {
@@ -73,7 +85,7 @@ export default defineComponent({
           }
         }
       } catch (error) {
-        // Handle error
+        this.errorMessage = "Er ging iets mis bij het ophalen van de voorkeuren, probeer het later opnieuw.";
         console.log(error);
       }
     },
@@ -88,8 +100,12 @@ export default defineComponent({
           voorkeuren: checkedItemsWithoutValue
         }
         const data = await post(`${baseURL}/gebruiker/slavoorkeurenop?id=${this.getUserID}`, postData);
+        if (data.error){
+          this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
+          return;
+        }
       } catch (error) {
-        // Handle error
+        this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
         console.log(error);
       }
 
@@ -125,9 +141,12 @@ export default defineComponent({
     if (!this.isLoggedIn) {
       this.$router.push('/login')
     }
-    await this.fetchAllVoorkeuren();
+
+    await Promise.all([
+      this.fetchAllVoorkeuren(),
+      this.mockGetAllRestricties(),
+    ]);
     this.fetchUserVoorkeuren();
-    await this.mockGetAllRestricties();
     this.mockGetUserRestricties();
   },
 });
