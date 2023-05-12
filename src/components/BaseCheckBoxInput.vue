@@ -202,4 +202,7 @@ export default {
 
   
 
+  .optieIcon {
+    border-radius: 50%;
+  }
 </style>

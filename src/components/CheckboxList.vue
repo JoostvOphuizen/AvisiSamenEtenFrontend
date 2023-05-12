@@ -7,6 +7,7 @@
         <BaseInput
           :label="item.label"
           :value="item.value"
+          :icon="item.icon"
           @update:modelValue="updateCheckboxValue(index, $event)"
         />
       </div>
@@ -76,6 +77,7 @@
   interface CheckboxItem {
     label: string;
     value: boolean;
+    icon: string;
   }
   
   export default defineComponent({
