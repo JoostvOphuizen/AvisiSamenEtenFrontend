@@ -83,8 +83,9 @@ const store = createStore<State>({
       commit('setSessionId', SESSIONID)
       setUserCookie(user)
       setUserPictureCookie(picture)
+      var foto = picture
 
-      const loginDTO = { naam, email }
+      const loginDTO = { email, naam, foto }
 
       try {
         const responds = await fetch(`${baseURL}/gebruiker/login`, {

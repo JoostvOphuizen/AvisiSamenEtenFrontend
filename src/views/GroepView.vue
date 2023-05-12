@@ -47,24 +47,31 @@
         this.userCheckboxItems = updatedItems;
       },
       async fetchAllUsers() {
-        /* mock data */
-        this.userCheckboxItems = [
-          {
-            label: "Jantje",
-            value: false,
-            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-          },
-          {
-            label: "Pietje",
-            value: false,
-            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-          },
-          {
-            label: "Klaasje",
-            value: false,
-            icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-          },
-        ];
+        // /* mock data */
+        // this.userCheckboxItems = [
+        //   {
+        //     label: "Jantje",
+        //     value: false,
+        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+        //   },
+        //   {
+        //     label: "Pietje",
+        //     value: false,
+        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+        //   },
+        //   {
+        //     label: "Klaasje",
+        //     value: false,
+        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
+        //   },
+        // ];
+
+        const data = await get(`${baseURL}/gebruiker`);
+        this.userCheckboxItems = data.gebruikers.map((item: any) => ({
+          label: item.naam,
+          value: false,
+          icon: item.foto,
+        }));
       },
   
       async organiseerEtentje(){
