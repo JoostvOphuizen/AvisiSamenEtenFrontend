@@ -1,16 +1,16 @@
 <template>
-  <div class="categorybox">
-    <SearchBar class="fitcontent"></SearchBar>
-    <CheckboxList :items="userCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
-    <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
-  </div>
-</template>
+    <div class="categorybox">
+      <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
+      <CheckboxList :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
+      <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+    </div>
+  </template>  
   
   <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import CheckboxList from '@/components/CheckboxList.vue';
   import { get } from '@/services/apiService';
-  import { mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex';
   import AppButton from '@/components/Button.vue';
   import SearchBar from '@/components/SearchBar.vue';
   
@@ -32,6 +32,7 @@
     data() {
       return {
         userCheckboxItems: [] as CheckboxItem[],
+        searchQuery: '',
       };
     },
   
@@ -39,13 +40,24 @@
       checkedItems(): CheckboxItem[] {
         return this.userCheckboxItems.filter((item: CheckboxItem) => item.value);
       },
+      filteredUserCheckboxItems(): CheckboxItem[] {
+        const searchQuery = this.searchQuery.toLowerCase();
+        return this.userCheckboxItems.filter((item: CheckboxItem) =>
+          item.label.toLowerCase().includes(searchQuery)
+        );
+      },
       ...mapGetters(['isLoggedIn', 'getUserID']),
     },
   
     methods: {
-      handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
-        this.userCheckboxItems = updatedItems;
-      },
+        handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
+        for (const updatedItem of updatedItems) {
+            const item = this.userCheckboxItems.find((i) => i.label === updatedItem.label);
+            if (item) {
+            item.value = updatedItem.value;
+            }
+        }
+    },
       async fetchAllUsers() {
         // /* mock data */
         // this.userCheckboxItems = [
@@ -73,42 +85,44 @@
           icon: item.foto,
         }));
       },
-  
-      async organiseerEtentje(){
+      async organiseerEtentje() {
         console.log("organiseer etentje");
+        var postData = {    
+          "userID": this.getUserID,
+        };
+        console.log(postData);
       },
-  
+      handleSearch(searchQuery: string) {
+        this.searchQuery = searchQuery;
+      },
     },
   
     async mounted() {
       if (!this.isLoggedIn) {
-        this.$router.push('/login')
+        this.$router.push('/login');
       }
       await this.fetchAllUsers();
     },
   });
-</script>
+  </script>
   
-<style scoped>
-/* fills screen */
-.categorybox {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.fitcontent{
-  width: 80%;
-}
-
-@media screen and (max-width: 400px) {
-    .fitcontent{
+  <style scoped>
+  /* fills screen */
+  .categorybox {
     width: 100%;
-    }
-}
-
-
-</style>
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  .fitcontent {
+    width: 80%;
+  }
+  
+  @media screen and (max-width: 400px) {
+    .fitcontent {
+      width: 100%;
+    }
+  }
+</style>  
