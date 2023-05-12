@@ -135,6 +135,14 @@ export default defineComponent({
         }
       }
     },
+    async fetchVoorkeurenInformation(){
+      await this.fetchAllVoorkeuren();
+      this.fetchUserVoorkeuren();
+    },
+    async fetchRestrictiesInformation(){
+      await this.mockGetAllRestricties();
+      this.mockGetUserRestricties();
+    },
   },
 
   async mounted() {
@@ -143,11 +151,10 @@ export default defineComponent({
     }
 
     await Promise.all([
-      this.fetchAllVoorkeuren(),
-      this.mockGetAllRestricties(),
+      this.fetchVoorkeurenInformation(),
+      this.fetchRestrictiesInformation(),
     ]);
-    this.fetchUserVoorkeuren();
-    this.mockGetUserRestricties();
+
   },
 });
 </script>
