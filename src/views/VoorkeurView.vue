@@ -1,9 +1,10 @@
 <template>
   <div class="categorybox">
     <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
-    <CheckboxList :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Voorkeuren" />
-    <CheckboxList :items="voedingrestrictieCheckboxItems" @update:items="handleVoedingrestrictieCheckboxItemsUpdate" title="voedingsrestricties" />
-    <AppButton label="Opslaan" @click="postUserVoorkeuren"></AppButton>
+    <CheckboxList v-if="!loading" :items="voorkeurCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Voorkeuren" />
+    <CheckboxList v-if="!loading" :items="voedingrestrictieCheckboxItems" @update:items="handleVoedingrestrictieCheckboxItemsUpdate" title="voedingsrestricties" />
+    <AppButton v-if="!loading" label="Opslaan" @click="postUserVoorkeuren"></AppButton>
+    <div v-if="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </div>
 </template>
 
@@ -34,6 +35,7 @@ export default defineComponent({
       voorkeurCheckboxItems: [] as CheckboxItem[],
       voedingrestrictieCheckboxItems: [] as CheckboxItem[],
       errorMessage: '',
+      loading: false,
     };
   },
 
@@ -91,6 +93,7 @@ export default defineComponent({
     },
 
     async postUserVoorkeuren(){
+      this.loading = true;
       try {
         var checkedItemsWithoutValue = [];
         for (let i = 0; i < this.checkedItems.length; i++) {
@@ -107,6 +110,9 @@ export default defineComponent({
       } catch (error) {
         this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
         console.log(error);
+      } finally {
+        this.loading = false;
+        this.$router.push('/');
       }
 
       this.$router.push('/');
@@ -167,5 +173,60 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
 }
 </style>
