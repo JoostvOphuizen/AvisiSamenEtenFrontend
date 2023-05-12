@@ -56,7 +56,7 @@ export default {
   align-items: stretch;
 }
 .picto {
-  width: 25px;
+  width: 15px;
   filter: invert(1);
 }
 </style>
