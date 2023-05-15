@@ -1,6 +1,6 @@
 <template>
   <button class="roundBox" @click="hideMessage">
-    <img src="src\assets\warning 1.png" alt="error" class="errorIcon"/>
+    <img src="src\assets\warning1.png" alt="error" class="errorIcon"/>
     <div v-if="message" class="error-message">
       {{ message }}
     </div>
