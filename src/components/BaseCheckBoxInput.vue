@@ -184,12 +184,23 @@ export default {
 
   .optieLabel {
       margin: 0 0 0 0;
+      font-size: 15px;
     }
-
 
   .optieClass.checked {
     background-color: var(--vt-c-indigo);
   }
+
+  .optieClass {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+  }
+
+  .checkbox-wrapper-46 {
+    margin-top: -2px;
+  }
+
+  
 
   .optieIcon {
     border-radius: 50%;

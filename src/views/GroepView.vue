@@ -1,5 +1,6 @@
 <template>
     <div class="categorybox">
+      <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
       <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
@@ -13,6 +14,7 @@
   import { mapGetters } from 'vuex';
   import AppButton from '@/components/Button.vue';
   import SearchBar from '@/components/SearchBar.vue';
+  import ErrorMessage from '@/components/ErrorMessage.vue';
   
   const baseURL = "http://localhost:8080";
   
@@ -20,19 +22,23 @@
     label: string;
     value: boolean;
     icon: string;
+    id: number;
   }
   
   export default defineComponent({
+    emits: ['update:message'],
     components: {
       SearchBar,
       CheckboxList,
       AppButton,
+      ErrorMessage,
     },
   
     data() {
       return {
         userCheckboxItems: [] as CheckboxItem[],
         searchQuery: '',
+        errorMessage: '',
       };
     },
   
@@ -46,51 +52,62 @@
           item.label.toLowerCase().includes(searchQuery)
         );
       },
-      ...mapGetters(['isLoggedIn', 'getUserID']),
+      ...mapGetters(['isLoggedIn', 'getUserID', 'userName', 'userEmail']),
     },
   
     methods: {
-        handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
+      hideMessage() {
+        console.log('hide message');
+        this.$emit('update:message', '');
+      },
+      handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
         for (const updatedItem of updatedItems) {
             const item = this.userCheckboxItems.find((i) => i.label === updatedItem.label);
             if (item) {
-            item.value = updatedItem.value;
+              item.value = updatedItem.value;
             }
         }
-    },
+      },
       async fetchAllUsers() {
-        // /* mock data */
-        // this.userCheckboxItems = [
-        //   {
-        //     label: "Jantje",
-        //     value: false,
-        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-        //   },
-        //   {
-        //     label: "Pietje",
-        //     value: false,
-        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-        //   },
-        //   {
-        //     label: "Klaasje",
-        //     value: false,
-        //     icon: "https://lh3.googleusercontent.com/a/AGNmyxahJx3TediH5qXNTiTKBnuvA6emSstPlwTWeRO3=s96-c",
-        //   },
-        // ];
-
-        const data = await get(`${baseURL}/gebruiker`);
-        this.userCheckboxItems = data.gebruikers.map((item: any) => ({
-          label: item.naam,
-          value: false,
-          icon: item.foto,
-        }));
+        try{
+          const data = await get(`${baseURL}/gebruiker/baseinfo`);
+          if(data.error) {
+              this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
+              return;
+          }
+          data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
+          this.userCheckboxItems = data.gebruikers.map((item: any) => ({
+            label: item.naam,
+            value: false,
+            icon: item.foto,
+            id: item.id,
+          }));
+        } catch (error) {
+          this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
+          console.error(error);
+        }
       },
       async organiseerEtentje() {
-        console.log("organiseer etentje");
-        var postData = {    
-          "userID": this.getUserID,
+        const userIds = this.checkedItems.map((item) => item.id);
+        const url = `${baseURL}/restaurant/bepaal`;
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userIds),
         };
-        console.log(postData);
+
+        try {
+          const response = await fetch(url, options);
+          const data = await response.json();
+          if(data.error) {
+            this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
+            return;
+          }
+        } catch (error) {
+          console.error(error);
+        }
       },
       handleSearch(searchQuery: string) {
         this.searchQuery = searchQuery;
