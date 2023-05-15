@@ -59,6 +59,9 @@ export default {
   width: 15px;
   filter: invert(1);
 }
+.blok {
+  display: inline-block;
+}
 </style>
 <template>
   <div class="Flexbox">
@@ -68,10 +71,10 @@ export default {
       <img class="plaatje" alt="restaurant" :src="this.image"/>
       <span class="leftItem">
         <img class="picto" alt="restaurant" src="src/assets/telephone.png"/>
-        {{telefoonnummer}}
+        <p class="blok">{{telefoonnummer}}</p>
       </span>
       <span class="rightItem">
-        {{adres}}
+        <p class="blok">{{adres}}</p>
         <img class="picto" alt="restaurant" src="src/assets/location.png"/>
       </span>
     </div>
