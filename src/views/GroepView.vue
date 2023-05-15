@@ -15,6 +15,7 @@
   import AppButton from '@/components/Button.vue';
   import SearchBar from '@/components/SearchBar.vue';
   import ErrorMessage from '@/components/ErrorMessage.vue';
+  import store from '@/store';
   
   const baseURL = "http://localhost:8080";
   
@@ -101,6 +102,7 @@
         try {
           const response = await fetch(url, options);
           const data = await response.json();
+          store.commit('setRestaurantData', data);
           if(data.error) {
             this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
             return;
