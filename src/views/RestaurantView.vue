@@ -12,12 +12,16 @@ export default{
   computed: {
     ...mapGetters(['isLoggedIn', 'getRestaurantData']),
     restaurantData() {
+      console.log(this.getRestaurantData)
       return this.getRestaurantData;
     },
   },
   mounted() {
     if (!this.isLoggedIn) {
       this.$router.push('/login')
+    }
+    if (!this.restaurantData) {
+      this.$router.push('/')
     }
 
   },
@@ -29,10 +33,10 @@ export default{
   <div class="center">
     <Description
       v-if="restaurantData"
-      :description="restaurantData.description"
-      :title="restaurantData.title"
+      :description="restaurantData.postcode"
+      :title="restaurantData.naam"
       :image="restaurantData.image"
-      :adres="restaurantData.adres"
+      :adres="restaurantData.postcode + ' ' + restaurantData.huisnummer + ' ' + restaurantData.straatnaam"
       :telefoonnummer="restaurantData.telefoonnummer"
     ></Description>
   </div>

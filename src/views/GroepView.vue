@@ -40,6 +40,7 @@
         userCheckboxItems: [] as CheckboxItem[],
         searchQuery: '',
         errorMessage: '',
+        userID: null,
       };
     },
   
@@ -76,7 +77,14 @@
               this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
               return;
           }
+
+          /* get current user and store the userID */
+          const currentUser = data.gebruikers.find((item: any) => item.naam === this.userName);
+          if(currentUser) {
+            this.userID = currentUser.id;
+          }
           data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
+          
           this.userCheckboxItems = data.gebruikers.map((item: any) => ({
             label: item.naam,
             value: false,
@@ -102,11 +110,12 @@
         try {
           const response = await fetch(url, options);
           const data = await response.json();
-          store.commit('setRestaurantData', data);
+          store.dispatch('setRestaurantData', data);
           if(data.error) {
             this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
             return;
           }
+          this.$router.push('/restaurant');
         } catch (error) {
           console.error(error);
         }
