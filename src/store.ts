@@ -146,7 +146,7 @@ const store = createStore<State>({
       return state.user?.picture || null
     },
     userName(state) {
-      return state.user?.naam || getUserNameCookie()
+      return state.user?.name || getUserNameCookie()
     },
     userEmail(state) {
       return state.user?.email || null

@@ -1,6 +1,6 @@
 <template>
   <button class="roundBox" @click="hideMessage">
-    <img src="src\assets\warning 1.png" alt="error" class="errorIcon"/>
+    <img src="src\assets\warning1.png" alt="error" class="errorIcon"/>
     <div v-if="message" class="error-message">
       {{ message }}
     </div>
@@ -25,14 +25,27 @@ export default {
 
 <style>
 .error-message {
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    line-height: 16px;
-    padding: 1px 0;
-    margin-left: 5px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 1px 0;
+  margin-left: 5px;
+}
+
+
+@keyframes pop-up {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .roundBox {
@@ -50,6 +63,7 @@ export default {
     align-items: center;
     position: relative;
     max-width: 100%;
+    animation: pop-up 0.3s ease-in-out;
 }
 .errorIcon {
     width: 12px;

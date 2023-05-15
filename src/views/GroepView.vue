@@ -60,23 +60,32 @@
         console.log('hide message');
         this.$emit('update:message', '');
       },
-        handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
+      handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
         for (const updatedItem of updatedItems) {
             const item = this.userCheckboxItems.find((i) => i.label === updatedItem.label);
             if (item) {
-            item.value = updatedItem.value;
+              item.value = updatedItem.value;
             }
         }
       },
       async fetchAllUsers() {
-        const data = await get(`${baseURL}/gebruiker`);
-        data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
-        this.userCheckboxItems = data.gebruikers.map((item: any) => ({
-          label: item.naam,
-          value: false,
-          icon: item.foto,
-          id: item.id,
-        }));
+        try{
+          const data = await get(`${baseURL}/gebruiker/baseinfo`);
+          if(data.error) {
+              this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
+              return;
+          }
+          data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
+          this.userCheckboxItems = data.gebruikers.map((item: any) => ({
+            label: item.naam,
+            value: false,
+            icon: item.foto,
+            id: item.id,
+          }));
+        } catch (error) {
+          this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
+          console.error(error);
+        }
       },
       async organiseerEtentje() {
         const userIds = this.checkedItems.map((item) => item.id);
@@ -93,7 +102,7 @@
           const response = await fetch(url, options);
           const data = await response.json();
           if(data.error) {
-            this.errorMessage = data.error;
+            this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
             return;
           }
         } catch (error) {

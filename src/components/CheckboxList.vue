@@ -1,8 +1,11 @@
 <template>
     <GlassTile class="Flexbox">
-        <div class="titleContainer">    
-            <h1 class="titletext"> {{ title }} </h1>
-        </div>
+      <div class="titleContainer">    
+          <h1 class="titletext"> {{ title }} </h1>
+      </div>
+      <div v-if="items.length === 0" class="loading-container">
+        <div class="loader"></div>
+      </div>
       <div v-for="(item, index) in items" :key="index" class="checkbox-item">
         <BaseInput
           :label="item.label"
@@ -67,6 +70,31 @@
         }
     }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
   </style>
   
   <script lang="ts">
@@ -77,7 +105,7 @@
   interface CheckboxItem {
     label: string;
     value: boolean;
-    icon: string;
+    icon?: string;
   }
   
   export default defineComponent({
