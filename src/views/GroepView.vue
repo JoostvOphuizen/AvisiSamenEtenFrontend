@@ -60,17 +60,17 @@
         console.log('hide message');
         this.$emit('update:message', '');
       },
-        handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
+      handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
         for (const updatedItem of updatedItems) {
             const item = this.userCheckboxItems.find((i) => i.label === updatedItem.label);
             if (item) {
-            item.value = updatedItem.value;
+              item.value = updatedItem.value;
             }
         }
       },
       async fetchAllUsers() {
         try{
-          const data = await get(`${baseURL}/gebruiker`);
+          const data = await get(`${baseURL}/gebruiker/baseinfo`);
           if(data.error) {
               this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
               return;
