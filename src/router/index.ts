@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import VoorkeurView from '../views/VoorkeurView.vue'
+import RestaurantView from "@/views/RestaurantView.vue";
+import GroepView from "@/views/GroepView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,7 +30,6 @@ const router = createRouter({
       path: '/restaurant',
       name: 'restaurant',
       component: RestaurantView
-    },
     },
     {
       path: '/groep',
