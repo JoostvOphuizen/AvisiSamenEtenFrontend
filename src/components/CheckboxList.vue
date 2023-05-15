@@ -7,6 +7,7 @@
         <BaseInput
           :label="item.label"
           :value="item.value"
+          :icon="item.icon"
           @update:modelValue="updateCheckboxValue(index, $event)"
         />
       </div>
@@ -14,15 +15,26 @@
   </template>
   
   <style scoped>
-  .Flexbox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-height: 320px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
+    .Flexbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        max-height: 320px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .Flexbox::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .Flexbox::-webkit-scrollbar-thumb {
+        background: #f0f0f0;
+        border-radius: 5px;
+    }
+
+
   
   .checkbox-item {
     width: 100%;
@@ -65,6 +77,7 @@
   interface CheckboxItem {
     label: string;
     value: boolean;
+    icon: string;
   }
   
   export default defineComponent({

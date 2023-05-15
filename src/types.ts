@@ -1,6 +1,6 @@
 export interface User {
     id: string
-    name: string
+    naam: string
     email: string
     password: string
     picture: string | undefined

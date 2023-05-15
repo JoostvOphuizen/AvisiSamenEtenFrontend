@@ -40,6 +40,16 @@ function getUserIDCookie() {
   return id
 }
 
+function setUserNameCookie(naam: string) {
+  Cookies.set('user_naam', naam, { expires: 7 }) // Set the user picture as a cookie with a 7 day expiry
+}
+
+function getUserNameCookie() {
+  const naam = Cookies.get('user_naam') // Get the user picture from the cookie
+  return naam
+}
+
+
 const SESSIONID = '1234567890'
 const baseURL = "http://localhost:8080";
 
@@ -83,8 +93,10 @@ const store = createStore<State>({
       commit('setSessionId', SESSIONID)
       setUserCookie(user)
       setUserPictureCookie(picture)
+      setUserNameCookie(naam)
+      var foto = picture
 
-      const loginDTO = { naam, email }
+      const loginDTO = { email, naam, foto }
 
       try {
         const responds = await fetch(`${baseURL}/gebruiker/login`, {
@@ -119,9 +131,6 @@ const store = createStore<State>({
       } catch (err) {
       }
     },
-    async signup({ commit }, { name, email, password }: { name: string, email: string, password: string }) {
-        console.log('signup')
-    },
     async logout({ commit }) {
       // Clear user and session ID from state and cookie
       commit('setUser', null)
@@ -137,7 +146,7 @@ const store = createStore<State>({
       return state.user?.picture || null
     },
     userName(state) {
-      return state.user?.name || null
+      return state.user?.naam || getUserNameCookie()
     },
     userEmail(state) {
       return state.user?.email || null
