@@ -11,6 +11,7 @@
           :label="item.label"
           :value="item.value"
           :icon="item.icon"
+          :pictures="item.pictures"
           @update:modelValue="updateCheckboxValue(index, $event)"
         />
       </div>
@@ -106,6 +107,7 @@
     label: string;
     value: boolean;
     icon?: string;
+    pictures?: string[];
   }
   
   export default defineComponent({
