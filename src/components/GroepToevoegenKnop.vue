@@ -20,7 +20,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 .button {
   border: none;
@@ -35,6 +35,7 @@ export default {
   justify-content: center;
   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
   background-color: rgba(255,255,255,15%);
+  color: white;
 }
 
 
@@ -48,6 +49,7 @@ export default {
   width: 13px;
   height: 13px;
   margin-left: 8px;
+  filter: invert(1);
 }
 
 .buttonClass:hover {

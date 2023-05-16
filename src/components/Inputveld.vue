@@ -4,6 +4,7 @@
         v-model="groepsnaam"
         @input="getNaam"
         placeholder="Naam van de groep..."
+        class="inputveld"
     />
 </template>
 
@@ -38,7 +39,9 @@ input {
   height: 40px;
   border: none;
   box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.45);
-  background-color: rgba(255,255,255,30%);
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
 }
+
+
 </style>
