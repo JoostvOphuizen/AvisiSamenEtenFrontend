@@ -20,6 +20,8 @@ export interface Restaurant {
     straatnaam: string;
     huisnummer: string;
     telefoonnummer: string;
+    link: string;
+    foto: string;
     VoedingsRestricties: VoedingsRestricties[];
 }
 

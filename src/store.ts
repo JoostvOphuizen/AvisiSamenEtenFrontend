@@ -95,6 +95,8 @@ const store = createStore<State>({
         straatnaam: data.restaurant.straatnaam,
         huisnummer: data.restaurant.huisnummer,
         telefoonnummer: data.restaurant.telefoonnummer,
+        link: data.restaurant.link,
+        foto: data.restaurant.foto,
         VoedingsRestricties: data.restricties.restricties.map((restrictie: any) => ({
           naam: restrictie.naam,
           type: restrictie.type,
