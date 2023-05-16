@@ -19,7 +19,6 @@ export interface Restaurant {
     postcode: string;
     straatnaam: string;
     huisnummer: string;
-    telefoonnummer: string;
     link: string;
     foto: string;
     VoedingsRestricties: VoedingsRestricties[];

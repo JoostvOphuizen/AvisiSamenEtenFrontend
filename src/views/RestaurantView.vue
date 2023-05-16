@@ -12,7 +12,6 @@ export default{
   computed: {
     ...mapGetters(['isLoggedIn', 'getRestaurantData']),
     restaurantData() {
-      console.log(this.getRestaurantData)
       return this.getRestaurantData;
     },
   },
@@ -35,9 +34,9 @@ export default{
       v-if="restaurantData"
       :description="restaurantData.postcode"
       :title="restaurantData.naam"
-      image="https://www.foodiesmagazine.nl/app/uploads/2021/08/Arnhem.jpg"
+      :image="restaurantData.foto"
       :adres="restaurantData.postcode + ' ' + restaurantData.huisnummer + ' ' + restaurantData.straatnaam"
-      :telefoonnummer="restaurantData.telefoonnummer"
+      :link="restaurantData.link"
     ></Description>
   </div>
 </template>

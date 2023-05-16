@@ -20,7 +20,11 @@ export default {
     adres: {
       type: String,
       required: false
-    }
+    },
+    link: {
+      type: String,
+      required: false
+    },
   },
 }
 </script>
@@ -94,6 +98,12 @@ export default {
   line-height: 36px;
 }
 
+a, a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none none none;
+    background-color: transparent;
+}
+
 /* at 400 px */
 @media screen and (max-width: 400px) {
   .Flexbox {
@@ -138,13 +148,15 @@ export default {
   <h1 class="Title">{{title}}</h1>
   <GlassTile class="row">
     <div class="row">
-      <div class="image">
-        <img class="plaatje" alt="restaurant" :src="this.image"/>
-      </div>
+      <a :href="link" class="hyperlink">
+        <div class="image">
+          <img class="plaatje" alt="restaurant" :src="this.image"/>
+        </div>
+      </a>
       <div class="ItemHotBar">
         <span class="leftItem">
-          <img class="picto" alt="restaurant" src="src/assets/telephone.png"/>
-          <p class="blok">{{telefoonnummer}}</p>
+          <img class="picto" alt="restaurant" src="src\assets\link.png"/>
+          <a class="blok" :href="link">{{ title }}</a>
         </span>
         <span class="rightItem">
           <img class="picto" alt="restaurant" src="src/assets/location.png"/>

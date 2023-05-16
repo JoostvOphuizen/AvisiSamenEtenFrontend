@@ -89,14 +89,13 @@ const store = createStore<State>({
     },
     setRestaurantData(state, data) {
       state.restaurantData = {
-        id: data.restaurant.id,
-        naam: data.restaurant.naam,
-        postcode: data.restaurant.postcode,
-        straatnaam: data.restaurant.straatnaam,
-        huisnummer: data.restaurant.huisnummer,
-        telefoonnummer: data.restaurant.telefoonnummer,
-        link: data.restaurant.link,
-        foto: data.restaurant.foto,
+        id: data.restaurantId,
+        naam: data.restaurantNaam,
+        postcode: data.postcode,
+        straatnaam: data.straatnaam,
+        huisnummer: data.huisnummer,
+        link: data.link,
+        foto: data.foto,
         VoedingsRestricties: data.restricties.restricties.map((restrictie: any) => ({
           naam: restrictie.naam,
           type: restrictie.type,
