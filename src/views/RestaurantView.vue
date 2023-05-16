@@ -35,7 +35,7 @@ export default{
       v-if="restaurantData"
       :description="restaurantData.postcode"
       :title="restaurantData.naam"
-      :image="restaurantData.image"
+      image="https://www.foodiesmagazine.nl/app/uploads/2021/08/Arnhem.jpg"
       :adres="restaurantData.postcode + ' ' + restaurantData.huisnummer + ' ' + restaurantData.straatnaam"
       :telefoonnummer="restaurantData.telefoonnummer"
     ></Description>
