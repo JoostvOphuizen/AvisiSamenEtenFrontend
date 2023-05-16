@@ -2,7 +2,9 @@
   <div :class="optieClass" @click="checkCheckbox($event)">
     <div class="optieTitle">
       <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
-      <span class="optieLabel">{{ label }}</span>
+      <span style="margin-right:10px" class="optieLabel">{{ label }}</span>
+      <img v-if="pictures" v-for="picture in pictures.slice(0,4)" :src="picture" alt="icon" class="optieIcon" />
+      <span v-if="pictures&&pictures.length>4">En {{pictures.length-4}} meer...</span>
     </div>
     <div class="checkbox-wrapper-46">
       <input class="inp-cbx" :id="label" type="checkbox" :checked="value" @change="onCheckboxChange" />
@@ -30,6 +32,8 @@ export default {
     icon: {
       type: String,
       default: '',
+    },
+    pictures: {
     }
   },
   methods: {

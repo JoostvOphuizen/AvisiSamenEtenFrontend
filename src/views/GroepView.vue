@@ -4,6 +4,7 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="users" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="groepen" />
+      <GroepToevoegenKnop class="fitcontent" @click="maakGroep" label="Voeg een nieuwe groep toe"></GroepToevoegenKnop>
       <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
     </div>
   </template>  
@@ -17,10 +18,12 @@
   import SearchBar from '@/components/SearchBar.vue';
   import ErrorMessage from '@/components/ErrorMessage.vue';
   import store from '@/store';
+  import GroepToevoegenKnop from "@/components/GroepToevoegenKnop.vue";
   
   const baseURL = "http://localhost:8080";
   
   interface CheckboxItem {
+    pictures: string[];
     label: string;
     value: boolean;
     icon: string;
@@ -30,6 +33,7 @@
   export default defineComponent({
     emits: ['update:message'],
     components: {
+      GroepToevoegenKnop,
       SearchBar,
       CheckboxList,
       AppButton,
@@ -166,9 +170,30 @@
             value: false,
             gebruikers: item.leden,
           }));
+          this.getGroepInfo(this.groepCheckboxItems)
         } catch (error) {
           this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
           console.error(error);
+        }
+      },
+      getGroepInfo(groepen: CheckboxItem[]){
+        for(const groep of groepen){
+          for(const user of groep.gebruikers){
+            for(const user2 of this.userCheckboxItems){
+              if(user2.id==user){
+                console.log(groep.label)
+                if(groep.pictures) {
+                  console.log("bestaat")
+                  groep.pictures.push(user2.icon)
+                  console.log(groep.pictures)
+                }else{
+                  console.log("bestaat niet")
+                  groep.pictures = [user2.icon]
+                }
+                groep.label = groep.label
+              }
+            }
+          }
         }
       },
       async organiseerEtentje() {
@@ -198,6 +223,9 @@
         } catch (error) {
           console.error(error);
         }
+      },
+      maakGroep(){
+        this.$router.push('/maakgroep')
       },
       handleSearch(searchQuery: string) {
         this.searchQuery = searchQuery;
