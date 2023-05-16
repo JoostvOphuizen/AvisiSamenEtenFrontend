@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import CheckboxList from '@/components/CheckboxList.vue';
-import { get } from '@/services/apiService';
+import {get, post} from '@/services/apiService';
 import { mapGetters } from 'vuex';
 import AppButton from '@/components/Button.vue';
 import SearchBar from '@/components/SearchBar.vue';
@@ -43,6 +43,7 @@ export default defineComponent({
       searchQuery: '',
       groepsnaam: '',
       errorMessage: '',
+      loading: false
     };
   },
 
@@ -91,26 +92,32 @@ export default defineComponent({
         console.error(error);
       }
     },
-    async maakGroep(){
-      var obj = {userIds: this.checkedItems.map((item) => item.id),naam: this.groepsnaam};
-      const url = `${baseURL}/`;
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(obj),
-      };
+    async maakGroep() {
+      this.loading = true;
       try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-        if(data.error) {
-          this.errorMessage = "Er ging iets mis bij het aanmaken van de groep. Probeer het later opnieuw.";
+        var checkedItemsWithoutValue = [];
+        for (let i = 0; i < this.checkedItems.length; i++) {
+          checkedItemsWithoutValue.push(this.checkedItems[i].id);
+        }
+        const postData = {
+          gebruikers: checkedItemsWithoutValue,
+          naam: this.groepsnaam
+        }
+        const data = await post(`${baseURL}/gebruiker/maakgroep?id=${this.getUserID}`, postData);
+        if (data.error){
+          this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
           return;
         }
+
       } catch (error) {
-        console.error(error);
+        this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
+        console.log(error);
+      } finally {
+        this.loading = false;
+        this.$router.push('/');
       }
+
+      this.$router.push('/');
     },
     handleSearch(searchQuery: string) {
       this.searchQuery = searchQuery;
