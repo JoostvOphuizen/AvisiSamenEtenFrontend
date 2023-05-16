@@ -226,11 +226,7 @@ export default {
     border-radius: 50%;
   }
 
-@media (max-width: 400px) {
-  .optieTitle{
-    flex-direction: column;
-  }
-}
+
 
 
 </style>
