@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue'
 import VoorkeurView from '../views/VoorkeurView.vue'
 import RestaurantView from "@/views/RestaurantView.vue";
 import GroepView from "@/views/GroepView.vue";
+import MaakGroepView from "@/views/MaakGroepView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/groep',
       name: 'groep',
       component: GroepView
+    },
+    {
+      path: '/maakgroep',
+      name: 'maak groep',
+      component: MaakGroepView
     }
   ]
 })
