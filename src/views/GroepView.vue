@@ -156,7 +156,7 @@
       },
       async fetchAllGroep() {
         try{
-          const data = await get(`${baseURL}/gebruiker/getallegroepen`);
+          const data = await get(`${baseURL}/groep`);
           if(data.error) {
             this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
             return;
@@ -173,6 +173,10 @@
       },
       async organiseerEtentje() {
         const userIds = this.checkedItems.map((item) => item.id);
+        if (userIds.length < 1) {
+          this.errorMessage = "Selecteer minstens 1 gebruikers om een etentje te organiseren.";
+          return;
+        }
         const url = `${baseURL}/restaurant/bepaal`;
         const options = {
           method: 'POST',

@@ -100,10 +100,10 @@ export default defineComponent({
           checkedItemsWithoutValue.push(this.checkedItems[i].id);
         }
         const postData = {
-          gebruikers: checkedItemsWithoutValue,
+          leden: checkedItemsWithoutValue,
           naam: this.groepsnaam
         }
-        const data = await post(`${baseURL}/gebruiker/maakgroep?id=${this.getUserID}`, postData);
+        const data = await post(`${baseURL}/groep`, postData);
         if (data.error){
           this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
           return;

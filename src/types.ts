@@ -29,7 +29,7 @@ export interface VoedingsRestricties {
 }
 
 export interface VoedingsRestrictie {
-    naam: string;
-    type: string;
+    naam: string | null;
+    type: string | null;
 }
   
