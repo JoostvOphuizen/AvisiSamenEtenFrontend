@@ -80,7 +80,6 @@ export default defineComponent({
           this.errorMessage = "Er ging iets mis bij het ophalen van de gebruikers. Probeer het later opnieuw.";
           return;
         }
-        data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
         this.userCheckboxItems = data.gebruikers.map((item: any) => ({
           label: item.naam,
           value: false,

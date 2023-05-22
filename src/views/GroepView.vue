@@ -2,8 +2,8 @@
     <div class="categorybox">
       <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
-      <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="users" />
-      <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="groepen" />
+      <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
+      <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
       <GroepToevoegenKnop class="fitcontent" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
       <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
     </div>
