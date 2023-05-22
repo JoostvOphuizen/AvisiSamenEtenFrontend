@@ -40,8 +40,11 @@ export default defineComponent({
   },
 
   computed: {
-    checkedItems(): CheckboxItem[] {
+    checkedItemsVoorkeur(): CheckboxItem[] {
       return this.voorkeurCheckboxItems.filter((item: CheckboxItem) => item.value);
+    },
+    checkedItemsVoedingrestrictie(): CheckboxItem[] {
+      return this.voedingrestrictieCheckboxItems.filter((item: CheckboxItem) => item.value);
     },
     ...mapGetters(['isLoggedIn', 'getUserID']),
   },
@@ -57,27 +60,37 @@ export default defineComponent({
     async postUserVoorkeuren(){
       this.loading = true;
       try {
-        var checkedItemsWithoutValue = [];
-        for (let i = 0; i < this.checkedItems.length; i++) {
-          checkedItemsWithoutValue.push(this.checkedItems[i].label);
+        var checkedItemsWithoutValueVoorkeur = [];
+        var checkedItemsWithoutValueVoedingrestrictie = [];
+        for (let i = 0; i < this.checkedItemsVoorkeur.length; i++) {
+          checkedItemsWithoutValueVoorkeur.push(this.checkedItemsVoorkeur[i].label);
         }
-        const postData = {
-          voorkeuren: checkedItemsWithoutValue
+        for (let i = 0; i < this.checkedItemsVoedingrestrictie.length; i++) {
+          checkedItemsWithoutValueVoedingrestrictie.push(this.checkedItemsVoedingrestrictie[i].label);
         }
-        const data = await post(`${baseURL}/gebruiker/slavoorkeurenop?id=${this.getUserID}`, postData);
+        const postDataVoorkeuren = {
+          voorkeuren: checkedItemsWithoutValueVoorkeur
+        }
+        const postDataVoedingrestricties = {
+          voorkeuren: checkedItemsWithoutValueVoedingrestrictie
+        }
+        const data = await post(`${baseURL}/gebruiker/slavoorkeurenop?id=${this.getUserID}`, postDataVoorkeuren);
+        const data2 = await post(`${baseURL}/gebruiker/slarestrictiesop?id=${this.getUserID}`, postDataVoedingrestricties);
         if (data.error){
           this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
           return;
         }
+        if (data2.error){
+          this.errorMessage = "Er ging iets mis bij het opslaan van uw restricties, probeer het later opnieuw.";
+          return;
+        }
       } catch (error) {
-        this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren, probeer het later opnieuw.";
+        this.errorMessage = "Er ging iets mis bij het opslaan van uw voorkeuren en of restricties, probeer het later opnieuw.";
         console.log(error);
       } finally {
         this.loading = false;
         this.$router.push('/');
       }
-
-      this.$router.push('/');
     },
     async getVoedingsbehoeften(){
       try {
