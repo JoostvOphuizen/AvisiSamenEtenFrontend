@@ -4,7 +4,7 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
-      <GroepToevoegenKnop class="fitcontent" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
+      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>
       <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
     </div>
   </template>  
@@ -18,7 +18,6 @@
   import SearchBar from '@/components/SearchBar.vue';
   import ErrorMessage from '@/components/ErrorMessage.vue';
   import store from '@/store';
-  import GroepToevoegenKnop from "@/components/GroepToevoegenKnop.vue";
   
   const baseURL = "http://localhost:8080";
   
@@ -33,7 +32,6 @@
   export default defineComponent({
     emits: ['update:message'],
     components: {
-      GroepToevoegenKnop,
       SearchBar,
       CheckboxList,
       AppButton,
