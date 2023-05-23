@@ -5,7 +5,10 @@
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
       <GroepToevoegenKnop class="fitcontent" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
-      <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+      <div class="buttons">
+        <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+        <AppButton label="Genereer link" @click="genereerLink" icon-left="src\assets\external-link(1).png"></AppButton>
+      </div>
     </div>
   </template>  
   
@@ -230,6 +233,9 @@
       handleSearch(searchQuery: string) {
         this.searchQuery = searchQuery;
       },
+      genereerLink(){
+        this.$router.push('/link')
+      }
     },
   
     async mounted() {
@@ -261,4 +267,10 @@
       width: 100%;
     }
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
 </style>  
