@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import type { User } from '@/types'
+import type { User, Restaurant } from '@/types'
 import Cookies from 'js-cookie'
 
 const COOKIE_NAME = 'user'
@@ -57,12 +57,14 @@ const baseURL = "http://localhost:8080";
 interface State {
   user: User | null
   sessionId: string | null
+  restaurantData: Restaurant | null
 }
 
 const store = createStore<State>({
   state: {
     user: null,
-    sessionId: null
+    sessionId: null,
+    restaurantData: null,
   },
   mutations: {
     init(state) {
@@ -84,7 +86,22 @@ const store = createStore<State>({
     },
     setUserID(state, id: string) {
       state.user!.id = id
-    }
+    },
+    setRestaurantData(state, data) {
+      state.restaurantData = {
+        id: data.restaurantId,
+        naam: data.restaurantNaam,
+        postcode: data.postcode,
+        straatnaam: data.straatnaam,
+        huisnummer: data.huisnummer,
+        link: data.link,
+        foto: data.foto,
+        VoedingsRestricties: data.restricties.restricties.map((restrictie: any) => ({
+          naam: restrictie.naam,
+          type: restrictie.type,
+        })),
+      };
+    },
   },
   actions: {
     async login({ commit }, { email, naam, picture }: { email: string, naam: string, picture: string }) {
@@ -136,7 +153,10 @@ const store = createStore<State>({
       commit('setUser', null)
       commit('clearSessionId')
       deleteUserCookie()
-    }
+    },
+    setRestaurantData({ commit }, data) {
+      commit('setRestaurantData', data)
+    },
   },
   getters: {
     isLoggedIn(state) {
@@ -153,6 +173,9 @@ const store = createStore<State>({
     },
     getUserID(state) {
       return state.user?.id || null
+    },
+    getRestaurantData(state) {
+      return state.restaurantData || null
     }
   }
 })
