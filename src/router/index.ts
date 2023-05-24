@@ -5,6 +5,7 @@ import VoorkeurView from '../views/VoorkeurView.vue'
 import RestaurantView from "@/views/RestaurantView.vue";
 import GroepView from "@/views/GroepView.vue";
 import MaakGroepView from "@/views/MaakGroepView.vue";
+import LinkView from "@/views/LinkView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,16 @@ const router = createRouter({
       path: '/maakgroep',
       name: 'maak groep',
       component: MaakGroepView
+    },
+    {
+      path: '/link',
+      name: 'link',
+      component: LinkView
+    },
+    {
+      path: '/link/:token',
+      name: 'link',
+      component: LinkView
     }
   ]
 })
