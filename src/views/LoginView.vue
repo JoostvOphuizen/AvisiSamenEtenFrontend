@@ -18,7 +18,13 @@ export default ({
       var naam = userData.name
       var email = userData.email
       var picture = userData.picture
-      store.dispatch('login',{email, naam, picture})
+      var RedirectURL = localStorage.getItem('redirectUrl')
+      store.dispatch('login',{
+        email, 
+        naam, 
+        picture,
+        RedirectURL
+      })
       this.$router.push("/")
     }
   },

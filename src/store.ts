@@ -104,7 +104,7 @@ const store = createStore<State>({
     },
   },
   actions: {
-    async login({ commit }, { email, naam, picture }: { email: string, naam: string, picture: string }) {
+    async login({ commit }, { email, naam, picture, redirectUrl }: { email: string, naam: string, picture: string, redirectUrl?: string }) {
       const user = { email, naam, picture }
       commit('setUser', user)
       commit('setSessionId', SESSIONID)
@@ -144,7 +144,10 @@ const store = createStore<State>({
 
         commit('setUserID', data.id)
         setUserIDCookie(result.data.id)
-
+        if (redirectUrl) {
+          console.log(redirectUrl)
+          localStorage.setItem('redirectUrl', redirectUrl);
+        }
       } catch (err) {
       }
     },
