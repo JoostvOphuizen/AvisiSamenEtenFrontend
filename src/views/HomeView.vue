@@ -84,7 +84,7 @@ export default ({
 }
 
 .blueText {
-    color: var(--vt-c-blue);
+    color: var(--vt-c-indigo);
     margin: 0;
     display: inline;
     font-weight: 600;
