@@ -1,9 +1,11 @@
 <template>
   <div class="Flexbox">
-    <div class="RoundedColorBox" :style="{ backgroundColor: color }">
-      <img class="ChipIconLeft" v-if="icon" :src="icon" />
-      <p class="ChipNumber" :style="{ backgroundColor: numberColor }" v-if="number">{{ number }}</p>
-      <div class="ChipLabel" :class="{ 'TruncatedLabel': shouldTruncateLabel }">{{ truncatedLabel }}</div>
+    <div :class="{'highlight': highlight}" class="borderBox">
+      <div class="RoundedColorBox" :style="{ backgroundColor: color } ">
+        <img class="ChipIconLeft" v-if="icon" :src="icon" />
+        <p class="ChipNumber" :style="{ backgroundColor: numberColor }" v-if="number">{{ number }}</p>
+        <div class="ChipLabel" :class="{ 'TruncatedLabel': shouldTruncateLabel }">{{ truncatedLabel }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +24,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'var(--vt-c-indigo)',
+      default: 'var(--vt-c-black-soft)',
     },
     number: {
       type: String,
@@ -30,7 +32,11 @@ export default {
     numberColor: {
       type: String,
       default: 'var(--vt-c-indigo)',
-    }
+    },
+    highlight: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -69,6 +75,20 @@ export default {
 </script>
 
 <style scoped>
+
+.highlight {
+  background-color: var(--vt-c-indigo);
+  border-radius: 10px;
+  border: 1px solid var(--vt-c-indigo);
+  box-sizing: border-box;
+  padding-right: 7px;
+}
+
+.borderBox{
+  width: 100%;
+  height: 100%;
+}
+
 .Flexbox {
   display: flex;
   align-items: center;

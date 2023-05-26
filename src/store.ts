@@ -145,7 +145,6 @@ const store = createStore<State>({
         commit('setUserID', data.id)
         setUserIDCookie(result.data.id)
         if (redirectUrl) {
-          console.log(redirectUrl)
           localStorage.setItem('redirectUrl', redirectUrl);
         }
       } catch (err) {

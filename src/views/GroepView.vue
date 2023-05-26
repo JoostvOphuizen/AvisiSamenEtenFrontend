@@ -77,7 +77,6 @@
   
     methods: {
       hideMessage() {
-        console.log('hide message');
         this.$emit('update:message', '');
       },
       handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
@@ -184,13 +183,9 @@
           for(const user of groep.gebruikers){
             for(const user2 of this.userCheckboxItems){
               if(user2.id==user){
-                console.log(groep.label)
                 if(groep.pictures) {
-                  console.log("bestaat")
                   groep.pictures.push(user2.icon)
-                  console.log(groep.pictures)
                 }else{
-                  console.log("bestaat niet")
                   groep.pictures = [user2.icon]
                 }
                 groep.label = groep.label

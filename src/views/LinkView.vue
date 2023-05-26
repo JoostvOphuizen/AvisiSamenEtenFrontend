@@ -1,13 +1,18 @@
 <template>
-  <CopyLink link="http://localhost:5173/link/1234-1234-1234"></CopyLink>
+  <CopyLink :link="link"></CopyLink>
 
   <div class="Flexbox">
     <div class="Leftbox">
       <div class="flexboxLeft">
         <h1 class="title">Organisator</h1>
       </div>
-      <GlassTile class="HostGebruikerTile">
-        <BaseChip class="HostChip" label="Host" icon="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
+      <GlassTile class="HostGebruikerTile" v-if="host.label && host.icon">
+        <BaseChip
+          class="HostChip"
+          :label="host.label"
+          :icon="host.icon"
+          :highlight="isOrganisator"
+        />
       </GlassTile>
       <div class="VanGebruikersBox">
         <div class="flexboxLeft">
@@ -15,20 +20,22 @@
         </div>
         <GlassTile class="VoorkeurenVanGebruikersTile">
           <div class="VoorkeurChips">
-            <BaseChip class="VoorkeurChip" label="Mexicaans" color="var(--vt-c-black-soft)" number="5" />
-            <BaseChip class="VoorkeurChip" label="Pizza" color="var(--vt-c-black-soft)" number="3" />
-            <BaseChip class="VoorkeurChip" label="Poke Bowl" color="var(--vt-c-black-soft)" number="2" />
-            <BaseChip class="VoorkeurChip" label="Italiaans" color="var(--vt-c-black-soft)" number="2" />
-            <BaseChip class="VoorkeurChip" label="Falafel" color="var(--vt-c-black-soft)" number="1" />
+            <div v-for="(value, key) in countedVoorkeuren" :key="key">
+              <BaseChip
+                class="VoorkeurChip"
+                :label="key.toString()"
+                color="var(--vt-c-black-soft)"
+                :number="value.toString()"
+              />
+            </div>
           </div>
         </GlassTile>
         <div class="flexboxLeft">
           <h1 class="title">Restricties</h1>
         </div>
         <GlassTile class="RestrictiesVanGebruikersTile">
-          <div class="VoorkeurChips">
-            <BaseChip class="VoorkeurChip" label="Noten" color="var(--vt-c-black-soft)" number="!" numberColor="#ED512D" />
-            <BaseChip class="VoorkeurChip" label="Gluten" color="var(--vt-c-black-soft)" number="!" numberColor="#ED512D" />
+          <div class="VoorkeurChips" v-for="item in distinctRestricties" :key="item">
+              <BaseChip class="VoorkeurChip" :label="item" color="var(--vt-c-black-soft)" number="!" numberColor="#ED512D" />
           </div>
         </GlassTile>
       </div>
@@ -39,19 +46,226 @@
       </div>
       <GlassTile class="JoinedGebruikerTile">
         <div class="VoorkeurChips">
-          <BaseChip class="HostChip" label="GebruikerGebruikerGebruikerGebruikerGebruikerGebruiker" icon="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
-          <BaseChip class="HostChip" label="Gebruiker" icon="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
-          <BaseChip class="HostChip" label="Gebruiker" icon="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
-          <BaseChip class="HostChip" label="Gebruiker" icon="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
+          <BaseChip
+            v-for="uitgenodigde in uitgenodigden"
+            :key="uitgenodigde.label"
+            :label="uitgenodigde.label"
+            :icon="uitgenodigde.icon"
+            :highlight="checkHighlight(uitgenodigde)"
+          />
         </div>
       </GlassTile>
     </div>
   </div>
   <div class="Center">
-    <AppButton label="Organiseer etentje!" @click=""></AppButton>
+    <AppButton v-if="isOrganisator" label="Organiseer etentje!" @click="organiseerEtentje()"></AppButton>
   </div>
 </template>
 
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import CheckboxList from '@/components/CheckboxList.vue';
+import { get, post, postWithoutBody } from '@/services/apiService';
+import { useRoute } from 'vue-router'
+import { mapGetters } from 'vuex'
+import AppButton from '@/components/Button.vue';
+import ErrorMessage from '@/components/ErrorMessage.vue';
+import GlassTile from '@/components/GlassTile.vue';
+import BaseChip from '@/components/BaseChip.vue';
+import CopyLink from '@/components/CopyLink.vue';
+
+const baseURL = "http://localhost:8080";
+
+interface CheckboxItem {
+  label: string;
+  value: boolean;
+}
+
+export default defineComponent({
+  components: {
+    CheckboxList,
+    AppButton,
+    ErrorMessage,
+    GlassTile,
+    BaseChip,
+    CopyLink,
+  },
+
+  data() {
+    return {
+      errorMessage: '',
+      loading: false,
+      token: '' as string | undefined,
+      link: '',
+      distinctRestricties: [] as string[],
+      countedVoorkeuren: {} as { [key: string]: number },
+      host: {
+        label: '',
+        icon: '',
+        id: '',
+      },
+      uitgenodigden: [] as { label: string; icon: string; id: string }[],
+      intervalId: null as number | null,
+      gebruikersID: '' as string,
+    };
+  },
+  created() {
+    this.intervalId = setInterval(this.updateData, 1000);
+  },
+  beforeUnmount() {
+    if (this.intervalId !== null) {
+      clearInterval(this.intervalId);
+    }
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn', 'getUserID']),
+    isOrganisator(): boolean {
+      return this.gebruikersID === this.host.id;
+    }
+  },
+
+  methods: {
+    checkHighlight(uitgenodigde: { id: string }): boolean {
+      return uitgenodigde.id === this.gebruikersID;
+    },
+    async updateData() {
+      const data = await this.fetchAllUsersInUitgenodigdeGroep();
+      if (data.restaurantID != null){
+        this.$router.push(`/restaurant/${data.restaurantID}`);
+      }
+      await this.loadPage(data);
+    },
+    async loadPage (data: any){
+      this.gebruikersID = data.gebruikerID;
+      const host = data.host;
+
+      this.host = {
+        label: host.naam,
+        icon: `${host.foto}`,
+        id: host.id,
+      };
+      var uitgenodigden = data.uitgenodigden;
+      this.uitgenodigden = uitgenodigden.gebruikers.map((gebruiker: any) => {
+        return {
+          label: gebruiker.naam,
+          icon: `${gebruiker.foto}`,
+          id: gebruiker.id,
+        };
+      });
+      var AllRestricties: { naam: string }[] = data.host.restricties;
+
+      for (var i = 0; i < data.uitgenodigden.gebruikers.length; i++) {
+        AllRestricties.push(...data.uitgenodigden.gebruikers[i].restricties);
+      }
+
+      var AllVoorkeuren = data.host.voorkeuren;
+      for (var i = 0; i < data.uitgenodigden.gebruikers.length; i++) {
+        AllVoorkeuren.push(...data.uitgenodigden.gebruikers[i].voorkeuren);
+      }
+
+      var countedVoorkeuren: { [key: string]: number } = {};
+
+      for (var i = 0; i < host.voorkeuren.length; i++) {
+        const voorkeur = host.voorkeuren[i];
+        countedVoorkeuren[voorkeur.naam] = (countedVoorkeuren[voorkeur.naam] || 0) + 1;
+      }
+
+      for (var i = 0; i < uitgenodigden.length; i++) {
+        for (var j = 0; j < uitgenodigden[i].voorkeuren.length; j++) {
+          const voorkeur = uitgenodigden[i].voorkeuren[j];
+          countedVoorkeuren[voorkeur.naam] = (countedVoorkeuren[voorkeur.naam] || 0) + 1;
+        }
+      }
+
+      var countedVoorkeurenArray = Object.keys(countedVoorkeuren).map(key => [key, countedVoorkeuren[key]]);
+
+      countedVoorkeurenArray.sort((a, b) => parseInt(b[1] as string, 10) - parseInt(a[1] as string, 10));
+
+      countedVoorkeuren = countedVoorkeurenArray.reduce((acc: { [key: string]: number }, [key, value]) => {
+        acc[key] = parseInt(value as string, 10);
+        return acc;
+      }, {});
+
+      this.countedVoorkeuren = countedVoorkeuren;
+
+      var distinctRestricties: string[] = [];
+      for (var i = 0; i < AllRestricties.length; i++) {
+        if (!distinctRestricties.includes(AllRestricties[i].naam)) {
+          distinctRestricties.push(AllRestricties[i].naam);
+        }
+      }
+      this.distinctRestricties = distinctRestricties;
+      var gebruikerID = data.gebruikerID;
+      if (gebruikerID != host.id && !uitgenodigden.gebruikers.some((gebruiker: any) => gebruiker.id == gebruikerID)) {
+        await this.accepteerUitnodiging();
+        await this.fetchAllUsersInUitgenodigdeGroep();
+      }
+    },
+    async fetchAllUsersInUitgenodigdeGroep() {
+      this.token = this.link.split("/").pop();
+      try {
+        const response = await get(`${baseURL}/uitnodiging?uitnodigingToken=${this.token}&gebruikerToken=${this.getUserID}`);
+        return response;
+      } catch (error) {
+        this.errorMessage = error.response.data.message;
+      }
+    },
+    async accepteerUitnodiging(){
+      const data = {
+          uitnodigingToken: this.token,
+      }
+      try {
+        const response = await post(`${baseURL}/uitnodiging/accepteer?gebruikerToken=${this.getUserID}`, data);
+        return response;
+      } catch (error) {
+        this.errorMessage = error.response.data.message;
+      }
+    },
+    async organiseerEtentje() {
+      const userIds = this.uitgenodigden.map((uitgenodigde: { id: string }) => uitgenodigde.id);
+      userIds.push(this.host.id);
+
+      const url = `${baseURL}/restaurant/bepaal`;
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userIds),
+        };
+      var restaurant = null;
+      fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+          restaurant = data;
+          this.updateGekozenRestaurant(restaurant.restaurantId);
+          this.$router.push(`/restaurant/${restaurant.restaurantId}`);
+        })
+      .catch(error => console.error(error));
+    },
+    async updateGekozenRestaurant(restaurantID: string){
+      try {
+        var data = {
+          uitnodigingToken: this.token
+        }
+        const response = post(`${baseURL}/uitnodiging/restaurant?restaurantId=${restaurantID}`, data);
+        return response;
+      } catch (error) {
+        this.errorMessage = error.response.data.message;
+      }
+    }
+  },
+
+  async mounted() {
+    if (!this.isLoggedIn) {
+      this.$router.push('/login')
+    }
+    this.link = window.location.href;
+    this.updateData();
+  },
+});
+</script>
 <style scoped>
 
 .Center {
@@ -176,61 +390,4 @@
 }
 </style>
 
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-import CheckboxList from '@/components/CheckboxList.vue';
-import { get, post } from '@/services/apiService';
-import { useRoute } from 'vue-router'
-import { mapGetters } from 'vuex'
-import AppButton from '@/components/Button.vue';
-import ErrorMessage from '@/components/ErrorMessage.vue';
-import GlassTile from '@/components/GlassTile.vue';
-import BaseChip from '@/components/BaseChip.vue';
-import CopyLink from '@/components/CopyLink.vue';
-
-const baseURL = "http://localhost:8080";
-
-interface CheckboxItem {
-  label: string;
-  value: boolean;
-}
-
-export default defineComponent({
-  components: {
-    CheckboxList,
-    AppButton,
-    ErrorMessage,
-    GlassTile,
-    BaseChip,
-    CopyLink,
-  },
-
-  data() {
-    return {
-      errorMessage: '',
-      loading: false,
-    };
-  },
-
-  computed: {
-    ...mapGetters(['isLoggedIn', 'getUserID']),
-  },
-
-  methods: {
-    
-  },
-
-  async mounted() {
-    if (!this.isLoggedIn) {
-      this.$router.push('/login')
-    }
-    const route = useRoute()
-
-    const token = route.params.token
-
-    console.log(token)
-  },
-});
-</script>
 

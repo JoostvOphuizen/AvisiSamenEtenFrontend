@@ -6,6 +6,7 @@ import RestaurantView from '@/views/RestaurantView.vue';
 import GroepView from '@/views/GroepView.vue';
 import MaakGroepView from '@/views/MaakGroepView.vue';
 import LinkView from '@/views/LinkView.vue';
+import LinkCreateView from '@/views/LinkCreateView.vue';
 import store from '@/store';
 
 const router = createRouter({
@@ -47,6 +48,12 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/link',
+      name: 'link',
+      component: LinkCreateView,
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/link/:token',
       name: 'link-token',
       component: LinkView,
@@ -59,9 +66,6 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = store.getters.isLoggedIn;
   const redirectUrl = localStorage.getItem('redirectUrl');
 
-  console.log('isAuthenticated', isAuthenticated);
-  console.log('redirectUrl', redirectUrl);
-  console.log('to.path', to.path);
   if (!isAuthenticated && to.path !== '/login') {
     localStorage.setItem('redirectUrl', to.fullPath);
     next('/login');
@@ -73,5 +77,13 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.afterEach((to, from) => {
+  const specificPageName = 'link-token'; 
+  const desiredPage = '/'; 
+
+  if (from.name === specificPageName && to.name !== specificPageName) {
+    router.replace(desiredPage);
+  }
+});
 
 export default router;
