@@ -1,11 +1,11 @@
 <template>
-    <input
-        type="text"
-        v-model="groepsnaam"
-        @input="getNaam"
-        placeholder="Naam van de groep..."
-        class="inputveld"
-    />
+  <input
+    type="text"
+    v-model="groepsnaam"
+    @input="getNaam"
+    :placeholder="placeholderName"
+    class="inputveld"
+  />
 </template>
 
 <script lang="ts">
@@ -14,6 +14,12 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Inputveld",
+  props: {
+    placeholderName: {
+      type: String,
+      default: "Vul hier iets in...",
+    },
+  },
   data() {
     return {
       groepsnaam: "",
@@ -23,15 +29,14 @@ export default defineComponent({
     handleInput() {
       this.$emit("search", this.groepsnaam);
     },
-    getNaam(){
+    getNaam() {
       this.$emit("search", this.groepsnaam);
-    }
+    },
   },
 });
 </script>
 
 <style scoped>
-
 input {
   width: 100%;
   padding: 10px;
@@ -42,6 +47,4 @@ input {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
-
-
 </style>

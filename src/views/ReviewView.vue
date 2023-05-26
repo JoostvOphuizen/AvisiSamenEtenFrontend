@@ -8,52 +8,66 @@
       <h1 class="blueText">.</h1>
     </span>
     <GlassTile class="glass">
-      <div class="rating">
-        <input type="radio" id="star5" name="rating" value="5" />
-        <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
-        <input type="radio" id="star4" name="rating" value="4" />
-        <label class="star" for="star4" title="Great" aria-hidden="true"></label>
-        <input type="radio" id="star3" name="rating" value="3" />
-        <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
-        <input type="radio" id="star2" name="rating" value="2" />
-        <label class="star" for="star2" title="Good" aria-hidden="true"></label>
-        <input type="radio" id="star1" name="rating" value="1" />
-        <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
-      </div>
+      <Rating @waarde="getWaardeRating"></Rating>
+      <Inputveld @search="getWaardeInput" :placeholder-name="'Geef een toelichting...'"></Inputveld>
     </GlassTile>
+    <AppButton label="Verstuur" @click="verstuurReview"></AppButton>
   </div>
-
-
 </template>
 
-
-
-
 <script lang="ts">
-import {mapGetters} from "vuex";
-import GlassTile from "@/components/GlassTile.vue";
-import Description from "@/components/Description.vue";
+import { mapGetters } from 'vuex';
+import GlassTile from '@/components/GlassTile.vue';
+import Description from '@/components/Description.vue';
+import Rating from '@/components/Rating.vue';
+import Inputveld from '@/components/Inputveld.vue';
+import AppButton from '@/components/Button.vue';
 
-export default{
+const baseURL = "http://localhost:8080";
+
+export default {
+  data() {
+    return {
+      reviewText: "",
+      rating: 0,
+    };
+  },
   components: {
     Description,
     GlassTile,
+    Rating,
+    Inputveld,
+    AppButton,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'getRestaurantData'])
+    ...mapGetters(['isLoggedIn', 'getRestaurantData']),
   },
   mounted() {
     if (!this.isLoggedIn) {
-      this.$router.push('/login')
+      this.$router.push('/login');
     }
   },
   methods: {
-    fun() {
+    getWaardeRating(value: number) {
+      this.rating = value;
+    },
+    getWaardeInput(value: string) {
+      this.reviewText = value;
+    },
+    //todo
+    verstuurReview() {
+      if(this.rating == 0 || this.reviewText == ""){
+        alert("Vul alle velden in");
+        return;
+      } else {
+        console.log("Verstuur Review")
+        console.log("Rating:", this.rating);
+        console.log("Review Text:", this.reviewText);
+      }
     },
   },
-}
+};
 </script>
-
 
 
 
@@ -101,52 +115,6 @@ export default{
 
 .title {
   margin: 5px 50px 30px 50px;
-}
-
-
-
-
-
-
-
-
-
-
-
-.rating {
-  margin-top: 40px;
-  border: none;
-  float: left;
-}
-
-.rating > label {
-  color: #90A0A3;
-  float: right;
-}
-
-.rating > label:before {
-  margin: 5px;
-  font-size: 2em;
-  font-family: FontAwesome;
-  content: "\f005";
-  display: inline-block;
-}
-
-.rating > input {
-  /* display: none; */
-}
-
-.rating > input:checked ~ label,
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-  color: #F79426;
-}
-
-.rating > input:checked + label:hover,
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label,
-.rating > input:checked ~ label:hover ~ label {
-  color: #FECE31;
 }
 
 </style>
