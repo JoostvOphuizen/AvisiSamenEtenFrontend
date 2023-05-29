@@ -52,6 +52,7 @@
             :label="uitgenodigde.label"
             :icon="uitgenodigde.icon"
             :highlight="checkHighlight(uitgenodigde)"
+            @click="isOrganisator ? verwijderUitgenodigde(uitgenodigde.id) : null"
           />
         </div>
       </GlassTile>
@@ -66,8 +67,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CheckboxList from '@/components/CheckboxList.vue';
-import { get, post, postWithoutBody } from '@/services/apiService';
-import { useRoute } from 'vue-router'
+import { get, post } from '@/services/apiService';
 import { mapGetters } from 'vuex'
 import AppButton from '@/components/Button.vue';
 import ErrorMessage from '@/components/ErrorMessage.vue';
@@ -94,7 +94,7 @@ export default defineComponent({
 
   data() {
     return {
-      errorMessage: '',
+      errorMessage: '' as string | unknown,
       loading: false,
       token: '' as string | undefined,
       link: '',
@@ -108,6 +108,7 @@ export default defineComponent({
       uitgenodigden: [] as { label: string; icon: string; id: string }[],
       intervalId: null as number | null,
       gebruikersID: '' as string,
+      geaccepteerd: false as boolean,
     };
   },
   created() {
@@ -198,9 +199,15 @@ export default defineComponent({
       this.distinctRestricties = distinctRestricties;
       var gebruikerID = data.gebruikerID;
       if (gebruikerID != host.id && !uitgenodigden.gebruikers.some((gebruiker: any) => gebruiker.id == gebruikerID)) {
+        if (this.geaccepteerd) {
+          this.$router.push('/');
+          return;
+        }
         await this.accepteerUitnodiging();
-        await this.fetchAllUsersInUitgenodigdeGroep();
-      }
+        this.geaccepteerd = true;
+        this.updateData();
+    }
+
     },
     async fetchAllUsersInUitgenodigdeGroep() {
       this.token = this.link.split("/").pop();
@@ -208,7 +215,8 @@ export default defineComponent({
         const response = await get(`${baseURL}/uitnodiging?uitnodigingToken=${this.token}&gebruikerToken=${this.getUserID}`);
         return response;
       } catch (error) {
-        this.errorMessage = error.response.data.message;
+        this.errorMessage = (error as { response: { data: { message: string } } }).response.data.message;
+
       }
     },
     async accepteerUitnodiging(){
@@ -219,7 +227,7 @@ export default defineComponent({
         const response = await post(`${baseURL}/uitnodiging/accepteer?gebruikerToken=${this.getUserID}`, data);
         return response;
       } catch (error) {
-        this.errorMessage = error.response.data.message;
+        this.errorMessage = (error as { response: { data: { message: string } } }).response.data.message;
       }
     },
     async organiseerEtentje() {
@@ -252,9 +260,25 @@ export default defineComponent({
         const response = post(`${baseURL}/uitnodiging/restaurant?restaurantId=${restaurantID}`, data);
         return response;
       } catch (error) {
-        this.errorMessage = error.response.data.message;
+        this.errorMessage = (error as { response: { data: { message: string } } }).response.data.message;
+      }
+    },
+    async verwijderUitgenodigde(id: string) {
+    if (this.isOrganisator) {
+      try {
+        var data = {
+          uitnodigingToken: this.token
+        }
+        const response = await post(`${baseURL}/uitnodiging/kick?uitgenodigdeID=${id}`, data);
+        if (response.status === 200) {
+          this.updateData();
+        }
+      } catch (error) {
+        this.errorMessage = (error as { response: { data: { message: string } } }).response.data.message;
       }
     }
+},
+
   },
 
   async mounted() {
