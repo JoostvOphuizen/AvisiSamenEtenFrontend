@@ -1,4 +1,5 @@
 <template>
+  <ErrorMessage v-if="errorMessage" :message="errorMessage" />
   <CopyLink :link="link"></CopyLink>
 
   <div class="Flexbox">
@@ -94,7 +95,7 @@ export default defineComponent({
 
   data() {
     return {
-      errorMessage: '' as string | unknown,
+      errorMessage: '' as string,
       loading: false,
       token: '' as string | undefined,
       link: '',
@@ -216,7 +217,6 @@ export default defineComponent({
         return response;
       } catch (error) {
         this.errorMessage = (error as { response: { data: { message: string } } }).response.data.message;
-
       }
     },
     async accepteerUitnodiging(){
