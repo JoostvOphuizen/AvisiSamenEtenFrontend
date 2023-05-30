@@ -217,7 +217,12 @@
             this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
             return;
           }
-          this.$router.push('/restaurant');
+          const id = data.restaurantId
+          this.$router.push({
+            name: "restaurant",
+            params: {id: id},
+            path: "/restaurant",
+          })
         } catch (error) {
           console.error(error);
         }

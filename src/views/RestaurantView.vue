@@ -4,30 +4,52 @@ import {mapGetters} from "vuex";
 import GlassTile from "@/components/GlassTile.vue";
 import Description from "@/components/Description.vue";
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import {get} from "@/services/apiService";
+import store from "@/store";
 
+const baseURL = "http://localhost:8080";
 export default{
   components: {
     Description,
     GlassTile,
   },
+  data(){
+    return {
+      id: null,
+      naam: null,
+      foto: null,
+      postcode: null,
+      huisnummer: null,
+      straatnaam: null,
+      link: null,
+      restricties: [],
+    }
+  },
   computed: {
-    ...mapGetters(['isLoggedIn', 'getRestaurantData']),
-    restaurantData() {
-      return this.getRestaurantData;
-    },
+    ...mapGetters(['isLoggedIn']),
   },
   mounted() {
     if (!this.isLoggedIn) {
       this.$router.push('/login')
     }
-    if (!this.restaurantData) {
-      this.$router.push('/')
-    }
-
+    this.getRestaurantData()
   },
   methods: {
     hideMessage() {
       this.$emit('update:message', '');
+    },
+    async getRestaurantData() {
+      const restaurantId = this.$router.currentRoute._value.params.id
+      // eslint-disable-next-line vue/no-async-in-computed-properties
+      const restaurant = await get(`${baseURL}/restaurant/getrestaurant?id=` + restaurantId);
+      this.restricties = restaurant.restricties.restricties
+      this.id = restaurantId
+      this.naam = restaurant.restaurantNaam
+      this.foto = restaurant.foto
+      this.postcode = restaurant.postcode
+      this.huisnummer = restaurant.huisnummer
+      this.straatnaam = restaurant.straatnaam
+      this.link = restaurant.link
     },
   },
 }
@@ -37,17 +59,17 @@ export default{
 <template>
   <div class="center">
     <Description
-      v-if="restaurantData"
-      :description="restaurantData.postcode"
-      :title="restaurantData.naam"
-      :image="restaurantData.foto || 'https://cdn.discordapp.com/attachments/1096361791287738490/1108039901561233428/latest.png'"
-      :adres="restaurantData.postcode + ' ' + restaurantData.huisnummer + ' ' + restaurantData.straatnaam"
-      :link="restaurantData.link"
+        v-if="this.id"
+        :description="this.postcode"
+        :title="this.naam"
+        :image="this.foto || 'https://cdn.discordapp.com/attachments/1096361791287738490/1108039901561233428/latest.png'"
+        :adres="this.postcode + ' ' + this.huisnummer + ' ' + this.straatnaam"
+        :link="this.link"
     ></Description>
-    <GlassTile v-if="restaurantData.VoedingsRestricties[0]">
+    <GlassTile v-if="this.restricties[0]">
       <div class="flexbox">
         <h3 class="Title">Let op! mogelijke voedingsrestricties aanwezig.</h3>
-        <p v-for="Items in restaurantData.VoedingsRestricties" class="restrictie">{{Items.naam}}</p>
+        <p v-for="Items in this.restricties" class="restrictie">{{Items.naam}}</p>
       </div>
     </GlassTile>
   </div>

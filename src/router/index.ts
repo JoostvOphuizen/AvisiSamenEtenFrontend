@@ -28,7 +28,7 @@ const router = createRouter({
       component: VoorkeurView
     },
     {
-      path: '/restaurant',
+      path: '/restaurant?id=:id',
       name: 'restaurant',
       component: RestaurantView
     },

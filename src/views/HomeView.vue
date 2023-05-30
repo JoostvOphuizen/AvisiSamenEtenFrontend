@@ -3,6 +3,10 @@ import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
 import { mapActions, mapGetters } from 'vuex'
+import {get} from "@/services/apiService";
+import store from "@/store";
+
+const baseURL = "http://localhost:8080";
 
 export default ({
   components: {
@@ -16,6 +20,15 @@ export default ({
     },
     gotoVoorkeuren () {
         this.$router.push("/voorkeur")
+    },
+    async randomRestaurant () {
+      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant`);
+      store.dispatch('setRestaurantData', restaurant);
+      this.$router.push({
+        name: "restaurant",
+        params: {id: restaurant.restaurantId},
+        path: "/restaurant",
+      })
     }
   },
   computed: {
@@ -54,6 +67,12 @@ export default ({
       <AppButton label="Aanpassen" @click="gotoVoorkeuren" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
     </GlassTile>
 
+
+  </div>
+  <div class="center">
+    <GlassTile class="glass">
+      <AppButton label="I'm feeling lucky" @click="randomRestaurant" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+    </GlassTile>
   </div>
 </template>
 
