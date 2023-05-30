@@ -149,7 +149,6 @@
         this.$emit('update:items', updatedItems);
       },
       goToLink(index: number, item: CheckboxItem) {
-        console.log(item)
         store.dispatch('setRestaurantData', item);
         this.$router.push('/restaurant');
       },

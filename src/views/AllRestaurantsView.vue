@@ -76,7 +76,6 @@ export default defineComponent({
           voorkeuren: item.voorkeuren,
           restricties: item.restricties,
         }));
-        console.log(this.checkboxItems)
       } catch (error) {
         this.errorMessage = "Er ging iets mis bij het ophalen van de restaurants. Probeer het later opnieuw.";
         console.error(error);
