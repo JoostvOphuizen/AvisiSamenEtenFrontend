@@ -2,13 +2,15 @@
 import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
+import MessageTile from '@/components/MessageTile.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default ({
   components: {
     AppButton,
     GlassTile,
-    Notificatie
+    Notificatie,
+    MessageTile
   },
   methods: {
     gotoGroep () {
@@ -16,6 +18,10 @@ export default ({
     },
     gotoVoorkeuren () {
         this.$router.push("/voorkeur")
+    },
+    gotoReview () {
+      // TODO
+      // this.$router.push("/review")
     }
   },
   computed: {
@@ -36,14 +42,26 @@ export default ({
   <!-- <div class="center">
       <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png" class="notificatie"></Notificatie>
     </div> -->
-  <div class="center">
 
+  <div class="top">
+    <MessageTile class="messageTile">
+      <div class="messageTile-left">
+        <h2 class="h1text">Beoordeel nu!</h2>
+        <p>Deel je mening over: <br> [[insert restaurant]]</p>
+      </div>
+      <div class="messageTile-right">
+        <AppButton label="Review" @click="gotoReview" type="secondaryButton"></AppButton>
+      </div>
+    </MessageTile>
+  </div>
+
+  <div class="center">
     <GlassTile class="glass">
-      <span class="title">
-        <h1 class="h1text">Samen eten</h1>
-        <h1 class="blueText">?</h1>
-      </span>
-      <AppButton label="Selecteer groep" @click="gotoGroep" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+        <span class="title">
+          <h1 class="h1text">Samen eten</h1>
+          <h1 class="blueText">?</h1>
+        </span>
+        <AppButton label="Selecteer groep" @click="gotoGroep" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
     </GlassTile>
 
     <GlassTile class="glass">
@@ -76,6 +94,36 @@ export default ({
     justify-content: space-between;
 }
 
+.top {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.messageTile {
+  padding: 5px 10px 10px 10px;
+  margin: 20px 0;
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  justify-content: space-between;
+}
+
+.messageTile-left {
+  display: flex;
+  flex-direction: column;
+  width:fit-content;
+  justify-content: center;
+}
+
+.messageTile-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content:end;
+  margin-left: 10px;
+}
+
 .h1text {
     color: var(--vt-c-white);
     margin: 0;
@@ -84,7 +132,7 @@ export default ({
 }
 
 .blueText {
-    color: var(--vt-c-blue);
+    color: var(--vt-c-indigo);
     margin: 0;
     display: inline;
     font-weight: 600;
