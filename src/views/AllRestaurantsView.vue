@@ -60,7 +60,7 @@ export default defineComponent({
     },
     async fetchAllRestaurants() {
       try {
-        const data = await get(`${baseURL}/restaurant/allerestaurants`);
+        const data = await get(`${baseURL}/restaurant/alle`);
         if (data.error) {
           this.errorMessage = "Er ging iets mis bij het ophalen van de restaurants. Probeer het later opnieuw.";
           return;
