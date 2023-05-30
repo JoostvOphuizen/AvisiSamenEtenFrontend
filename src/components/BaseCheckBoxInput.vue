@@ -21,6 +21,9 @@
             </svg></span><span></span>
       </label>
     </div>
+    <div v-else class="checkbox-wrapper-restaurant">
+      <input class="inp-cbx" :id="label" type="checkbox" :checked="value" @change="onCheckboxChange" />
+    </div>
   </div>
 </template>
 
@@ -67,15 +70,15 @@ export default {
       this.$emit('update:modelValue', checkbox.checked);
     },
     checkCheckbox(event: MouseEvent) {
-      const target = event.target as HTMLElement;
-      if (target.classList.contains('cbx') || target.closest('.cbx')) {
-        // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
-        event.stopPropagation();
-        return;
-      }
+        const target = event.target as HTMLElement;
+        if (target.classList.contains('cbx') || target.closest('.cbx')) {
+          // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
+          event.stopPropagation();
+          return;
+        }
 
-      const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
-      checkbox.click();
+        const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+        checkbox.click();
     },
   },
   computed: {
@@ -144,6 +147,11 @@ export default {
   height: 24px;
   margin-right: 8px;
   border-radius: 50%;
+}
+
+.checkbox-wrapper-restaurant {
+  display: none;
+  visibility: hidden;
 }
 
 .checkbox-wrapper-46 input[type="checkbox"] {

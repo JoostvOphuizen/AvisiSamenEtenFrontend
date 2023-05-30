@@ -1,7 +1,7 @@
 <template>
   <div class="categorybox">
     <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
-    <CheckboxList v-if="!loading" :items="filteredCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
+    <CheckboxList v-if="!loading" :items="filteredCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Restaurants" />
 
     <div v-if="loading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </div>
