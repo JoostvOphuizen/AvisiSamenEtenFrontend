@@ -1,7 +1,7 @@
 <template>
   <div class="categorybox">
     <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
-    <Inputveld style="margin-bottom: 10px" class="fitcontent" @search="getNaam"></Inputveld>
+    <Inputveld style="margin-bottom: 10px" class="fitcontent" @search="getNaam" :placeholder-name="'Naam van de groep...'"></Inputveld>
     <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
     <CheckboxList :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="" />
     <AppButton label="Creëer groep" @click="maakGroep"></AppButton>

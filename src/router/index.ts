@@ -6,6 +6,7 @@ import RestaurantView from "@/views/RestaurantView.vue";
 import GroepView from "@/views/GroepView.vue";
 import MaakGroepView from "@/views/MaakGroepView.vue";
 import AllRestaurantsView from "@/views/AllRestaurantsView.vue";
+import ReviewView from "@/views/ReviewView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,12 @@ const router = createRouter({
       path: '/allrestaurants',
       name: 'alle restauranten',
       component: AllRestaurantsView
+    },
+    {
+      path: '/review',
+      name: 'review',
+      component: ReviewView,
+      props: (route) => ({ id: route.query.id })
     }
   ]
 })
