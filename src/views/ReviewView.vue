@@ -105,7 +105,6 @@
           console.log(error);
         }
       },
-      //todo
       async verstuurReview() {
         if(this.rating == 0 || this.reviewText == ""){
           alert("Vul alle velden in");
@@ -123,8 +122,6 @@
     },
   };
 </script>
-
-
 
 <style scoped>
 .display {
