@@ -5,6 +5,7 @@ import VoorkeurView from '../views/VoorkeurView.vue'
 import RestaurantView from "@/views/RestaurantView.vue";
 import GroepView from "@/views/GroepView.vue";
 import MaakGroepView from "@/views/MaakGroepView.vue";
+import AllRestaurantsView from "@/views/AllRestaurantsView.vue";
 import ReviewView from "@/views/ReviewView.vue";
 
 const router = createRouter({
@@ -42,6 +43,11 @@ const router = createRouter({
       path: '/maakgroep',
       name: 'maak groep',
       component: MaakGroepView
+    },
+    {
+      path: '/allrestaurants',
+      name: 'alle restauranten',
+      component: AllRestaurantsView
     },
     {
       path: '/review',
