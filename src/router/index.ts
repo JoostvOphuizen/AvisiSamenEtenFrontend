@@ -32,7 +32,8 @@ const router = createRouter({
     {
       path: '/restaurant',
       name: 'restaurant',
-      component: RestaurantView
+      component: RestaurantView,
+      props: (route) => ({ restaurant_id: route.query.restaurant_id })
     },
     {
       path: '/groep',

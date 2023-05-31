@@ -4,6 +4,7 @@ import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
 import MessageTile from '@/components/MessageTile.vue'
 import { mapActions, mapGetters } from 'vuex'
+import store from "@/store";
 import { get } from '@/services/apiService';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
@@ -29,11 +30,20 @@ export default ({
     ...mapGetters(['isLoggedIn', 'getUserID']),
   },
   methods: {
-    gotoGroep() {
+    gotoGroep () {
       this.$router.push("/groep")
     },
-    gotoVoorkeuren() {
+    gotoVoorkeuren () {
       this.$router.push("/voorkeur")
+    },
+    async randomRestaurant () {
+      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant`);
+      store.dispatch('setRestaurantData', restaurant);
+      this.$router.push({
+        name: "restaurant",
+        query: {restaurant_id: restaurant.restaurantId},
+        path: "/restaurant",
+      })
     },
     gotoReview() {
       this.$router.push({
@@ -116,6 +126,12 @@ export default ({
       <AppButton label="Aanpassen" @click="gotoVoorkeuren" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
     </GlassTile>
 
+
+  </div>
+  <div class="center">
+    <GlassTile class="glass">
+      <AppButton label="I'm feeling lucky" @click="randomRestaurant" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+    </GlassTile>
   </div>
 </template>
 
