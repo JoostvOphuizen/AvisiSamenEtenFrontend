@@ -78,7 +78,7 @@ export default ({
     if (!this.isLoggedIn) {
       this.$router.push('/login')
     }
-    this.methods.getRestaurantHistorie();
+    this.getRestaurantHistorie();
   },
   watch: {
     getUserID(newUserID) {
