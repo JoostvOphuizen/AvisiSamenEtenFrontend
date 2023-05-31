@@ -7,7 +7,6 @@ import { mapActions, mapGetters } from 'vuex'
 import { get } from '@/services/apiService';
 import ErrorMessage from '@/components/ErrorMessage.vue';
 
-
 const baseURL = "http://localhost:8080";
 
 export default ({
@@ -39,7 +38,7 @@ export default ({
     gotoReview() {
       this.$router.push({
             name: "review",
-            params: {restaurantID: this.restaurantID},
+            query: {id: this.restaurantID},
             path: "/review",
           })
     },

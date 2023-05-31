@@ -44,9 +44,10 @@ const router = createRouter({
       component: MaakGroepView
     },
     {
-      path: '/review?id=:restaurantID',
+      path: '/review',
       name: 'review',
-      component: ReviewView
+      component: ReviewView,
+      props: (route) => ({ id: route.query.id })
     }
   ]
 })
