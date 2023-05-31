@@ -220,7 +220,7 @@
           const id = data.restaurantId
           this.$router.push({
             name: "restaurant",
-            params: {id: id},
+            query: {restaurant_id: id},
             path: "/restaurant",
           })
         } catch (error) {

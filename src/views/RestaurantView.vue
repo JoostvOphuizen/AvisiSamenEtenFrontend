@@ -28,6 +28,7 @@ export default{
   computed: {
     ...mapGetters(['isLoggedIn']),
   },
+  props: ['restaurant_id'],
   mounted() {
     if (!this.isLoggedIn) {
       this.$router.push('/login')
@@ -40,8 +41,7 @@ export default{
     },
     async getRestaurantData() {
       const restaurantId = this.$router.currentRoute._value.params.id
-      // eslint-disable-next-line vue/no-async-in-computed-properties
-      const restaurant = await get(`${baseURL}/restaurant/getrestaurant?id=` + restaurantId);
+      const restaurant = await get(`${baseURL}/restaurant/getrestaurant?id=${this.restaurant_id}`);
       this.restricties = restaurant.restricties.restricties
       this.id = restaurantId
       this.naam = restaurant.restaurantNaam
@@ -50,6 +50,7 @@ export default{
       this.huisnummer = restaurant.huisnummer
       this.straatnaam = restaurant.straatnaam
       this.link = restaurant.link
+      this.id = this.restaurant_id
     },
   },
 }

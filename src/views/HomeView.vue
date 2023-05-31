@@ -41,7 +41,7 @@ export default ({
       store.dispatch('setRestaurantData', restaurant);
       this.$router.push({
         name: "restaurant",
-        params: {id: restaurant.restaurantId},
+        query: {restaurant_id: restaurant.restaurantId},
         path: "/restaurant",
       })
     },
