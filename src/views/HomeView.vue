@@ -4,50 +4,94 @@ import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
 import MessageTile from '@/components/MessageTile.vue'
 import { mapActions, mapGetters } from 'vuex'
+import { get } from '@/services/apiService';
+import ErrorMessage from '@/components/ErrorMessage.vue';
+
+const baseURL = "http://localhost:8080";
 
 export default ({
   components: {
     AppButton,
     GlassTile,
     Notificatie,
-    MessageTile
+    MessageTile,
+    ErrorMessage,
   },
-  methods: {
-    gotoGroep () {
-        this.$router.push("/groep")
-    },
-    gotoVoorkeuren () {
-        this.$router.push("/voorkeur")
-    },
-    gotoReview () {
-      // TODO
-      // this.$router.push("/review")
-    }
+  data() {
+    return {
+      errorMessage: '',
+      reviewData: null,
+      restaurantNaam: '',
+      restaurantID: -1,
+    };
   },
   computed: {
-    ...mapGetters(['isLoggedIn']),
+    ...mapGetters(['isLoggedIn', 'getUserID']),
+  },
+  methods: {
+    gotoGroep() {
+      this.$router.push("/groep")
+    },
+    gotoVoorkeuren() {
+      this.$router.push("/voorkeur")
+    },
+    gotoReview() {
+      this.$router.push({
+            name: "review",
+            query: {id: this.restaurantID},
+            path: "/review",
+          })
+    },
+    async getRestaurantHistorie() {
+      try {
+        if(this.getUserID == null){
+          return;
+        }
+        const data = await get(`${baseURL}/gebruiker/historie?id=${this.getUserID}`);
+        this.reviewData = data;
+        if(this.reviewData != null){
+          this.restaurantNaam = data.restaurantNaam;
+          this.restaurantID = data.restaurantId;
+        }
+
+        if (data.error) {
+          console.log(data.error);
+          return;
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
   mounted() {
     if (!this.isLoggedIn) {
       this.$router.push('/login')
     }
-  }  
-
-
+    this.getRestaurantHistorie();
+  },
+  watch: {
+    getUserID(newUserID) {
+      if (newUserID) {
+        this.getRestaurantHistorie();
+      }
+    }
+  }
 })
-
 </script>
+
 
 <template>
   <!-- <div class="center">
       <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png" class="notificatie"></Notificatie>
     </div> -->
 
-  <div class="top">
+  <div class="top" v-if="reviewData">
+    <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
     <MessageTile class="messageTile">
       <div class="messageTile-left">
         <h2 class="h1text">Beoordeel nu!</h2>
-        <p>Deel je mening over: <br> [[insert restaurant]]</p>
+        <p>Deel je mening over: <br> {{restaurantNaam}}</p>
       </div>
       <div class="messageTile-right">
         <AppButton label="Review" @click="gotoReview" type="secondaryButton"></AppButton>

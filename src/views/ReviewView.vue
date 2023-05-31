@@ -2,10 +2,10 @@
   <div class="display">
     <div class="center">
       <Description
-        :title="'Placeholder Restaurant'"
-        :image="'https://cdn.discordapp.com/attachments/1096361791287738490/1108039901561233428/latest.png'"
-        :adres="'1234AB' + ' ' + '5' + ' ' + 'straatnaam'"
-        :link="'https://confluenceoosevt.aimsites.nl/display/XUSYOU/Home'"
+        :title="restaurant.naam"
+        :image="restaurant.foto"
+        :adres="restaurant.postcode + ' ' + restaurant.huisnummer + ' ' + restaurant.straatnaam"
+        :link="restaurant.link"
       ></Description>
     </div>
     <div class="center">
@@ -23,60 +23,105 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex';
-import GlassTile from '@/components/GlassTile.vue';
-import Description from '@/components/Description.vue';
-import Rating from '@/components/Rating.vue';
-import Inputveld from '@/components/Inputveld.vue';
-import AppButton from '@/components/Button.vue';
+  import { mapGetters } from 'vuex';
+  import GlassTile from '@/components/GlassTile.vue';
+  import Description from '@/components/Description.vue';
+  import Rating from '@/components/Rating.vue';
+  import Inputveld from '@/components/Inputveld.vue';
+  import AppButton from '@/components/Button.vue';
+  import { get, post} from '@/services/apiService';
 
-const baseURL = "http://localhost:8080";
+  const baseURL = "http://localhost:8080";
 
-export default {
-  data() {
-    return {
-      reviewText: "",
-      rating: 0,
-    };
-  },
-  components: {
-    Description,
-    GlassTile,
-    Rating,
-    Inputveld,
-    AppButton,
-  },
-  computed: {
-    ...mapGetters(['isLoggedIn', 'getRestaurantData']),
-  },
-  mounted() {
-    if (!this.isLoggedIn) {
-      this.$router.push('/login');
-    }
-  },
-  methods: {
-    getWaardeRating(value: number) {
-      this.rating = value;
+  interface Restaurant {
+      naam: string;
+      postcode: string;
+      huisnummer: number;
+      straatnaam: string;
+      link: string;
+      foto?: string;
+  }
+
+  interface ReviewDTO {
+    gebruikerToken: string;
+    score: number;
+    tekst: string;
+  }
+
+  export default {
+    data() {
+      return {
+        reviewText: "",
+        rating: 0,
+        restaurant: {} as Restaurant,
+        form: {} as ReviewDTO,
+      };
     },
-    getWaardeInput(value: string) {
-      this.reviewText = value;
+    components: {
+      Description,
+      GlassTile,
+      Rating,
+      Inputveld,
+      AppButton,
     },
-    //todo
-    verstuurReview() {
-      if(this.rating == 0 || this.reviewText == ""){
-        alert("Vul alle velden in");
-        return;
-      } else {
-        console.log("Verstuur Review")
-        console.log("Rating:", this.rating);
-        console.log("Review Text:", this.reviewText);
+    computed: {
+      ...mapGetters(['isLoggedIn', 'getUserID']),
+    },
+    props: ['id'],
+    mounted() {
+      if (!this.isLoggedIn) {
+        this.$router.push('/login');
       }
+      if (this.id == null){
+        this.$router.push('/login');
+      }
+      this.getRestaurantData();
     },
-  },
-};
+    methods: {
+      getWaardeRating(value: number) {
+        this.rating = value;
+      },
+      getWaardeInput(value: string) {
+        this.reviewText = value;
+      },
+      async getRestaurantData() {
+        try {
+          const data = await get(`${baseURL}/restaurant/getrestaurantbaseinfo?id=${this.id}`);
+          if(data != null){
+            this.restaurant.naam = data.restaurantNaam;
+            this.restaurant.postcode = data.postcode;
+            this.restaurant.huisnummer = data.huisnummer;
+            this.restaurant.straatnaam = data.straatnaam;
+            this.restaurant.link = data.link;
+            this.restaurant.foto = data.foto || 'https://cdn.discordapp.com/attachments/1096361791287738490/1108039901561233428/latest.png';
+          }
+
+          if (data.error) {
+            console.log(data.error);
+            return;
+          }
+
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      async verstuurReview() {
+        if(this.rating == 0 || this.reviewText == ""){
+          alert("Vul alle velden in");
+          return;
+        } else {
+          this.form.gebruikerToken = this.getUserID;
+          this.form.score = this.rating;
+          this.form.tekst = this.reviewText;
+          const data = await post(`${baseURL}/restaurant/review?id=${this.id}`,this.form);
+          if(data != null){
+            this.$router.push('/');
+          }
+        }
+      },
+    },
+  };
 </script>
-
-
 
 <style scoped>
 .display {
