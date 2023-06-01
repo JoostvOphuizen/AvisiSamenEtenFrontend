@@ -4,11 +4,16 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
+<<<<<<< HEAD
       <GroepToevoegenKnop class="fitcontent" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
       <div class="buttons">
         <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
         <AppButton label="Genereer link" @click="genereerLink" icon-left="src\assets\external-link(1).png"></AppButton>
       </div>
+=======
+      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>
+      <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+>>>>>>> 2390683f668aea962c0b05578b8ca0b95df01976
     </div>
   </template>  
   
@@ -21,7 +26,6 @@
   import SearchBar from '@/components/SearchBar.vue';
   import ErrorMessage from '@/components/ErrorMessage.vue';
   import store from '@/store';
-  import GroepToevoegenKnop from "@/components/GroepToevoegenKnop.vue";
   
   const baseURL = "http://localhost:8080";
   
@@ -36,7 +40,6 @@
   export default defineComponent({
     emits: ['update:message'],
     components: {
-      GroepToevoegenKnop,
       SearchBar,
       CheckboxList,
       AppButton,
@@ -217,7 +220,12 @@
             this.errorMessage = "Er ging iets mis bij het organiseren van het etentje. Probeer het later opnieuw.";
             return;
           }
-          this.$router.push('/restaurant');
+          const id = data.restaurantId
+          this.$router.push({
+            name: "restaurant",
+            query: {restaurant_id: id},
+            path: "/restaurant",
+          })
         } catch (error) {
           console.error(error);
         }

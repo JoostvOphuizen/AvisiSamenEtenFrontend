@@ -7,12 +7,19 @@
         <div class="loader"></div>
       </div>
       <div v-for="(item, index) in items" :key="index" class="checkbox-item">
-        <BaseInput
-          :label="item.label"
-          :value="item.value"
-          :icon="item.icon"
-          :pictures="item.pictures"
-          @update:modelValue="updateCheckboxValue(index, $event)"
+        <BaseInput v-if="item.restaurantNaam"
+          :label="item.restaurantNaam"
+                   :icon="item.foto"
+                   :restaurant="true"
+                   :adres="item.straatnaam+' '+item.huisnummer"
+          @update:modelValue="goToLink(index, item)"
+        />
+        <BaseInput v-else
+                   :label="item.label"
+                   :value="item.value"
+                   :icon="item.icon"
+                   :pictures="item.pictures"
+                   @update:modelValue="updateCheckboxValue(index, $event)"
         />
       </div>
     </GlassTile>
@@ -102,12 +109,22 @@
   import { defineComponent } from 'vue';
   import BaseInput from '@/components/BaseCheckBoxInput.vue';
   import GlassTile from '@/components/GlassTile.vue';
+  import store from "@/store";
   
   interface CheckboxItem {
-    label: string;
-    value: boolean;
+    label?: string;
+    value?: boolean;
     icon?: string;
     pictures?: string[];
+    restaurantId?: number;
+    restaurantNaam?: string;
+    postcode?: string;
+    straatnaam?: string;
+    huisnummer?: number;
+    link?: string;
+    foto?: string;
+    voorkeuren?: string[];
+    restricties?: string[];
   }
   
   export default defineComponent({
@@ -130,6 +147,13 @@
         const updatedItems = [...this.items];
         updatedItems[index].value = value;
         this.$emit('update:items', updatedItems);
+      },
+      goToLink(index: number, item: CheckboxItem) {
+        this.$router.push({
+          name: "restaurant",
+          query: {restaurant_id: item.restaurantId},
+          path: "/restaurant",
+        })
       },
     },
     computed: {

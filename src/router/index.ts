@@ -8,6 +8,8 @@ import MaakGroepView from '@/views/MaakGroepView.vue';
 import LinkView from '@/views/LinkView.vue';
 import LinkCreateView from '@/views/LinkCreateView.vue';
 import store from '@/store';
+import AllRestaurantsView from "@/views/AllRestaurantsView.vue";
+import ReviewView from "@/views/ReviewView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,7 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+      meta: { requiresAuth: true },
     },
     {
       path: '/voorkeur',
@@ -34,6 +37,7 @@ const router = createRouter({
       name: 'restaurant',
       component: RestaurantView,
       meta: { requiresAuth: true },
+      props: (route) => ({ restaurant_id: route.query.restaurant_id })
     },
     {
       path: '/groep',
@@ -60,8 +64,21 @@ const router = createRouter({
       meta: { requiresAuth: true },
       props: (route) => ({ token: route.query.token }),
     },
-  ],
-});
+    {
+      path: '/allrestaurants',
+      name: 'alle restauranten',
+      component: AllRestaurantsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/review',
+      name: 'review',
+      component: ReviewView,
+      meta: { requiresAuth: true },
+      props: (route) => ({ id: route.query.id })
+    }
+  ]
+})
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = store.getters.isLoggedIn;

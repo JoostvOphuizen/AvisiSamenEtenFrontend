@@ -1,20 +1,28 @@
 <template>
   <div :class="optieClass" @click="checkCheckbox($event)">
-    <div class="optieTitle">
-      <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
+    <div v-if="restaurant" class="restaurant">
+      <img v-if="icon" :src="icon" alt="icon" class="restaurantPictures" />
       <span style="margin-right:10px" class="optieLabel">{{ label }}</span>
+      <span style="margin-right:10px" class="optieLabel">{{ adres }}</span>
+    </div>
+    <div v-else class="optieTitle">
+      <img v-if="icon" :src="icon" alt="icon" class="optieIcon" />
+        <span style="margin-right:10px" class="optieLabel">{{ label }}</span>
       <div class="optiePicturesWrapper">
         <img v-if="pictures" v-for="picture in pictures.slice(0,4)" :src="picture" alt="icon" class="optiePictures" />
         <span v-if="pictures&&pictures.length>4">En {{pictures.length-4}} meer...</span>
       </div>
     </div>
-    <div class="checkbox-wrapper-46">
+    <div v-if="!restaurant" class="checkbox-wrapper-46">
       <input class="inp-cbx" :id="label" type="checkbox" :checked="value" @change="onCheckboxChange" />
       <label class="cbx" :for="label"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
             <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span></span>
       </label>
+    </div>
+    <div v-else class="checkbox-wrapper-restaurant">
+      <input class="inp-cbx" :id="label" type="checkbox" :checked="value" @change="onCheckboxChange" />
     </div>
   </div>
 </template>
@@ -32,6 +40,14 @@ export default {
       default: false,
     },
     icon: {
+      type: String,
+      default: '',
+    },
+    restaurant: {
+      type: Boolean,
+      default: false,
+    },
+    adres: {
       type: String,
       default: '',
     },
@@ -54,15 +70,15 @@ export default {
       this.$emit('update:modelValue', checkbox.checked);
     },
     checkCheckbox(event: MouseEvent) {
-      const target = event.target as HTMLElement;
-      if (target.classList.contains('cbx') || target.closest('.cbx')) {
-        // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
-        event.stopPropagation();
-        return;
-      }
+        const target = event.target as HTMLElement;
+        if (target.classList.contains('cbx') || target.closest('.cbx')) {
+          // If the target is the label with the class 'cbx' or its child elements, stop the event propagation
+          event.stopPropagation();
+          return;
+        }
 
-      const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
-      checkbox.click();
+        const checkbox = this.$el.querySelector('.inp-cbx') as HTMLInputElement;
+        checkbox.click();
     },
   },
   computed: {
@@ -87,6 +103,18 @@ export default {
   border-radius: 50%;
 }
 
+.restaurantPictures {
+  height: 3em;
+  width: 3em;
+  margin-right: 4px;
+  border-radius: 33%;
+  float: left;
+}
+
+.restaurant > span {
+  margin-left: 4em;
+}
+
 .optieClass {
   background-color: var(--vt-c-black-soft);
   border: none;
@@ -100,12 +128,12 @@ export default {
   justify-content: space-between;
 }
 
+
 .optieLabel {
   color: var(--vt-c-white);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 24px;
-  margin: 0 100px 0 0;
   display: flex;
 }
 
@@ -118,6 +146,12 @@ export default {
   width: 24px;
   height: 24px;
   margin-right: 8px;
+  border-radius: 50%;
+}
+
+.checkbox-wrapper-restaurant {
+  display: none;
+  visibility: hidden;
 }
 
 .checkbox-wrapper-46 input[type="checkbox"] {
@@ -202,11 +236,6 @@ export default {
     }
   }
 
-  .optieLabel {
-      margin: 0 0 0 0;
-      font-size: 15px;
-    }
-
   .optieClass.checked {
     background-color: var(--vt-c-indigo);
   }
@@ -220,11 +249,6 @@ export default {
     margin-top: -2px;
   }
 
-  
-
-  .optieIcon {
-    border-radius: 50%;
-  }
 
 
 

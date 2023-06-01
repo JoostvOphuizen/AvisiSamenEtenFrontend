@@ -59,6 +59,11 @@ export default {
     margin-left: 8px;
 }
 
+.doorzichtig .buttonIconRight {
+
+  filter: invert(1);
+}
+
 .buttonClass:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 10px;
     transform: translateY(-2px);
@@ -68,6 +73,10 @@ export default {
     box-shadow: none;
     transform: translateY(0);
     /*scale: 0.95;*/
+}
+
+.doorzichtig {
+  background-color: rgba(255,255,255,15%);
 }
 
 </style>
