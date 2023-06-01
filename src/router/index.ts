@@ -54,7 +54,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/link/:token',
+      path: '/link?token=:token',
       name: 'link-token',
       component: LinkView,
       meta: { requiresAuth: true },
