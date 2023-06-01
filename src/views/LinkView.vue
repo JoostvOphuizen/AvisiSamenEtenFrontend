@@ -133,7 +133,11 @@ export default defineComponent({
     async updateData() {
       const data = await this.fetchAllUsersInUitgenodigdeGroep();
       if (data.restaurantID != null){
-        this.$router.push(`/restaurant/${data.restaurantID}`);
+        this.$router.push({
+            name: "restaurant",
+            query: {restaurant_id: data.restaurantID},
+            path: "/restaurant",
+          })
       }
       await this.loadPage(data);
     },
