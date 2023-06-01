@@ -237,9 +237,6 @@
     },
   
     async mounted() {
-      if (!this.isLoggedIn) {
-        this.$router.push('/login');
-      }
       await this.fetchAllUsers();
       await this.fetchAllGroep();
     },

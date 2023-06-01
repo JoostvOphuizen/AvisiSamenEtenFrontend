@@ -69,9 +69,6 @@
     },
     props: ['id'],
     mounted() {
-      if (!this.isLoggedIn) {
-        this.$router.push('/login');
-      }
       if (this.id == null){
         this.$router.push('/login');
       }

@@ -30,9 +30,6 @@ export default{
   },
   props: ['restaurant_id'],
   mounted() {
-    if (!this.isLoggedIn) {
-      this.$router.push('/login')
-    }
     this.getRestaurantData()
   },
   methods: {

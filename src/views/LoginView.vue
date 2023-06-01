@@ -18,24 +18,19 @@ export default ({
       var naam = userData.name
       var email = userData.email
       var picture = userData.picture
-      var RedirectURL = localStorage.getItem('redirectUrl')
+      const redirectUrl = localStorage.getItem('redirectUrl');
       store.dispatch('login',{
         email, 
         naam, 
         picture,
-        RedirectURL
+        redirectUrl
       })
       this.$router.push("/")
     }
   },
   computed: {
     ...mapGetters(['isLoggedIn']),
-  },
-  mounted() {
-    if (this.isLoggedIn) {
-      this.$router.push('/')
-    }
-  }  
+  }
 })
 
 

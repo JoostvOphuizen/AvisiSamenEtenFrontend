@@ -78,9 +78,6 @@ export default ({
     }
   },
   mounted() {
-    if (!this.isLoggedIn) {
-      this.$router.push('/login')
-    }
     this.getRestaurantHistorie();
   },
   watch: {

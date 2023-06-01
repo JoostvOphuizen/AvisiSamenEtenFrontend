@@ -287,9 +287,6 @@ export default defineComponent({
 
   },
   async mounted() {
-    if (!this.isLoggedIn) {
-      this.$router.push('/login')
-    }
     this.link = window.location.href;
     this.updateData();
   },
