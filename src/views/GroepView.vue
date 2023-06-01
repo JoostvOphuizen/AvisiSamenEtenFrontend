@@ -229,7 +229,7 @@
         this.searchQuery = searchQuery;
       },
       genereerLink(){
-        this.$router.push('/link')
+        this.$router.push('/createlink')
       }
     },
   

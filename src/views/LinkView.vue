@@ -92,12 +92,11 @@ export default defineComponent({
     BaseChip,
     CopyLink,
   },
-
+  props: ['token'],
   data() {
     return {
       errorMessage: '' as string,
       loading: false,
-      token: '' as string | undefined,
       link: '',
       distinctRestricties: [] as string[],
       countedVoorkeuren: {} as { [key: string]: number },
@@ -211,7 +210,6 @@ export default defineComponent({
 
     },
     async fetchAllUsersInUitgenodigdeGroep() {
-      this.token = this.link.split("/").pop();
       try {
         const response = await get(`${baseURL}/uitnodiging?uitnodigingToken=${this.token}&gebruikerToken=${this.getUserID}`);
         return response;
@@ -248,7 +246,11 @@ export default defineComponent({
         .then(data => {
           restaurant = data;
           this.updateGekozenRestaurant(restaurant.restaurantId);
-          this.$router.push(`/restaurant/${restaurant.restaurantId}`);
+          this.$router.push({
+            name: 'restaurant',
+            query: { restaurant_id: restaurant.restaurantId, },
+            path: 'restaurant',
+          });
         })
       .catch(error => console.error(error));
     },
@@ -280,7 +282,6 @@ export default defineComponent({
 },
 
   },
-
   async mounted() {
     if (!this.isLoggedIn) {
       this.$router.push('/login')

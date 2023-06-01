@@ -36,8 +36,12 @@
         post(`${baseURL}/uitnodiging`, data)
           .then((response) => {
             var uitnodigingToken = response.uitnodigingToken;
-            this.$router.push(`/link/${uitnodigingToken}`);
-          })
+            this.$router.push({
+              name: 'link-token',
+              query: { token: uitnodigingToken },
+              path: `/link`,
+            })
+            })
           .catch((error) => {
             console.log(error);
             this.errorMessage = error.message;
