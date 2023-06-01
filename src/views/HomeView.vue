@@ -38,7 +38,7 @@ export default ({
       this.$router.push("/voorkeur")
     },
     async randomRestaurant () {
-      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant`);
+      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant?gebruikerToken=${this.getUserID}`);
       store.dispatch('setRestaurantData', restaurant);
       this.$router.push({
         name: "restaurant",
