@@ -94,8 +94,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log("from:",from.name);
-  console.log("to:",to.name);
   const isAuthenticated = store.getters.isLoggedIn;
   const redirectUrl = localStorage.getItem('redirectUrl');
 
