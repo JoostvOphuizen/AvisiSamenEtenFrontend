@@ -198,7 +198,7 @@
           this.errorMessage = "Selecteer minstens 1 gebruikers om een etentje te organiseren.";
           return;
         }
-        const url = `${baseURL}/restaurant/bepaal`;
+        const url = `${baseURL}/restaurant/bepaal?gebruikerToken=${this.getUserID}`;
         const options = {
           method: 'POST',
           headers: {
