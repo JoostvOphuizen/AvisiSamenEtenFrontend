@@ -108,6 +108,18 @@ export default ({
       </div>
     </MessageTile>
   </div>
+  <div class="top" v-else>
+    <MessageTile class="messageTile">
+      <div class="Flexbox">
+        <div class="center">
+          <h2 class="h1text">Bekijk alle restaurants</h2>
+        </div>
+        <div class="center">
+          <AppButton label="Restaurants" @click="gotoAllRestauranten" type="secondaryButton" iconRight="src\assets\right-arrow.png" class="invert"></AppButton>
+        </div>
+      </div>
+    </MessageTile>
+  </div>
 
   <div class="center">
     <GlassTile class="glass">
@@ -132,6 +144,12 @@ export default ({
 
 <style>
 
+.Flexbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .whiteText{
   color: var(--vt-c-white);
@@ -212,6 +230,7 @@ export default ({
 .notificatie {
   display: flex;
 }
+
 
 
 /* scale down if screen is too small */
