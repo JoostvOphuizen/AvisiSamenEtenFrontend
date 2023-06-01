@@ -247,10 +247,10 @@ export default defineComponent({
           restaurant = data;
           this.updateGekozenRestaurant(restaurant.restaurantId);
           this.$router.push({
-            name: 'restaurant',
-            query: { restaurant_id: restaurant.restaurantId, },
-            path: 'restaurant',
-          });
+            name: "restaurant",
+            query: {restaurant_id: restaurant.restaurantId},
+            path: "/restaurant",
+          })
         })
       .catch(error => console.error(error));
     },

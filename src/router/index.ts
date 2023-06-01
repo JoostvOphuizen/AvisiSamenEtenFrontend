@@ -81,6 +81,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log("from:",from.name);
+  console.log("to:",to.name);
   const isAuthenticated = store.getters.isLoggedIn;
   const redirectUrl = localStorage.getItem('redirectUrl');
 
@@ -91,17 +93,13 @@ router.beforeEach((to, from, next) => {
     localStorage.removeItem('redirectUrl');
     next(redirectUrl);
   } else {
+    if(from.name === 'link-token' && to.name === 'link') {
+      next('/');
+      return;
+    }
     next();
   }
 });
 
-router.afterEach((to, from) => {
-  const specificPageName = 'link-token'; 
-  const desiredPage = '/'; 
-
-  if (from.name === specificPageName && to.name !== specificPageName) {
-    router.replace(desiredPage);
-  }
-});
 
 export default router;
