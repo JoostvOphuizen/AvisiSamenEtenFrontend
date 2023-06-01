@@ -4,7 +4,7 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
-      <GroepToevoegenKnop class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
+      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>      
       <div class="buttons">
         <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
         <AppButton label="Genereer link" @click="genereerLink" icon-left="src\assets\external-link(1).png"></AppButton>

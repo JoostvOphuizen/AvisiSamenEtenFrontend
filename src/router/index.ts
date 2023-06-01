@@ -77,10 +77,25 @@ const router = createRouter({
       meta: { requiresAuth: true },
       props: (route) => ({ token: route.query.token }),
     },
-  ],
-});
+    {
+      path: '/allrestaurants',
+      name: 'alle restauranten',
+      component: AllRestaurantsView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/review',
+      name: 'review',
+      component: ReviewView,
+      meta: { requiresAuth: true },
+      props: (route) => ({ id: route.query.id })
+    }
+  ]
+})
 
 router.beforeEach((to, from, next) => {
+  console.log("from:",from.name);
+  console.log("to:",to.name);
   const isAuthenticated = store.getters.isLoggedIn;
   const redirectUrl = localStorage.getItem('redirectUrl');
 
@@ -91,17 +106,13 @@ router.beforeEach((to, from, next) => {
     localStorage.removeItem('redirectUrl');
     next(redirectUrl);
   } else {
+    if(from.name === 'link-token' && to.name === 'link') {
+      next('/');
+      return;
+    }
     next();
   }
 });
 
-router.afterEach((to, from) => {
-  const specificPageName = 'link-token'; 
-  const desiredPage = '/'; 
-
-  if (from.name === specificPageName && to.name !== specificPageName) {
-    router.replace(desiredPage);
-  }
-});
 
 export default router;
