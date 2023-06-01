@@ -59,10 +59,10 @@ export default {
     margin-left: 8px;
 }
 
-.doorzichtig .buttonIconRight {
-
+.doorzichtig .buttonIconRight, .invert .buttonIconRight {
   filter: invert(1);
 }
+
 
 .buttonClass:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 10px;

@@ -52,6 +52,9 @@ export default ({
             path: "/review",
           })
     },
+    gotoAllRestauranten() {
+      this.$router.push("/allrestaurants")
+    },
     async getRestaurantHistorie() {
       try {
         if(this.getUserID == null){
@@ -92,19 +95,16 @@ export default ({
 
 
 <template>
-  <!-- <div class="center">
-      <Notificatie label="Notificatie, cool!" iconLeft="src\assets\warning 1.png" class="notificatie"></Notificatie>
-    </div> -->
-
   <div class="top" v-if="reviewData">
     <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
     <MessageTile class="messageTile">
       <div class="messageTile-left">
         <h2 class="h1text">Beoordeel nu!</h2>
-        <p>Deel je mening over: <br> {{restaurantNaam}}</p>
+        <p class="whiteText">{{restaurantNaam}}</p>
       </div>
       <div class="messageTile-right">
-        <AppButton label="Review" @click="gotoReview" type="secondaryButton"></AppButton>
+        <AppButton label="Review" @click="gotoReview" type="secondaryButton" iconRight="src\assets\right-arrow.png" class="invert"></AppButton>
+        <AppButton label="Zie restaurants" @click="gotoAllRestauranten" type="secondaryButton" iconRight="src\assets\right-arrow.png" class="invert"></AppButton>
       </div>
     </MessageTile>
   </div>
@@ -116,6 +116,7 @@ export default ({
           <h1 class="blueText">?</h1>
         </span>
         <AppButton label="Selecteer groep" @click="gotoGroep" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
+        <AppButton label="I'm feeling lucky" @click="randomRestaurant" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
     </GlassTile>
 
     <GlassTile class="glass">
@@ -126,16 +127,18 @@ export default ({
       <AppButton label="Aanpassen" @click="gotoVoorkeuren" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
     </GlassTile>
 
-
-  </div>
-  <div class="center">
-    <GlassTile class="glass">
-      <AppButton label="I'm feeling lucky" @click="randomRestaurant" iconRight="src\assets\right-arrow.png" class="button"></AppButton>
-    </GlassTile>
   </div>
 </template>
 
 <style>
+
+
+.whiteText{
+  color: var(--vt-c-white);
+  margin: 0;
+  display: inline;
+  font-weight: 300;
+}
 
 .center{
   display: flex;
