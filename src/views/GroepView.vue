@@ -4,8 +4,11 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
-      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>
-      <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+      <GroepToevoegenKnop class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></GroepToevoegenKnop>
+      <div class="buttons">
+        <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
+        <AppButton label="Genereer link" @click="genereerLink" icon-left="src\assets\external-link(1).png"></AppButton>
+      </div>
     </div>
   </template>  
   
@@ -72,7 +75,6 @@
   
     methods: {
       hideMessage() {
-        console.log('hide message');
         this.$emit('update:message', '');
       },
       handleCheckboxItemsUpdate(updatedItems: CheckboxItem[]) {
@@ -179,13 +181,9 @@
           for(const user of groep.gebruikers){
             for(const user2 of this.userCheckboxItems){
               if(user2.id==user){
-                console.log(groep.label)
                 if(groep.pictures) {
-                  console.log("bestaat")
                   groep.pictures.push(user2.icon)
-                  console.log(groep.pictures)
                 }else{
-                  console.log("bestaat niet")
                   groep.pictures = [user2.icon]
                 }
                 groep.label = groep.label
@@ -233,6 +231,9 @@
       handleSearch(searchQuery: string) {
         this.searchQuery = searchQuery;
       },
+      genereerLink(){
+        this.$router.push('/createlink')
+      }
     },
   
     async mounted() {
@@ -264,4 +265,10 @@
       width: 100%;
     }
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
 </style>  
