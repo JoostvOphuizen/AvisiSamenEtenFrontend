@@ -24,6 +24,7 @@ export default ({
       reviewData: null,
       restaurantNaam: '',
       restaurantID: -1,
+      isReviewed: null,
     };
   },
   computed: {
@@ -37,7 +38,7 @@ export default ({
       this.$router.push("/voorkeur")
     },
     async randomRestaurant () {
-      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant`);
+      const restaurant = await get(`${baseURL}/restaurant/randomrestaurant?gebruikerToken=${this.getUserID}`);
       store.dispatch('setRestaurantData', restaurant);
       this.$router.push({
         name: "restaurant",
@@ -65,6 +66,7 @@ export default ({
         if(this.reviewData != null){
           this.restaurantNaam = data.restaurantNaam;
           this.restaurantID = data.restaurantId;
+          this.isReviewed = data.reviewId;
         }
 
         if (data.error) {
@@ -92,7 +94,7 @@ export default ({
 
 
 <template>
-  <div class="top" v-if="reviewData">
+  <div class="top" v-if="reviewData && isReviewed == 0">
     <ErrorMessage v-if="errorMessage" :message="errorMessage" @update:message="errorMessage = $event" />
     <MessageTile class="messageTile">
       <div class="messageTile-left">
