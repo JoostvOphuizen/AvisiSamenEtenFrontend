@@ -54,7 +54,6 @@ export default{
     async getReviews() {
       const reviews = await get(`${baseURL}/restaurant/getreviews?id=${this.restaurant_id}`)
       this.reviews = reviews
-      console.log(reviews)
     }
   },
 }
