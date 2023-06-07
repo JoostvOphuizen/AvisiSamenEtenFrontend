@@ -106,7 +106,7 @@
   import BaseInput from '@/components/BaseCheckBoxInput.vue';
   import GlassTile from '@/components/GlassTile.vue';
   import store from "@/store";
-  
+
   interface CheckboxItem {
     label?: string;
     value?: boolean;
