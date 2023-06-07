@@ -111,7 +111,7 @@ const store = createStore<State>({
       setUserCookie(user)
       setUserPictureCookie(picture)
       setUserNameCookie(naam)
-      var foto = picture
+      const foto = picture
 
       const loginDTO = { email, naam, foto }
 

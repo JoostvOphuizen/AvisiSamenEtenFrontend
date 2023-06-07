@@ -1,6 +1,6 @@
 <template>
     <GlassTile class="Flexbox">
-      <div class="titleContainer">    
+      <div class="titleContainer">
           <h1 class="titletext"> {{ title }} </h1>
       </div>
       <div v-if="items.length === 0" class="loading-container">
@@ -24,7 +24,6 @@
       </div>
     </GlassTile>
   </template>
-  
   <style scoped>
     .Flexbox {
         display: flex;
@@ -45,8 +44,6 @@
         border-radius: 5px;
     }
 
-
-  
   .checkbox-item {
     width: 100%;
   }
@@ -104,7 +101,6 @@
 }
 
   </style>
-  
   <script lang="ts">
   import { defineComponent } from 'vue';
   import BaseInput from '@/components/BaseCheckBoxInput.vue';
@@ -126,7 +122,6 @@
     voorkeuren?: string[];
     restricties?: string[];
   }
-  
   export default defineComponent({
     components: {
       BaseInput,
@@ -163,4 +158,3 @@
     },
   });
   </script>
-  

@@ -3,10 +3,8 @@
       <slot></slot>
     </div>
   </template>
-  
   <script lang="ts">
   import { defineComponent, computed } from 'vue';
-  
   export default defineComponent({
     name: 'GlassTile',
     props: {
@@ -29,12 +27,10 @@
         backdropFilter: `blur(${props.blur})`,
         backgroundColor: props.backgroundColor,
       }));
-  
       return { glassTileStyle };
     },
   });
   </script>
-  
   <style scoped>
   .glass-tile {
     padding: 1rem;
@@ -51,4 +47,3 @@
     height: fit-content;
   }
   </style>
-  

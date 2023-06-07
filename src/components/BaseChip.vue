@@ -48,7 +48,7 @@ export default {
     this.truncateLabel();
     window.addEventListener('resize', this.truncateLabel);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('resize', this.truncateLabel);
   },
   methods: {
@@ -63,9 +63,8 @@ export default {
           return;
         }
         context.font = getComputedStyle(labelElement).font;
-        const truncatedLabel = label.substring(0, 23) + '...';
+        const truncatedLabel = `${label.substring(0, 23)}...`;
         const labelWidth = context.measureText(label).width;
-        const truncatedLabelWidth = context.measureText(truncatedLabel).width;
         this.shouldTruncateLabel = labelWidth > maxWidth;
         this.truncatedLabel = this.shouldTruncateLabel ? truncatedLabel : label;
       }
@@ -123,11 +122,11 @@ export default {
   color: var(--vt-c-white);
   font-size: 13px;
   line-height: 24px;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding-left: 17px;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .TruncatedLabel {

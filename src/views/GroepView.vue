@@ -4,14 +4,13 @@
       <SearchBar class="fitcontent" @search="handleSearch"></SearchBar>
       <CheckboxList v-if="!loading" :items="filteredUserCheckboxItems" @update:items="handleCheckboxItemsUpdate" title="Gebruikers" />
       <CheckboxList v-if="!loading" :items="filteredGroepCheckboxItems" @update:items="handleGroepItemsUpdate" title="Groepen" />
-      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>      
+      <AppButton class="fitcontent doorzichtig" @click="maakGroep" label="Voeg een nieuwe groep toe" icon-right="src\assets\plus.png"></AppButton>
       <div class="buttons">
         <AppButton label="Organiseer etentje!" @click="organiseerEtentje"></AppButton>
         <AppButton label="Genereer link" @click="genereerLink" icon-left="src\assets\external-link(1).png"></AppButton>
       </div>
     </div>
-  </template>  
-  
+  </template>
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import CheckboxList from '@/components/CheckboxList.vue';
@@ -21,9 +20,9 @@
   import SearchBar from '@/components/SearchBar.vue';
   import ErrorMessage from '@/components/ErrorMessage.vue';
   import store from '@/store';
-  
+
   const baseURL = "http://localhost:8080";
-  
+
   interface CheckboxItem {
     pictures: string[];
     label: string;
@@ -32,7 +31,7 @@
     id: number;
     gebruikers?: number[];
   }
-  
+
   export default defineComponent({
     emits: ['update:message'],
     components: {
@@ -41,7 +40,7 @@
       AppButton,
       ErrorMessage,
     },
-  
+
     data() {
       return {
         userCheckboxItems: [] as CheckboxItem[],
@@ -53,7 +52,7 @@
         loading: false,
       };
     },
-  
+
     computed: {
       checkedItems(): CheckboxItem[]{
         const users = this.userCheckboxItems.filter((item: CheckboxItem) => item.value)
@@ -73,7 +72,7 @@
       },
       ...mapGetters(['isLoggedIn', 'getUserID', 'userName', 'userEmail']),
     },
-  
+
     methods: {
       hideMessage() {
         this.$emit('update:message', '');
@@ -158,7 +157,6 @@
             this.userID = currentUser.id;
           }
           data.gebruikers = data.gebruikers.filter((item: any) => item.naam !== this.userName);
-          
           this.userCheckboxItems = data.gebruikers.map((item: any) => ({
             label: item.naam,
             value: false,
@@ -248,14 +246,12 @@
         this.$router.push('/createlink')
       }
     },
-  
     async mounted() {
       await this.fetchAllUsers();
       await this.fetchAllGroep();
     },
   });
   </script>
-  
   <style scoped>
   /* fills screen */
   .categorybox {
@@ -265,11 +261,9 @@
     flex-direction: column;
     align-items: center;
   }
-  
   .fitcontent {
     width: 80%;
   }
-  
   @media screen and (max-width: 400px) {
     .fitcontent {
       width: 100%;
@@ -281,4 +275,4 @@
     flex-direction: row;
   }
 
-</style>  
+</style>

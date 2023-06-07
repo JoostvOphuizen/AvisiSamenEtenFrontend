@@ -19,8 +19,8 @@ export default ({
       var picture = userData.picture
       const redirectUrl = localStorage.getItem('redirectUrl');
       store.dispatch('login',{
-        email, 
-        naam, 
+        email,
+        naam,
         picture,
         redirectUrl
       })

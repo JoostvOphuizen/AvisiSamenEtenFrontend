@@ -34,7 +34,6 @@ export default {
     align-items: center;
     justify-content: center;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    
 }
 
 .buttonPrimary {
@@ -72,7 +71,6 @@ export default {
 .buttonClass:active {
     box-shadow: none;
     transform: translateY(0);
-    /*scale: 0.95;*/
 }
 
 .doorzichtig {
@@ -84,10 +82,8 @@ export default {
 <template>
 
 <button :class="['buttonClass', type]">
-    <img v-if="iconLeft" :src="iconLeft" alt="icon" class="buttonIconLeft" /> 
-    
+    <img v-if="iconLeft" :src="iconLeft" alt="icon" class="buttonIconLeft" />
     <p>{{ label }}</p>
-    
     <img v-if="iconRight" :src="iconRight" alt="icon" class="buttonIconRight" />
 </button>
 

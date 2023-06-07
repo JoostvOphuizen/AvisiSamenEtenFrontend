@@ -32,7 +32,7 @@ export default defineComponent({
 <style scoped>
 .tile {
   padding: 1rem;
-  display: inline-block; 
+  display: inline-block;
   background-image: url('src/assets/standardMessageTile.jpg');
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 5px 10px 10px 10px;
@@ -41,4 +41,3 @@ export default defineComponent({
   height: fit-content;
 }
 </style>
-  

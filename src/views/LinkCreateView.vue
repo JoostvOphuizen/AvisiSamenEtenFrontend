@@ -1,6 +1,5 @@
 <template>
 </template>
-  
   <script lang="ts">
   import { defineComponent } from 'vue';
   import { get, post } from '@/services/apiService';
@@ -8,25 +7,25 @@
   import { mapGetters } from 'vuex'
 
   const baseURL = "http://localhost:8080";
-  
+
   interface CheckboxItem {
     label: string;
     value: boolean;
   }
-  
+
   export default defineComponent({
-  
+
     data() {
       return {
         errorMessage: '',
         loading: false,
       };
     },
-  
+
     computed: {
       ...mapGetters(['isLoggedIn', 'getUserID']),
     },
-  
+
     methods: {
       createUitnodiging() {
         const userID = this.getUserID;
@@ -48,11 +47,9 @@
           })
       },
     },
-  
-    async mounted() {    
+
+    async mounted() {
         this.createUitnodiging();
     },
   });
   </script>
-  
-  

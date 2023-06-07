@@ -370,7 +370,7 @@ export default defineComponent({
 
 .VoorkeurChips {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .VoorkeurChip {
@@ -378,7 +378,7 @@ export default defineComponent({
   color: white;
   text-align: left;
   padding: 2px;
-  margin: 0px; 
+  margin: 0px;
 }
 
 .RestrictiesVanGebruikersTile {

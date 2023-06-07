@@ -3,7 +3,7 @@ import AppButton from '@/components/Button.vue'
 import GlassTile from '@/components/GlassTile.vue'
 import Notificatie from '@/components/Notificatie.vue'
 import MessageTile from '@/components/MessageTile.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import store from "@/store";
 import { get } from '@/services/apiService';
 import ErrorMessage from '@/components/ErrorMessage.vue';
