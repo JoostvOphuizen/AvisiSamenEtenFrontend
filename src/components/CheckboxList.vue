@@ -15,7 +15,7 @@
           @update:modelValue="goToLink(index, item)"
         />
         <BaseInput v-else
-                   :label="item.label"
+                  :label="item.label ?? ''"
                    :value="item.value"
                    :icon="item.icon"
                    :pictures="item.pictures"

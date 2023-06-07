@@ -78,11 +78,6 @@ import CopyLink from '@/components/CopyLink.vue';
 
 const baseURL = "http://localhost:8080";
 
-interface CheckboxItem {
-  label: string;
-  value: boolean;
-}
-
 export default defineComponent({
   components: {
     CheckboxList,
@@ -106,13 +101,13 @@ export default defineComponent({
         id: '',
       },
       uitgenodigden: [] as { label: string; icon: string; id: string }[],
-      intervalId: null as number | null,
+      intervalId: null as ReturnType<typeof setInterval> | null,
       gebruikersID: '' as string,
       geaccepteerd: false as boolean,
     };
   },
   created() {
-    this.intervalId = setInterval(this.updateData, 1000);
+    this.intervalId = setInterval(this.updateData, 1000) as ReturnType<typeof setInterval>;
   },
   beforeUnmount() {
     if (this.intervalId !== null) {

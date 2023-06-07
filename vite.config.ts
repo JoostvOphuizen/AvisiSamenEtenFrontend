@@ -10,5 +10,10 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    rollupOptions: {
+      external: ['src/assets/star-svgrepo-com.svg', 'src/assets/warning1.png', 'src/assets/link.png', 'src/assets/location.png']
+    }
   }
 })

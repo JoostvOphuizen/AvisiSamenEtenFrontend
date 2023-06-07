@@ -6,7 +6,6 @@ import type { CallbackTypes } from 'vue3-google-login'
 import { mapActions, mapGetters } from 'vuex';
 import store from '@/store'
 
-
 export default ({
   components: {
     AppButton,
@@ -14,7 +13,7 @@ export default ({
   },
   methods: {
     login (response: any) {
-      const userData = decodeCredential(response.credential)
+      const userData = decodeCredential(response.credential) as { name: string, email: string, picture: string };
       var naam = userData.name
       var email = userData.email
       var picture = userData.picture

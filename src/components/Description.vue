@@ -145,25 +145,25 @@ a, a:hover, a:visited, a:link, a:active
 </style>
 <template>
   <div class="Flexbox">
-  <h1 class="Title">{{title}}</h1>
-  <GlassTile class="row">
-    <div class="row">
-      <a :href="link" class="hyperlink">
-        <div class="image">
-          <img class="plaatje" alt="restaurant" :src="this.image"/>
+    <h1 class="Title">{{ title }}</h1>
+    <GlassTile class="row">
+      <div class="row">
+        <a :href="link" class="hyperlink">
+          <div class="image">
+            <img class="plaatje" alt="restaurant" :src="image"/>
+          </div>
+        </a>
+        <div class="ItemHotBar">
+          <span class="leftItem">
+            <img class="picto" alt="restaurant" src="src/assets/link.png"/>
+            <a class="blok" :href="link">{{ title }}</a>
+          </span>
+          <span class="rightItem">
+            <img class="picto" alt="restaurant" src="src/assets/location.png"/>
+            <p class="blok">{{ adres }}</p>
+          </span>
         </div>
-      </a>
-      <div class="ItemHotBar">
-        <span class="leftItem">
-          <img class="picto" alt="restaurant" src="src\assets\link.png"/>
-          <a class="blok" :href="link">{{ title }}</a>
-        </span>
-        <span class="rightItem">
-          <img class="picto" alt="restaurant" src="src/assets/location.png"/>
-          <p class="blok">{{adres}}</p>
-        </span>
       </div>
-    </div>
-  </GlassTile>
+    </GlassTile>
   </div>
 </template>

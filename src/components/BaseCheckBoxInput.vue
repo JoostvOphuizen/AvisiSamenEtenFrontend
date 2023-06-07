@@ -52,6 +52,8 @@ export default {
       default: '',
     },
     pictures: {
+      type: Array as () => Array<string> | undefined,
+      default: undefined,
     }
   },
   methods: {

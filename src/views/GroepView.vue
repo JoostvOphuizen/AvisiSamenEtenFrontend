@@ -30,6 +30,7 @@
     value: boolean;
     icon: string;
     id: number;
+    gebruikers?: number[];
   }
   
   export default defineComponent({
@@ -90,48 +91,59 @@
           const item = this.groepCheckboxItems.find((i) => i.label === updatedItem.label);
           if (item) {
             item.value = updatedItem.value;
-            if(updatedItem.value) {
-              this.selectUsers(item)
+            if (updatedItem.value) {
+              this.selectUsers(item);
             } else {
-              const oudItem = this.lastGroepUpdate.find((i) => i.label === item.label)
-              if(oudItem?.value != item.value){
-                const items = JSON.parse(JSON.stringify(updatedItems))
-                this.deselectUsers(item)
-                this.getAlleGeselecteerdeGebruikers(items)
+              const oudItem = this.lastGroepUpdate.find((i) => i.label === item.label);
+              if (oudItem?.value !== item.value) {
+                const items = JSON.parse(JSON.stringify(updatedItems));
+                this.deselectUsers(item);
+                this.getAlleGeselecteerdeGebruikers(items);
               }
             }
           }
         }
         this.lastGroepUpdate = JSON.parse(JSON.stringify(updatedItems));
       },
-      getAlleGeselecteerdeGebruikers(groepen: CheckboxItem[]){
-        for(const groep of groepen){
-          if(groep.value){
-            for(const user of groep.gebruikers){
+
+      getAlleGeselecteerdeGebruikers(groepen: CheckboxItem[]) {
+        for (const groep of groepen) {
+          if (groep.value && "gebruikers" in groep) {
+            const gebruikers = (groep as any).gebruikers as number[];
+            for (const user of gebruikers) {
               const item = this.userCheckboxItems.find((i) => i.id === user);
-              if(item){
-                item.value = true
+              if (item) {
+                item.value = true;
               }
             }
           }
         }
       },
-      selectUsers(groep: { label: string; value: boolean; icon: string; id: number; }){
-        groep.gebruikers.forEach((id: number) =>{
-          const item = this.userCheckboxItems.find((i) => i.id === id);
-          if (item) {
-            item.value = true
+
+      selectUsers(groep: { label: string; value: boolean; icon: string; id: number; gebruikers?: number[] }) {
+        if ("gebruikers" in groep && groep.gebruikers) {
+          const gebruikers = groep.gebruikers as number[];
+          for (const id of gebruikers) {
+            const item = this.userCheckboxItems.find((i) => i.id === id);
+            if (item) {
+              item.value = true;
+            }
           }
-        })
+        }
       },
-      deselectUsers(groep: { label: string; value: boolean; icon: string; id: number; }){
-        groep.gebruikers.forEach((id: number) =>{
-          const gebruiker = this.userCheckboxItems.find((i) => i.id === id);
-          if (gebruiker) {
-            gebruiker.value = false
+
+      deselectUsers(groep: { label: string; value: boolean; icon: string; id: number; gebruikers?: number[] }) {
+        if ("gebruikers" in groep && groep.gebruikers) {
+          const gebruikers = groep.gebruikers as number[];
+          for (const id of gebruikers) {
+            const gebruiker = this.userCheckboxItems.find((i) => i.id === id);
+            if (gebruiker) {
+              gebruiker.value = false;
+            }
           }
-        })
+        }
       },
+
       async fetchAllUsers() {
         try{
           const data = await get(`${baseURL}/gebruiker/baseinfo`);
@@ -178,6 +190,7 @@
       },
       getGroepInfo(groepen: CheckboxItem[]){
         for(const groep of groepen){
+          if (groep.gebruikers)
           for(const user of groep.gebruikers){
             for(const user2 of this.userCheckboxItems){
               if(user2.id==user){
