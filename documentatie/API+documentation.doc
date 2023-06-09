@@ -1,0 +1,515 @@
+Date: Fri, 9 Jun 2023 12:17:53 +0200 (CEST)
+Message-ID: <2096790346.9095.1686305873498@confluenceoosevt.aimsites.nl>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9094_675456246.1686305873498"
+
+------=_Part_9094_675456246.1686305873498
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>API documentation</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>API documentation</h1>
+    <div class=3D"Section1">
+        <h1 id=3D"APIdocumentation-Paths:">Paths:</h1>
+<h2 id=3D"APIdocumentation-/gebruiker">/gebruiker</h2>
+<p>GET<br>/gebruiker/baseinfo<br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+&nbsp;&nbsp;&nbsp;&nbsp;"gebruikers": [
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id=
+": 1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"na=
+am": "user1",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"fo=
+to": "LinkToImage.png",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"vo=
+orkeuren": null,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"re=
+stricties": null
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;]
+}</pre>=20
+</div>
+</div>
+<p>GET<br>/gebruiker/haalvoorkeurenop<br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "naam": "Voorkeuren",
+    "voorkeuren": [
+        {
+            "naam": "kip"
+        },
+        {
+            "naam": "sushi"
+        }
+    ]
+}</pre>=20
+</div>
+</div>
+<p>POST<br><span style=3D"color: rgb(32,33,36);">/gebruiker/slavoorkeurenop=
+?id=3D</span><br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"voork=
+euren":["pizza","plantaardig","soep","sushi","vis"]}</pre>=20
+</div>
+</div>
+<div class=3D"notranslate">
+<br>
+</div>
+<div class=3D"notranslate">
+POST
+<br><span style=3D"color: rgb(32,33,36);">/gebruiker/slarestrictiesop?id=3D=
+</span>
+<br>Verstuurd:
+<br>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"voork=
+euren":["varkensvlees","vlees"]}</pre>=20
+</div>
+</div>
+<p><br></p>
+</div>
+<h2 class=3D"notranslate" id=3D"APIdocumentation-/groep">/groep</h2>
+<p>GET<br><span style=3D"color: rgb(32,33,36);">/groep</span><br>Ontvangt:<=
+/p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "groepen": [
+        {
+            "leden": [
+                1,=20
+=09=09=09=092
+            ],
+            "naam": "Scala"
+        }
+    ]
+}</pre>=20
+</div>
+</div>
+<p>POST<br>/groep<br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"leden=
+":[1,2],"naam":"Groep b"}
+</pre>=20
+</div>
+</div>
+<p><br></p>
+<h2 id=3D"APIdocumentation-/restaurant">/restaurant</h2>
+<p>POST<br>/restaurant/bepaal<br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">[2,3]</=
+pre>=20
+</div>
+</div>
+<p>Ontvangen:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "restaurantId": 2,
+    "restaurantNaam": "Grieks Restaurant Rhodos",
+    "postcode": "6811KR",
+    "straatnaam": "Nieuwe Plein",
+    "huisnummer": 36,
+    "link": "https://www.rhodosarnhem.nl/",
+    "foto": "https://www.theater.nl/static-images/2017/05/2_30052017142140_=
+O_rhodos.jpg",
+    "voorkeuren": {
+        "naam": null,
+        "voorkeuren": [
+            {
+                "naam": "kip"
+            }
+        ]
+    },
+    "restricties": {
+        "restricties": []
+    }
+}</pre>=20
+</div>
+</div>
+<p><br></p>
+<h2 id=3D"APIdocumentation-/uitnodiging">/uitnodiging</h2>
+<p>GET<br><span style=3D"color: rgb(32,33,36);">/uitnodiging?uitnodigingTok=
+en=3D[insert token]&amp;gebruikerToken=3D[insert token]</span><br>Ontvangen=
+:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "gebruikerID": 4,
+    "restaurantID": null,
+    "host": {
+        "id": 4,
+        "naam": "Joost Ophuizen",
+        "foto": "https://lh3.googleusercontent.com/a/AAcHTtd4FUl1Kj4vX44wnk=
+Ga92fvbB0JOS91vdhQ3wkt=3Ds96-c",
+        "voorkeuren": [
+            {
+                "naam": "mexicaans"
+            },
+            {
+                "naam": "pizza"
+            }
+        ],
+        "restricties": [
+            {
+                "naam": "varkensvlees"
+            },
+            {
+                "naam": "vlees"
+            }
+        ]
+    },
+    "uitgenodigden": {
+        "gebruikers": [
+            {
+                "id": 3,
+                "naam": "joost van ophuizen",
+                "foto": "https://lh3.googleusercontent.com/a/AAcHTteQV1LDOA=
+NYj37n2_BjUa9Lx8pUwLQw6yyuT3mGFw=3Ds96-c",
+                "voorkeuren": [
+                    {
+                        "naam": "pizza"
+                    },
+                    {
+                        "naam": "plantaardig"
+                    }
+                ],
+                "restricties": [
+                    {
+                        "naam": "varkensvlees"
+                    }
+                ]
+            }
+        ]
+    }
+}</pre>=20
+</div>
+</div>
+<p>POST: create uitnodiging<br>/uitnodiging<br>Verstuurd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "uitnodigingToken": "2497-4877-5885"
+}</pre>=20
+</div>
+</div>
+<p>Ontvangen:<br></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "uitnodigingToken": "3988-8399-2664"
+}</pre>=20
+</div>
+</div>
+<p>POST: Accepteer uitnodiging<br>/uitnodiging/accepteer<span style=3D"colo=
+r: rgb(32,33,36);">?gebruikerToken=3D[insert token]</span><br>Verstuurd:</p=
+>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"uitno=
+digingToken":"9814-8359-9461"}</pre>=20
+</div>
+</div>
+<p>POST: Update restaurant<br>/uitnodiging/restaurant<span style=3D"color: =
+rgb(32,33,36);">?restaurantId=3D[insert id]<br>Verstuurd:</span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"uitno=
+digingToken":"9814-8359-9461"}</pre>=20
+</div>
+</div>
+<p>POST: Kick uitgenodigde<br><span style=3D"color: rgb(32,33,36);">/uitnod=
+iging/kick?uitgenodigdeID=3D[insert id]<br>Verstuurd:<br></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{"uitno=
+digingToken":"9332-2415-5445"}</pre>=20
+</div>
+</div>
+<h2 id=3D"APIdocumentation-/voorkeuren">/voorkeuren</h2>
+<p>GET: get <span style=3D"color: rgb(32,33,36);">voedingsbehoeften</span><=
+br><span style=3D"color: rgb(32,33,36);">/voorkeuren/voedingsbehoeften?gebr=
+uikersToken=3D[insert token]<br>Ontvangen:<br></span></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">{
+    "voedingsbehoeften": [
+        {
+            "naam": "Voorkeuren",
+            "voorkeuren": [
+                {
+                    "naam": "kip",
+                    "keuze": false
+                },
+                {
+                    "naam": "mexicaans",
+                    "keuze": true
+                }
+            ]
+        },
+        {
+            "naam": "Voedingsrestrictie",
+            "voorkeuren": [
+                {
+                    "naam": "noten",
+                    "keuze": false
+                },
+                {
+                    "naam": "varkensvlees",
+                    "keuze": true
+                }
+            ]
+        }
+    ]
+}</pre>=20
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_9094_675456246.1686305873498--

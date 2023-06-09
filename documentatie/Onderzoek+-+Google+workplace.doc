@@ -1,0 +1,540 @@
+Date: Fri, 9 Jun 2023 12:18:22 +0200 (CEST)
+Message-ID: <362212106.9105.1686305902379@confluenceoosevt.aimsites.nl>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9104_1242389826.1686305902375"
+
+------=_Part_9104_1242389826.1686305902375
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Onderzoek - Google workplace</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Onderzoek - Google workplace</h1>
+    <div class=3D"Section1">
+        <p><a href=3D"/pages/viewpage.action?pageId=3D296321461">Rieke Jans=
+en</a> [1607657]</p>
+<p><strong>Klas</strong></p>
+<p>ITN-OOSE-A</p>
+<p><strong>Project</strong></p>
+<p>OOSE-project</p>
+<p><strong>Datum</strong></p>
+<p>Periode 4 2022/2023<br>13/04/2023</p>
+<p><strong>Begeleiders</strong></p>
+<p>Eveline Bouwman, Remco Veurink</p>
+<p><strong>Versie</strong></p>
+<p>1.0.0</p>
+<p><strong>Inhoudsopgave</strong><style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1686305902364 {padding: 0px;}
+div.rbtoc1686305902364 ul {margin-left: 0px;}
+div.rbtoc1686305902364 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style></p>
+<div class=3D"toc-macro rbtoc1686305902364">=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Hoofd-endeelvragen">Hoofd- en deel=
+vragen</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Hoofdvraag">Hoofdvraag</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Deelvragen">Deelvragen</a></li>=20
+</ul> </li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-WatisGoogleWorkspace?">Wat is Goog=
+le Workspace?</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Watzijndevoor-ennadelenvanGoogleWo=
+rkspace?">Wat zijn de voor- en nadelen van Google Workspace?</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Voordelen">Voordelen</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Nadelen">Nadelen</a></li>=20
+</ul> </li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Watzijndealternatieven?">Wat zijn =
+de alternatieven?</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-HoekunnenwehetbestgebruikmakenvanG=
+oogleWorkspaceinonzeapplicatie?">Hoe kunnen we het best gebruik maken van G=
+oogle Workspace in onze applicatie?</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Conclusie">Conclusie</a></li>=20
+<li><a href=3D"#OnderzoekGoogleworkplace-Bronnen">Bronnen</a></li>=20
+</ul>=20
+</div>
+<p></p>
+<h1 id=3D"OnderzoekGoogleworkplace-Hoofd-endeelvragen">Hoofd- en deelvragen=
+</h1>
+<h2 id=3D"OnderzoekGoogleworkplace-Hoofdvraag">Hoofdvraag</h2>
+<p>Hoe kunnen we het best gebruik maken van Google Workspace in onze applic=
+atie?</p>
+<h2 id=3D"OnderzoekGoogleworkplace-Deelvragen">Deelvragen</h2>
+<p>Wat is Google Workspace?</p>
+<p>Wat zijn de voor- en nadelen van Google Workspace?</p>
+<p>Wat zijn de alternatieven?</p>
+<h1 id=3D"OnderzoekGoogleworkplace-WatisGoogleWorkspace?">Wat is Google Wor=
+kspace?</h1>
+<p>Google Workspace maakt het makkelijker om te communiceren en samen te we=
+rken. Het is handig voor bedrijven met veel verschillende locaties zodat ze=
+ minder heen en weer hoeven te reizen. Google Workspace is te vergelijken m=
+et Microsoft Office.</p>
+<p><br></p>
+<p>Er zijn verschillende API's. Degene die relevant zijn voor ons zijn:</p>
+<ul style=3D"list-style-type: square;">
+<li>Groups API</li>
+</ul>
+<p style=3D"margin-left: 40.0px;">Groepen zijn een collectie van entities, =
+waarbij entities zowel een gebruiker als een andere groep kunnen zijn. Er z=
+ijn verschillende soorten groepen:</p>
+<ul>
+<li style=3D"list-style-type: none;">
+<ul style=3D"list-style-type: square;">
+<li>Google Groups</li>
+</ul></li>
+</ul>
+<p style=3D"margin-left: 80.0px;">Google Groups hebben een email en worden =
+vaak gebruikt als mailing lijst. Je kunt met Google Groups bijvoorbeeld ook=
+ een Google doc delen of een Calendar event sturen.</p>
+<ul>
+<li style=3D"list-style-type: none;">
+<ul style=3D"list-style-type: square;">
+<li>Dynamic groups</li>
+</ul></li>
+</ul>
+<p style=3D"margin-left: 80.0px;">Dynamic groups zijn Google Groups waarvan=
+ de leden attributen kunnen hebben zoals een rol of een locatie. Dynamic gr=
+oups zijn alleen beschikbaar voor Google Workspace Enterprise Standard, Ent=
+erprise Plus, Enterprise for Education, en Cloud Identity premium accounts.=
+</p>
+<ul>
+<li style=3D"list-style-type: none;">
+<ul style=3D"list-style-type: square;">
+<li>Security groups</li>
+</ul></li>
+</ul>
+<p style=3D"margin-left: 80.0px;">Een Security group lijkt op een Google Gr=
+oup, maar is vooral gebruikt om toegang te regelen. Een Security group kan =
+gemaakt worden door een Google Group te updaten, maar kan daarna nooit meer=
+ een Google Group worden.</p>
+<ul>
+<li style=3D"list-style-type: none;">
+<ul style=3D"list-style-type: square;">
+<li>POSIX groups</li>
+<li>Identity-mapped groups</li>
+</ul></li>
+</ul>
+<p style=3D"margin-left: 80.0px;">Een Identity-mapped group heeft gebruiker=
+s en groepen die niet van Google zijn. Met Identity-mapped groups kan Googl=
+e Cloud Search gebruikers en groepen herkennen en hun toegang tot documente=
+n te regelen.</p>
+<p style=3D"margin-left: 40.0px;">Elke groep heeft een label, Entity key, p=
+arent en Display name. De labels van de groepen zijn:</p>
+<ul>
+<li style=3D"list-style-type: none;">
+<ul style=3D"list-style-type: square;">
+<li><strong>Google Groups:</strong> <code><a href=3D"http://cloudidentity.g=
+oogleapis.com/groups.discussion_forum" class=3D"external-link" rel=3D"nofol=
+low">cloudidentity.googleapis.com/groups.discussion_forum</a></code></li>
+<li><strong>Dynamic groups:</strong> <code><a href=3D"http://cloudidentity.=
+googleapis.com/groups.dynamic" class=3D"external-link" rel=3D"nofollow">clo=
+udidentity.googleapis.com/groups.dynamic</a></code></li>
+<li><strong>Security groups:</strong> <code><a href=3D"http://cloudidentity=
+.googleapis.com/groups.security" class=3D"external-link" rel=3D"nofollow">c=
+loudidentity.googleapis.com/groups.security</a></code></li>
+<li><strong>POSIX groups:</strong> <code><a href=3D"http://cloudidentity.go=
+ogleapis.com/groups.posix" class=3D"external-link" rel=3D"nofollow">cloudid=
+entity.googleapis.com/groups.posix</a></code></li>
+<li><strong>Identity-mapped groups:</strong> <code>system/groups/external</=
+code></li>
+</ul></li>
+</ul>
+<p style=3D"margin-left: 40.0px;">De Entity key is een unieke identifier vo=
+or de groep die leesbaar is voor mensen. Voor Google Groups, Dynamic groups=
+ en Security groups is dat de email van de groep.</p>
+<p style=3D"margin-left: 40.0px;"><br></p>
+<ul style=3D"list-style-type: square;">
+<li>OAuth</li>
+</ul>
+<p style=3D"margin-left: 40.0px;">Gebruikers kunnen inloggen met =C3=A9=C3=
+=A9n keer klikken. OAuth 2.0 kan gebruikt worden om verbinding te maken met=
+ andere Google API's.</p>
+<ul style=3D"list-style-type: square;">
+<li>Google Calendar API</li>
+</ul>
+<p style=3D"margin-left: 40.0px;">Met Google Calendar API kun je events cre=
+=C3=ABren, bewerken en zien.</p>
+<p><br></p>
+<h1 id=3D"OnderzoekGoogleworkplace-Watzijndevoor-ennadelenvanGoogleWorkspac=
+e?">Wat zijn de voor- en nadelen van Google Workspace?</h1>
+<h2 id=3D"OnderzoekGoogleworkplace-Voordelen">Voordelen</h2>
+<p>Google is actief bezig om Workspace beter te maken en heeft regelmatig u=
+pdates.</p>
+<h2 id=3D"OnderzoekGoogleworkplace-Nadelen">Nadelen</h2>
+<p>Google geeft aan dat de laatste risico's van Workspace moeten worden weg=
+genomen. Word, Excel en Powerpoint voldoen niet aan de nederlandse privacyw=
+et. Doordat Google met een verbeteringsplan is gekomen, is het nog steeds m=
+ogelijk om Workspace te blijven gebruiken.</p>
+<p>Je hebt een Google account en email nodig om aan dingen te kunnen werken=
+.</p>
+<p>Het is wat lastiger om te leren, omdat er zo veel verschillende dingen z=
+ijn die je kan doen.</p>
+<p>De namen veranderen vaak en het kan lastig zijn wat een nieuwe naam gekr=
+egen heeft en wat vervangen is.</p>
+<h1 id=3D"OnderzoekGoogleworkplace-Watzijndealternatieven?">Wat zijn de alt=
+ernatieven?</h1>
+<p>Microsoft Office wordt vaak genoemd als alternatief voor Google Workspac=
+e. De =C3=A9=C3=A9n is niet per se beter dan de ander, maar er zijn wel ver=
+schillen. Zo is bijvoorbeeld Google Workspace beter met online samenwerken,=
+ terwijl je met Microsoft Office ook offline kan werken. Buiten mobiele app=
+s biedt Google geen downloadbare programma's aan.</p>
+<h1 id=3D"OnderzoekGoogleworkplace-HoekunnenwehetbestgebruikmakenvanGoogleW=
+orkspaceinonzeapplicatie?">Hoe kunnen we het best gebruik maken van Google =
+Workspace in onze applicatie?</h1>
+<p>handige links voor groups API:</p>
+<ul>
+<li><p>To set up the API, refer to <a href=3D"https://cloud.google.com/iden=
+tity/docs/how-to/setup" class=3D"external-link" rel=3D"nofollow">Setting up=
+ the Groups API</a>.</p></li>
+<li><p>To create and manage Google Groups, see the <a href=3D"https://cloud=
+.google.com/identity/docs/how-to/create-google-groups" class=3D"external-li=
+nk" rel=3D"nofollow">Creating and searching for Google Groups</a>.</p></li>
+<li><p>To learn more about dynamic groups, see the <a href=3D"https://cloud=
+.google.com/identity/docs/concepts/overview-dynamic-groups" class=3D"extern=
+al-link" rel=3D"nofollow">Dynamic groups overview</a>.</p></li>
+<li><p>To update a Google Group to a security group, see <a href=3D"https:/=
+/cloud.google.com/identity/docs/how-to/update-group-to-security-group" clas=
+s=3D"external-link" rel=3D"nofollow">Update a Google Group to a security gr=
+oup</a>.</p></li>
+<li><p>To create and manage identity-mapped groups, see <a href=3D"https://=
+cloud.google.com/identity/docs/how-to/create-identity-groups" class=3D"exte=
+rnal-link" rel=3D"nofollow">Creating and searching for identity-mapped grou=
+ps</a>.</p></li>
+</ul>
+<p><br></p>
+<ol>
+<li>Ik heb een project aangemaakt op Google en heb daarvoor credentials gem=
+aakt.</li>
+<li>Dependencies toegevoegd aan pom.xml:</li>
+<li>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">&lt;dep=
+endency&gt;
+            &lt;groupId&gt;com.google.apis&lt;/groupId&gt;
+            &lt;artifactId&gt;google-api-services-oauth2&lt;/artifactId&gt;
+            &lt;version&gt;v2-rev157-1.25.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Google OAuth 2.0 servlets --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.google.oauth-client&lt;/groupId&gt;
+            &lt;artifactId&gt;google-oauth-client-servlet&lt;/artifactId&gt=
+;
+            &lt;version&gt;1.31.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-oauth2-client&lt;/artifac=
+tId&gt;
+        &lt;/dependency&gt;</pre>=20
+</div>
+</div></li>
+<li>Daarna heb ik deze code toegevoegd:</li>
+<li>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">@Reques=
+tMapping("/login")
+    @GetMapping(produces =3D ["application/json"])
+    fun login(){
+
+        // Tells the user what permissions they're giving you
+        val scopes: List&lt;String&gt; =3D listOf(
+                "https://www.googleapis.com/auth/userinfo.profile",
+                "https://www.googleapis.com/auth/userinfo.email")
+
+        val oauthClientId =3D "273810985262-q8l5196d5tsds3dmt8rreluoviqvsoq=
+1.apps.googleusercontent.com"
+        val oauthClientSecret =3D "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"
+        val flow =3D GoogleAuthorizationCodeFlow.Builder( // Sends requests=
+ to the OAuth server
+                NetHttpTransport(),  // Converts between JSON and Java
+                JacksonFactory.getDefaultInstance(),  // Your OAuth client =
+ID
+                oauthClientId,  // Your OAuth client secret
+                oauthClientSecret,  // Tells the user what permissions they=
+'re giving you
+                scopes) // Stores the user's credential in memory
+                .setDataStoreFactory(MemoryDataStoreFactory.getDefaultInsta=
+nce())
+                .build()
+    }</pre>=20
+</div>
+</div></li>
+</ol>
+<p style=3D"margin-left: 40.0px;"><br></p>
+<h1 id=3D"OnderzoekGoogleworkplace-Conclusie">Conclusie</h1>
+<p><br></p>
+<h1 id=3D"OnderzoekGoogleworkplace-Bronnen">Bronnen</h1>
+<p>Geraadpleegd op 21-04-2023:&nbsp;<a href=3D"https://www.agconnect.nl/art=
+ikel/google-belooft-nederland-ook-laatste-risicos-van-workspace-weg-te-neme=
+n" class=3D"external-link" rel=3D"nofollow">https://www.agconnect.nl/artike=
+l/google-belooft-nederland-ook-laatste-risicos-van-workspace-weg-te-nemen</=
+a></p>
+<p>Geraadpleegd op 21-04-2023: <a href=3D"https://gcloud.devoteam.com/nl/pr=
+oducten/google-workspace/" class=3D"external-link" rel=3D"nofollow">https:/=
+/gcloud.devoteam.com/nl/producten/google-workspace/</a></p>
+<p><a href=3D"https://developers.google.com/workspace/support" class=3D"ext=
+ernal-link" rel=3D"nofollow">https://developers.google.com/workspace/suppor=
+t</a></p>
+<p><a href=3D"https://cloud.google.com/identity/docs/groups" class=3D"exter=
+nal-link" rel=3D"nofollow">https://cloud.google.com/identity/docs/groups</a=
+></p>
+<p>Geraadpleegd op 24-04-2023: <a href=3D"https://developers.google.com/ide=
+ntity" class=3D"external-link" rel=3D"nofollow">https://developers.google.c=
+om/identity</a></p>
+<p><a href=3D"https://developers.google.com/identity/protocols/oauth2" clas=
+s=3D"external-link" rel=3D"nofollow">https://developers.google.com/identity=
+/protocols/oauth2</a></p>
+<p><a href=3D"https://developers.google.com/calendar" class=3D"external-lin=
+k" rel=3D"nofollow">https://developers.google.com/calendar</a></p>
+<p><a href=3D"https://blog.suitebriar.com/g-suite-advantages-and-disadvanta=
+ges" class=3D"external-link" rel=3D"nofollow">https://blog.suitebriar.com/g=
+-suite-advantages-and-disadvantages</a></p>
+<p><a href=3D"https://www.businessinsider.nl/google-workspace-microsoft-365=
+-vergelijking/" class=3D"external-link" rel=3D"nofollow">https://www.busine=
+ssinsider.nl/google-workspace-microsoft-365-vergelijking/</a></p>
+<p>Geraadpleegd op 25-04-2023: <a href=3D"https://happycoding.io/tutorials/=
+google-cloud/oauth-2" class=3D"external-link" rel=3D"nofollow">https://happ=
+ycoding.io/tutorials/google-cloud/oauth-2</a></p>
+<p><a href=3D"https://morioh.com/p/576de0e7c6f7" class=3D"external-link" re=
+l=3D"nofollow">https://morioh.com/p/576de0e7c6f7</a></p>
+<p><a href=3D"https://medium.com/javarevisited/single-sign-on-sso-with-spri=
+ng-boot-37fd7203240f" class=3D"external-link" rel=3D"nofollow">https://medi=
+um.com/javarevisited/single-sign-on-sso-with-spring-boot-37fd7203240f</a></=
+p>
+<p><a href=3D"https://auth0.com/docs/authenticate/protocols/oauth" class=3D=
+"external-link" rel=3D"nofollow">https://auth0.com/docs/authenticate/protoc=
+ols/oauth</a></p>
+<p><a href=3D"https://www.javainuse.com/spring/spring-boot-oauth-access-tok=
+en" class=3D"external-link" rel=3D"nofollow">https://www.javainuse.com/spri=
+ng/spring-boot-oauth-access-token</a></p>
+    </div>
+</body>
+</html>
+------=_Part_9104_1242389826.1686305902375--
