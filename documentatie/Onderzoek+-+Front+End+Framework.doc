@@ -1,0 +1,1033 @@
+Date: Fri, 9 Jun 2023 12:18:13 +0200 (CEST)
+Message-ID: <71408674.9101.1686305893399@confluenceoosevt.aimsites.nl>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_9100_1306168508.1686305893399"
+
+------=_Part_9100_1306168508.1686305893399
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Onderzoek - Front End Framework</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Onderzoek - Front End Framework</h1>
+    <div class=3D"Section1">
+        <p><br></p>
+<p><br><a href=3D"/pages/viewpage.action?pageId=3D296322013">Ayaz Rachmadie=
+v</a> [1509751]</p>
+<p><strong>Klas</strong></p>
+<p>ITN-OOSE-A</p>
+<p><strong>Project</strong></p>
+<p>OOSE-project</p>
+<p><strong>Datum</strong></p>
+<p>Periode 4 2022/2023<br>13/04/2023</p>
+<p><strong>Begeleiders</strong></p>
+<p>Eveline Bouwman, Remco Veurink</p>
+<p><strong>Versie</strong></p>
+<p>1.0.0</p>
+<p><strong>Inhoudsopgave</strong></p>
+<p><style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1686305893357 {padding: 0px;}
+div.rbtoc1686305893357 ul {margin-left: 0px;}
+div.rbtoc1686305893357 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style></p>
+<div class=3D"toc-macro rbtoc1686305893357">=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Inleiding1">1. Inleiding</a></li=
+>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Hoofdvraagendeelvragen2">2. Hoof=
+dvraag en deelvragen</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Hoofdvraag">2.1. Hoofdvraag</a><=
+/li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Deelvragen">2.2. Deelvragen</a><=
+/li>=20
+</ul> </li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Welkefront-endframeworkdektdevoo=
+rafgesteldefeaturesvandeuserinterface(UI).5">3. Welke front-end framework d=
+ekt de voorafgestelde features van de user interface(UI).</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Watzijndevoorafgesteldefeaturesv=
+andeUI?3">4. Wat zijn de voorafgestelde features van de UI?</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Lowfidelitywireframe-Eersteschet=
+s">4.1. Low fidelity wireframe - Eerste schets</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Highfidelitywireframes">4.2. Hig=
+h fidelity wireframes</a></li>=20
+</ul> </li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-FrameworkVergelijking">5. Framew=
+ork Vergelijking</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-AfwegingenFrameworks">5.1. Afweg=
+ingen Frameworks</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Vergelijkingframeworkslabonderzo=
+ek">5.2. Vergelijking frameworks labonderzoek</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Vue">5.2.1. Vue</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-React">5.2.2. React</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Angular">5.2.3. Angular</a></li>=
+=20
+</ul> </li>=20
+</ul> </li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Conclusie">6. Conclusie</a></li>=
+=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Bibliografiebronnenlijstonderzoe=
+k">7. Bibliografie</a>=20
+<ul class=3D"toc-indentation">=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Angular.1">7.1. Angular</a></li>=
+=20
+<li><a href=3D"#OnderzoekFrontEndFramework-React.1">7.2. React</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Vue.1">7.3. Vue</a></li>=20
+<li><a href=3D"#OnderzoekFrontEndFramework-Algemeen">7.4. Algemeen</a></li>=
+=20
+</ul> </li>=20
+</ul>=20
+</div>
+<p></p>
+<hr>
+<h1 id=3D"OnderzoekFrontEndFramework-Inleiding1"><span class=3D"nh-number">=
+1. </span>Inleiding <span class=3D"confluence-anchor-link" id=3D"OnderzoekF=
+rontEndFramework-1"></span></h1>
+<p>In deze onderzoeksverslag ga ik de drie populaire front-end frameworks, =
+React, Vue en Angular vergelijken.<a href=3D"https://www.3pillarglobal.com/=
+insights/the-top-3-javascript-frameworks/" class=3D"external-link" rel=3D"n=
+ofollow">(Davis, 2022)</a> Deze frameworks worden veel gebruikt bij de ontw=
+ikkeling van moderne webapplicaties en hebben elk hun eigen kenmerken en vo=
+ordelen. Het doel van dit onderzoek is om de voor- en nadelen van deze fram=
+eworks te overwegen en te bepalen welke het meest geschikt is voor ons proj=
+ect, de "Samen Eten" applicatie.</p>
+<p>In dit onderzoek zal ik de frameworks beoordelen op verschillende aspect=
+en zoals prestaties, functionaliteit, ontwikkelingstijd en gebruikerservari=
+ng. Hierbij zal ik gebruik maken van diverse bronnen en expertise binnen he=
+t vakgebied. Na een grondige evaluatie zal ik mijn bevindingen presenteren =
+en een aanbeveling doen voor het meest geschikte framework voor ons project=
+.</p>
+<p>Het kiezen van het juiste framework is belangrijk voor de ontwikkeling v=
+an onze "Samen Eten" applicatie. Het is van belang om het framework te kiez=
+en dat het beste past bij onze behoeften en doelstellingen, zodat we een ap=
+plicatie kunnen ontwikkelen die snel, effici=C3=ABnt en gebruiksvriendelijk=
+ is.</p>
+<p>Ik hoop dat dit onderzoek ons helpt bij het maken van een weloverwogen k=
+euze en dat het een waardevolle bijdrage levert aan de ontwikkeling van ons=
+ project.</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<h1 id=3D"OnderzoekFrontEndFramework-Hoofdvraagendeelvragen2"><span class=
+=3D"nh-number">2. </span>Hoofdvraag en deelvragen<span class=3D"confluence-=
+anchor-link" id=3D"OnderzoekFrontEndFramework-2"></span></h1>
+<h2 id=3D"OnderzoekFrontEndFramework-Hoofdvraag"><span class=3D"nh-number">=
+2.1. </span>Hoofdvraag</h2>
+<ul>
+<li>Welke front-end framework dekt de voorafgestelde features van de user i=
+nterface(UI).</li>
+</ul>
+<h2 id=3D"OnderzoekFrontEndFramework-Deelvragen"><span class=3D"nh-number">=
+2.2. </span>Deelvragen</h2>
+<ul>
+<li>Wat zijn de voorafgestelde features van de UI.</li>
+<li>Wat zijn de voor en nadelen van VueJS/Angular/React</li>
+</ul>
+<p><br></p>
+<h1 id=3D"OnderzoekFrontEndFramework-Welkefront-endframeworkdektdevoorafges=
+teldefeaturesvandeuserinterface(UI).5"><span class=3D"nh-number">3. </span>=
+Welke front-end framework dekt de voorafgestelde features van de user inter=
+face(UI).<span class=3D"confluence-anchor-link" id=3D"OnderzoekFrontEndFram=
+ework-5"></span></h1>
+<p>De vraag zal beantwoord worden aan de hand van wat de voorafgestelde fea=
+tures zijn en wat ze inhouden. En wat de afwegingen zijn tussen de 3 groots=
+te frameworks: Angular/React/Vue.&nbsp;</p>
+<p>De front-end framework zou de applicatie voor Avisi Samen eten moeten ru=
+nnen. De probleem en doelstelling hiervan zijn te vinden in het <a href=3D"=
+/display/XUSYOU/Plan+van+aanpak">PvA hoofdstuk 3</a>.</p>
+<p><br></p>
+<p><br></p>
+<h1 id=3D"OnderzoekFrontEndFramework-WatzijndevoorafgesteldefeaturesvandeUI=
+?3"><span class=3D"nh-number">4. </span>Wat zijn de <span class=3D"inline-c=
+omment-marker" data-ref=3D"74deb606-e8d0-45d9-8c3c-d3293aa703de">voorafgest=
+elde features van de UI</span>?<span class=3D"confluence-anchor-link" id=3D=
+"OnderzoekFrontEndFramework-3"></span></h1>
+<p>Op basis van wireframes is het mogelijk om te bepalen wat de belangrijks=
+te features zijn van de UI.</p>
+<h2 id=3D"OnderzoekFrontEndFramework-Lowfidelitywireframe-Eersteschets"><sp=
+an class=3D"nh-number">4.1. </span>Low fidelity wireframe - Eerste schets<b=
+r><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manua=
+l-size"><img class=3D"confluence-embedded-image confluence-external-resourc=
+e" draggable=3D"false" alt=3D"Eerste Schets wireframes 'Samen Eten'" height=
+=3D"400" src=3D"https://cdn.discordapp.com/attachments/1092753125217153106/=
+1093535336174456852/20230406_155849.jpg" data-image-src=3D"https://cdn.disc=
+ordapp.com/attachments/1092753125217153106/1093535336174456852/20230406_155=
+849.jpg"></span></h2>
+<h2 id=3D"OnderzoekFrontEndFramework-Highfidelitywireframes"><span class=3D=
+"nh-number">4.2. </span>High fidelity wireframes</h2>
+<p><span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluenc=
+e-embedded-image confluence-external-resource" draggable=3D"false" alt=3D"H=
+i fidelity wireframes" src=3D"https://i.gyazo.com/a14339bb95132e729d5e8a9a5=
+bbb35ab.png" data-image-src=3D"https://i.gyazo.com/a14339bb95132e729d5e8a9a=
+5bbb35ab.png"></span></p>
+<p>Uit de wireframes blijkt dat het element 'checkbox' met het selecteren v=
+an voorkeuren of teamgenoten een overzichtelijk en duidelijk proces moet zi=
+jn voor de gebruiker.</p>
+<p>Naast dat het 'mooi' moet zijn moet het ook functioneel passen in de app=
+licatie. Samen eten is een lichte web applicatie die beroep uitoefent op ee=
+n database/api en andere backend technologie.<br>Wat nu belangrijk is, is w=
+at er verwacht wordt van de front-end.</p>
+<div class=3D"table-wrap">
+<table class=3D"wrapped confluenceTable">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<th scope=3D"col" class=3D"confluenceTh">Gebruikers use case</th>
+<th scope=3D"col" class=3D"confluenceTh">Verwachting Front-End naar Back-En=
+d</th>
+<th scope=3D"col" class=3D"confluenceTh">Gerelateerd</th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">De gebruiker zal inloggen via Google.</td>
+<td class=3D"confluenceTd">Single Sign On</td>
+<td class=3D"confluenceTd">Oath2/Google</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">De gebruiker kan zijn voorkeuren/voedingsrestric=
+ties invullen.</td>
+<td class=3D"confluenceTd">Post</td>
+<td class=3D"confluenceTd">N.t.b.</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">De gebruiker kan andere gebruikers selecteren om=
+ een lunchgroep te maken.</td>
+<td class=3D"confluenceTd">GET</td>
+<td class=3D"confluenceTd">N.t.b.</td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">De gebruiker kan een restaurant bepalen aan de h=
+and van de ingevulde voorkeuren/voedingsrestricties.</td>
+<td class=3D"confluenceTd">GET</td>
+<td class=3D"confluenceTd">N.t.b.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<h1 style=3D"" id=3D"OnderzoekFrontEndFramework-FrameworkVergelijking"><spa=
+n class=3D"nh-number">5. </span><strong>&nbsp;Framework Vergelijking</stron=
+g></h1>
+<p style=3D"">In dit gedeelte gaan we dieper in op drie populaire JavaScrip=
+t-frameworks: React.js, Vue.js en Angular. We zullen verkennen wat deze fra=
+meworks inhouden en hun verschillen, voordelen en nadelen onderzoeken.</p>
+<p style=3D""><strong>5.1 React.js</strong> <strong>5.1.1 Introductie tot R=
+eact.js</strong> React.js is een JavaScript-bibliotheek voor webontwikkelin=
+g die is gemaakt door Facebook (META). Het kreeg aanzienlijke populariteit =
+en werd wereldwijd het meest gebruikte front-end framework in 2021, volgens=
+ Statista. React.js wordt gebruikt door tal van bekende bedrijven zoals Wha=
+tsApp, Facebook, Instagram, Atlassian, Uber Eats en Netflix.</p>
+<p style=3D""><strong>5.1.2 Belangrijkste kenmerken van React.js</strong></=
+p>
+<ul style=3D"">
+<li>Virtuele DOM: React.js maakt gebruik van een virtuele DOM, die een webp=
+agina in het geheugen nabootst. Hierdoor worden alleen de specifieke elemen=
+ten die updates nodig hebben opnieuw weergegeven, in plaats van de hele pag=
+ina.</li>
+<li>Componenten: React.js biedt een uitgebreide bibliotheek van vooraf ontw=
+ikkelde UI-componenten die direct kunnen worden gebruikt of aangepast aan d=
+e wensen van de ontwikkelaar.</li>
+<li>JSX: JSX is een syntaxisuitbreiding die de flexibiliteit vergroot bij h=
+et combineren van JavaScript en HTML binnen React.js. Het kan echter enige =
+complexiteit met zich meebrengen voor ontwikkelaars.</li>
+<li>One-way data binding: React.js volgt een one-way data binding benaderin=
+g, waarbij gegevensveranderingen in =C3=A9=C3=A9n richting stromen. Het wij=
+zigen van een component leidt tot onmiddellijke bijwerking van de weergave,=
+ wat tijd bespaart bij de ontwikkeling.</li>
+</ul>
+<p style=3D""><strong>5.2 Vue.js</strong> <strong>5.2.1 Introductie tot Vue=
+.js</strong> Vue.js is het kleinste van de drie frameworks. Het combineert =
+de beste kenmerken van React.js en Angular en biedt tegelijkertijd gebruiks=
+gemak en flexibiliteit zonder concessies te doen aan de prestaties. Vanwege=
+ de eenvoud wordt Vue.js vaak gekozen om projectontwikkeling effici=C3=ABnt=
+er te maken en het wordt vaak gebruikt voor minimal viable product (MVP) on=
+twikkeling. Volgens het "State of Vue" rapport kiest 60% van de ondervraagd=
+e ontwikkelaars voor Vue.js vanwege de intu=C3=AFtieve aard ervan, en maar =
+liefst 90% zou Vue.js kiezen voor hun volgende project. Bekende bedrijven d=
+ie gebruikmaken van Vue.js zijn onder andere Adobe, The Motley Fool, Trivag=
+o, Alibaba en GitLab.</p>
+<p style=3D""><strong>5.2.2 Belangrijkste kenmerken van Vue.js</strong></p>
+<ul style=3D"">
+<li>Virtuele DOM + Componenten: Vue.js maakt gebruik van het concept van ee=
+n virtuele DOM en een op componenten gebaseerde architectuur, vergelijkbaar=
+ met React.js (zoals beschreven in sectie 5.1.2).</li>
+<li>Two-way data binding: In tegenstelling tot React.js ondersteunt Vue.js =
+two-way data binding, waardoor een "Model-View-View-Controller" aanpak moge=
+lijk is. Dit betekent dat wijzigingen in het model automatisch worden weerg=
+egeven in de weergave en vice versa.</li>
+</ul>
+<p style=3D""><strong>5.3 Angular</strong> <strong>5.3.1 Introductie tot An=
+gular</strong> Angular maakt deel uit van de MEAN-stack (MongoDB, Express.j=
+s, Angular.js en Node.js) en is een populair framework. Het is ontwikkeld d=
+oor Google in 2010 en blijft relevant dankzij zijn actieve community. Beken=
+de bedrijven die Angular gebruiken zijn onder andere Forbes, Microsoft Offi=
+ce en Deutsche Bank.</p>
+<p style=3D""><strong>5.3.2 Kenmerken van Angular</strong></p>
+<ul style=3D"">
+<li>Model-View-Controller architectuur: Angular maakt gebruik van een model=
+-view-controller (MVC) architectuur, vergelijkbaar met Vue.js. Veranderinge=
+n in het model worden direct weergegeven in de weergave, en het ondersteunt=
+ ook two-way data binding, waardoor veranderingen in zowel ouder- als kindc=
+omponenten worden doorgevoerd.</li>
+<li>Server-side rendering: Angular biedt ondersteuning voor server-side ren=
+dering, wat resulteert in robuustere en prestatiegerichte webpagina's.</li>
+<li>Dependency injection: Angular maakt gebruik van dependency injection, w=
+aardoor ontwikkelaars specifieke UI-componenten afhankelijk van elkaar kunn=
+en maken en testen. Dit vergemakkelijkt het testen en debuggen van de code.=
+</li>
+</ul>
+<p><br></p>
+<h2 id=3D"OnderzoekFrontEndFramework-AfwegingenFrameworks"><span class=3D"n=
+h-number">5.1. </span><strong>Afwegingen Frameworks</strong></h2>
+<div class=3D"table-wrap">
+<table class=3D"relative-table wrapped confluenceTable" style=3D"width: 99.=
+8471%;">
+<colgroup>
+<col style=3D"width: 6.61394%;">
+<col style=3D"width: 3.89874%;">
+<col style=3D"width: 7.51901%;">
+<col style=3D"width: 21.8608%;">
+<col style=3D"width: 14.1329%;">
+<col style=3D"width: 5.91774%;">
+<col style=3D"width: 13.226%;">
+<col style=3D"width: 26.7342%;">
+</colgroup>
+<tbody>
+<tr>
+<th scope=3D"col" class=3D"confluenceTh">Framework</th>
+<th scope=3D"col" class=3D"confluenceTh">Sinds</th>
+<th scope=3D"col" class=3D"confluenceTh">Ontwikkelaar</th>
+<th scope=3D"col" class=3D"confluenceTh">Community</th>
+<th scope=3D"col" class=3D"confluenceTh">Werkaanbod(LinkedIN)</th>
+<th scope=3D"col" class=3D"confluenceTh">Learning curve</th>
+<th scope=3D"col" class=3D"confluenceTh">Use Cases</th>
+<th scope=3D"col" class=3D"confluenceTh">Grootste nadelen</th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">React</td>
+<td class=3D"confluenceTd">2013</td>
+<td class=3D"confluenceTd">Facebook</td>
+<td class=3D"confluenceTd">Facebook developers als vaste groep.</td>
+<td class=3D"confluenceTd">
+<div class=3D"content-wrapper">
+<p><span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluenc=
+e-embedded-image confluence-external-resource" draggable=3D"false" src=3D"h=
+ttps://i.gyazo.com/c93d23080eeaa6d069cf4e68635be450.png" data-image-src=3D"=
+https://i.gyazo.com/c93d23080eeaa6d069cf4e68635be450.png"></span></p>
+</div></td>
+<td class=3D"confluenceTd">Geleidelijk</td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Cross platform apps</li>
+<li>Uitbreiden van extensies op bestaande apps</li>
+</ul></td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Veel verstand nodig van JSX</li>
+<li>Documentatie is niet van hoge kwaliteit.</li>
+<li>Door de frequente updates raken meeste tools buiten beschouwing of nutt=
+eloos.</li>
+</ul></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">Vue</td>
+<td class=3D"confluenceTd">2014</td>
+<td class=3D"confluenceTd">Evan you(Ex-Google)</td>
+<td class=3D"confluenceTd">Groeiende community, voornamelijk open-source en=
+ freelancers.</td>
+<td class=3D"confluenceTd">
+<div class=3D"content-wrapper">
+<p><span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluenc=
+e-embedded-image confluence-external-resource" draggable=3D"false" src=3D"h=
+ttps://i.gyazo.com/05ab1ee153f0f9496354c555b4a5511b.png" data-image-src=3D"=
+https://i.gyazo.com/05ab1ee153f0f9496354c555b4a5511b.png"></span></p>
+</div></td>
+<td class=3D"confluenceTd">Makkelijk</td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Lichte apps</li>
+<li>Intu=C3=AFtieve apps</li>
+</ul></td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Kleine community.</li>
+<li>Geen grootschalige projecten om als leermiddel te gebruiken.</li>
+<li>Meeste issues zijn voor safari en IOS.</li>
+</ul></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">Angular</td>
+<td class=3D"confluenceTd">2010</td>
+<td class=3D"confluenceTd">Google</td>
+<td class=3D"confluenceTd">Grootste community doordat het de oudste framewo=
+rk is samen met de google developers als vaste groep.</td>
+<td class=3D"confluenceTd">
+<div class=3D"content-wrapper">
+<p><span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluenc=
+e-embedded-image confluence-external-resource" draggable=3D"false" src=3D"h=
+ttps://i.gyazo.com/1f70e4c5e3021f6b0a120289199faf6d.png" data-image-src=3D"=
+https://i.gyazo.com/1f70e4c5e3021f6b0a120289199faf6d.png"></span></p>
+</div></td>
+<td class=3D"confluenceTd">Steil</td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Grootschalige apps</li>
+<li>Real-time apps</li>
+</ul></td>
+<td class=3D"confluenceTd">
+<ul>
+<li>Moeilijk met cross-platform.</li>
+<li>Slechte SEO.</li>
+<li>Documentatie wordt nauwelijks geupdate.</li>
+<li>Veel verstand nodig van JSX</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<h2 id=3D"OnderzoekFrontEndFramework-Vergelijkingframeworkslabonderzoek"><s=
+pan class=3D"nh-number">5.2. </span>Vergelijking frameworks labonderzoek</h=
+2>
+<p>Om de drie frameworks nou echt in praktijk te testen is er voor dit onde=
+rzoek driemaal een login pagina gemaakt met basis functionaliteiten.<br><br=
+>Om op alle drie de frameworks te werken is het handig om een NPM(Node Pack=
+age Manager) te hebben. Het werkt als een pakketbeheerder voor de programme=
+ertaal javascript.<br>Dit geeft weer de functionaliteit om makkelijk nodes =
+te installeren in je project.<br><br><br></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Voorbeeld gebruik NPM in =C3=A9=C3=A9n command line</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">npm insta=
+ll</pre>=20
+</div>
+</div>
+<h3 id=3D"OnderzoekFrontEndFramework-Vue"><span class=3D"nh-number">5.2.1. =
+</span>Vue</h3>
+<p>Om vue te installeren is er een quickstart mogelijkheid.<br><br></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Vue start</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">npm init =
+vue@latest</pre>=20
+</div>
+</div>
+<p>Dit geeft dan de opties om meerdere plugins/addons al te installeren.<br=
+><br></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Vue starter keuzes</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">=E2=9C=
+=94 Project name: =E2=80=A6 &lt;your-project-name&gt;
+=E2=9C=94 Add TypeScript? =E2=80=A6 No / Yes
+=E2=9C=94 Add JSX Support? =E2=80=A6 No / Yes
+=E2=9C=94 Add Vue Router for Single Page Application development? =E2=80=A6=
+ No / Yes
+=E2=9C=94 Add Pinia for state management? =E2=80=A6 No / Yes
+=E2=9C=94 Add Vitest for Unit testing? =E2=80=A6 No / Yes
+=E2=9C=94 Add Cypress for both Unit and End-to-End testing? =E2=80=A6 No / =
+Yes
+=E2=9C=94 Add ESLint for code quality? =E2=80=A6 No / Yes
+=E2=9C=94 Add Prettier for code formatting? =E2=80=A6 No / Yes</pre>=20
+</div>
+</div>
+<p>Hier zitten handige opties tussen die React en Angular niet aanbieden bi=
+j de initi=C3=ABle initialisatie.<br>Om dan vervolgens alle geselecteerde k=
+euzes te implementeren gebruik je&nbsp; 'npm install'.<br>Daarna kan je de =
+localhost beginnen met:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Vue opzetten localhost</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">npm run=
+ dev</pre>=20
+</div>
+</div>
+<p><br><span class=3D"confluence-embedded-file-wrapper confluence-embedded-=
+manual-size"><img class=3D"confluence-embedded-image confluence-external-re=
+source" draggable=3D"false" height=3D"250" src=3D"https://i.gyazo.com/a04f7=
+f9d715f2b222f5a447c836b6af7.png" data-image-src=3D"https://i.gyazo.com/a04f=
+7f9d715f2b222f5a447c836b6af7.png"></span></p>
+<p>Vervolgens is het een kwestie van html en css.</p>
+<p>Wat ook opvalt is dat vue het liefst met single file components werkt en=
+ daarvoor al de mappenstructuur voor heeft aangepast.<br><span class=3D"con=
+fluence-embedded-file-wrapper"><img class=3D"confluence-embedded-image conf=
+luence-external-resource" draggable=3D"false" src=3D"https://i.gyazo.com/68=
+6da683592d74a8acbe0561e4465aeb.png" data-image-src=3D"https://i.gyazo.com/6=
+86da683592d74a8acbe0561e4465aeb.png"></span></p>
+<p>Resultaat:(hierin zit ook nog een fetch test verwerkt)</p>
+<p><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manu=
+al-size"><img class=3D"confluence-embedded-image confluence-external-resour=
+ce" draggable=3D"false" height=3D"250" src=3D"https://i.gyazo.com/c9c3aa006=
+df0937452dcbe19080600a2.png" data-image-src=3D"https://i.gyazo.com/c9c3aa00=
+6df0937452dcbe19080600a2.png"></span></p>
+<h3 id=3D"OnderzoekFrontEndFramework-React"><span class=3D"nh-number">5.2.2=
+. </span>React</h3>
+<p>Ook react heeft een quickstart mogelijkheid. Wij gebruiken nu de fullsta=
+ck variant van Next.js omdat deze het best past bij onze lichte applicatie =
+en voor nu voorbeeld.<br><br></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>React quickstart</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">npx cre=
+ate-next-app</pre>=20
+</div>
+</div>
+<p><br>Ook zijn er nog andere mogelijkheden binnen react:<br><br></p>
+<p>Remix is een full-stack React framework met geneste routing. Het stelt j=
+e in staat om je app op te delen in geneste delen die gegevens parallel kun=
+nen laden en kunnen vernieuwen in reactie op gebruikersacties.<br>En die ro=
+ep je aan als volgt:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>React Alternatief</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">npx creat=
+e-remix</pre>=20
+</div>
+</div>
+<p>Gatsby is een React-framework voor het snel bouwen van websites die word=
+en ondersteund door CMS (Content Management Systemen). Het heeft een rijke =
+plugin-ecosysteem en een GraphQL datalaag, waardoor het gemakkelijker is om=
+ inhoud, API's en services in =C3=A9=C3=A9n website te integreren. En die r=
+oep je aan als volgt:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>React Alternatief</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">npx creat=
+e-gatsby</pre>=20
+</div>
+</div>
+<p>Expo is een React-framework waarmee je universele Android-, iOS- en web-=
+apps kunt maken met echt native gebruikersinterfaces. Het biedt een SDK voo=
+r React Native waarmee het gebruik van native componenten eenvoudiger wordt=
+. En die wordt als volgt aangeroepen:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>React Alternatief</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">npx creat=
+e-expo-app</pre>=20
+</div>
+</div>
+<p><br></p>
+<p>Om vervolgens de localhost te starten roep je het volgende aan:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>React Localhost</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">npm sta=
+rt</pre>=20
+</div>
+</div>
+<p><br></p>
+<p><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manu=
+al-size"><img class=3D"confluence-embedded-image confluence-external-resour=
+ce" draggable=3D"false" height=3D"150" src=3D"https://i.gyazo.com/f379f2171=
+eeaeacd2ad00b65b59a570f.png" data-image-src=3D"https://i.gyazo.com/f379f217=
+1eeaeacd2ad00b65b59a570f.png"></span></p>
+<p><br></p>
+<p>Resultaat:</p>
+<p><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manu=
+al-size"><img class=3D"confluence-embedded-image confluence-external-resour=
+ce" draggable=3D"false" height=3D"250" src=3D"https://i.gyazo.com/b1baa53eb=
+0e0d1b56ad696dfff4dffba.png" data-image-src=3D"https://i.gyazo.com/b1baa53e=
+b0e0d1b56ad696dfff4dffba.png"></span></p>
+<h3 id=3D"OnderzoekFrontEndFramework-Angular"><span class=3D"nh-number">5.2=
+.3. </span>Angular</h3>
+<p>Angular heeft zijn eigen Command Line Interface(CLI) nodig, die is als v=
+olgt op te roepen:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Angular CLI</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">npm ins=
+tall -g @angular/cli</pre>=20
+</div>
+</div>
+<p><br></p>
+<p>Op Windows-clientcomputers is de uitvoering van PowerShell-scripts stand=
+aard uitgeschakeld. Om de uitvoering van PowerShell-scripts toe te staan, w=
+at nodig is voor npm globale binaries, moet je het volgende uitvoeringsbele=
+id instellen:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Execution policy</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Set-Exe=
+cutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</pre>=20
+</div>
+</div>
+<p><br>En dan pas kan het gestart worden met :</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Angular start</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">ng new =
+angularonderzoek
+
+</pre>=20
+</div>
+</div>
+<p><br></p>
+<p>Om vervolgens de localhost te starten:(- - open is om gelijk de localhos=
+t te openen in een browser)</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeHeader panelHeader pdl" style=3D"border-bottom-width: 1px=
+;">
+<b>Angular localhost</b>
+</div>
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">cd angu=
+laronderzoek
+ng serve --open</pre>=20
+</div>
+</div>
+<p><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manu=
+al-size"><img class=3D"confluence-embedded-image confluence-external-resour=
+ce" draggable=3D"false" height=3D"250" src=3D"https://i.gyazo.com/8b38e444b=
+265adc52d2c79447358aabf.png" data-image-src=3D"https://i.gyazo.com/8b38e444=
+b265adc52d2c79447358aabf.png"></span></p>
+<p><br>Resultaat:</p>
+<p><span class=3D"confluence-embedded-file-wrapper confluence-embedded-manu=
+al-size"><img class=3D"confluence-embedded-image confluence-external-resour=
+ce" draggable=3D"false" height=3D"250" src=3D"https://i.gyazo.com/16075f864=
+3193e7791439aabe801bf01.png" data-image-src=3D"https://i.gyazo.com/16075f86=
+43193e7791439aabe801bf01.png"></span></p>
+<h1 id=3D"OnderzoekFrontEndFramework-Conclusie"><span class=3D"nh-number">6=
+. </span>Conclusie</h1>
+<p>Welk framework het beste is, hangt af van de specifieke behoeften van ee=
+n project. <br>Als je een robuust framework nodig hebt dat wordt ondersteun=
+d door Google, is Angular een goede keuze. <br>Als je een gemakkelijk te le=
+ren en flexibel framework nodig hebt, kies dan Vue. <br>Als je op zoek bent=
+ naar een framework met veel vooraf ontwikkelde UI-componenten en goede pre=
+staties, kies dan voor React.<br><br>Maar in het geval van ons project, die=
+ maar 8 weken duurt, is het handig om met een framework aan de slag te gaan=
+ die makkelijk te leren is zodat het sneller toetepassen is en dan is de fl=
+exibiliteit die vue aanbiedt beter passend bij het project dan wat Angular =
+en React aanbieden.</p>
+<h1 id=3D"OnderzoekFrontEndFramework-Bibliografiebronnenlijstonderzoek"><sp=
+an class=3D"nh-number">7. </span>Bibliografie<span class=3D"confluence-anch=
+or-link" id=3D"OnderzoekFrontEndFramework-bronnenlijstonderzoek"></span></h=
+1>
+<h2 id=3D"OnderzoekFrontEndFramework-Angular.1"><span class=3D"nh-number">7=
+.1. </span>Angular</h2>
+<p><em>Geraadpleegd op 13-04-2023 van, Angular</em>. (z.d.). <span><a href=
+=3D"https://angular.io/guide/setup-local#setting-up-the-local-environment-a=
+nd-workspace" class=3D"external-link" rel=3D"nofollow">https://angular.io/g=
+uide/setup-local#setting-up-the-local-environment-and-workspace</a></span><=
+/p>
+<p><span><em>Geraadpleegd op 13-04-2023 van, </em></span>Fix It With Ankit.=
+ (2022, 5 september). <em>Implement Google Signin | Angular</em> [Video]. Y=
+ouTube. <span><a href=3D"https://www.youtube.com/watch?v=3D1hMvJsSDnvU" cla=
+ss=3D"external-link" rel=3D"nofollow">https://www.youtube.com/watch?v=3D1hM=
+vJsSDnvU</a></span></p>
+<p><span><em>Geraadpleegd op 17-04-2023 van, </em></span><em>5,000+ Angular=
+JS jobs in Netherlands (212 new)</em>. (z.d.). <span><a href=3D"https://www=
+.linkedin.com/jobs/search/?currentJobId=3D3560044920&amp;geoId=3D102890719&=
+amp;keywords=3DAngularJS&amp;location=3DNederland&amp;refresh=3Dtrue" class=
+=3D"external-link" rel=3D"nofollow">https://www.linkedin.com/jobs/search/?c=
+urrentJobId=3D3560044920&amp;geoId=3D102890719&amp;keywords=3DAngularJS&amp=
+;location=3DNederland&amp;refresh=3Dtrue</a></span></p>
+<p><span><em>Geraadpleegd op 14-04-2023 van, </em></span>Rabizo, D. (2021, =
+23 december). Google authentication in Angular - Daniil Rabizo - Medium. <e=
+m>Medium</em>. <span><a href=3D"https://medium.com/@danilrabizo/google-auth=
+entication-in-the-angular-application-e86df69be58a" class=3D"external-link"=
+ rel=3D"nofollow">https://medium.com/@danilrabizo/google-authentication-in-=
+the-angular-application-e86df69be58a</a></span></p>
+<p><em><span>Geraadpleegd op 13-04-2023 van, </span>famous companies using =
+angular - Google Search</em>. (z.d.). <span><a href=3D"https://www.google.c=
+om/search?q=3Dfamous+companies+using+angular&amp;sxsrf=3DAPwXEdfgLr0SF1rqtN=
+AHmCPXSGrIHt1sCA%3A1681479989973&amp;ei=3DNVk5ZIyEO4v_sAfr34bYCw&amp;ved=3D=
+0ahUKEwjM8v6Lwan-AhWLP-wKHeuvAbsQ4dUDCA8&amp;uact=3D5&amp;oq=3Dfamous+compa=
+nies+using+angular&amp;gs_lcp=3DCgxnd3Mtd2l6LXNlcnAQAzIGCAAQFhAeMgYIABAWEB4=
+6CggAEEcQ1gQQsAM6BAgjECc6CAgAEIAEEMsBSgQIQRgAUPkEWKsNYKMOaAFwAXgAgAFmiAHYBZ=
+IBAzguMZgBAKABAcgBCMABAQ&amp;sclient=3Dgws-wiz-serp" class=3D"external-link=
+" rel=3D"nofollow">https://www.google.com/search?q=3Dfamous+companies+using=
++angular&amp;sxsrf=3DAPwXEdfgLr0SF1rqtNAHmCPXSGrIHt1sCA%3A1681479989973&amp=
+;ei=3DNVk5ZIyEO4v_sAfr34bYCw&amp;ved=3D0ahUKEwjM8v6Lwan-AhWLP-wKHeuvAbsQ4dU=
+DCA8&amp;uact=3D5&amp;oq=3Dfamous+companies+using+angular&amp;gs_lcp=3DCgxn=
+d3Mtd2l6LXNlcnAQAzIGCAAQFhAeMgYIABAWEB46CggAEEcQ1gQQsAM6BAgjECc6CAgAEIAEEMs=
+BSgQIQRgAUPkEWKsNYKMOaAFwAXgAgAFmiAHYBZIBAzguMZgBAKABAcgBCMABAQ&amp;sclient=
+=3Dgws-wiz-serp</a></span></p>
+<p style=3D"margin-left: 36.0pt;"><br></p>
+<h2 id=3D"OnderzoekFrontEndFramework-React.1"><span class=3D"nh-number">7.2=
+. </span><span>React</span></h2>
+<p><span><em>Geraadpleegd op 13-04-2023 van, </em></span>Cooper Codes. (202=
+2, 14 februari). <em>Google OAuth 2.0 Login for React in 5 minutes</em> [Vi=
+deo]. YouTube. <span><a href=3D"https://www.youtube.com/watch?v=3DHtJKUQXmt=
+ok" class=3D"external-link" rel=3D"nofollow">https://www.youtube.com/watch?=
+v=3DHtJKUQXmtok</a></span></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van,&nbsp;</em></span><em>Tutorial:=
+ Tic-Tac-Toe =E2=80=93 React</em>. (z.d.-c). <span><a href=3D"https://react=
+.dev/learn/tutorial-tic-tac-toe#setup-for-the-tutorial" class=3D"external-l=
+ink" rel=3D"nofollow">https://react.dev/learn/tutorial-tic-tac-toe#setup-fo=
+r-the-tutorial</a></span></p>
+<p><span><em>Geraadpleegd op 17-04-2023 van,&nbsp; </em></span><em>3,000+ R=
+eact.js jobs in Netherlands (107 new)</em>. (z.d.). <span><a href=3D"https:=
+//www.linkedin.com/jobs/search/?currentJobId=3D3517831296&amp;geoId=3D10289=
+0719&amp;keywords=3DReact.js&amp;location=3DNederland&amp;refresh=3Dtrue" c=
+lass=3D"external-link" rel=3D"nofollow">https://www.linkedin.com/jobs/searc=
+h/?currentJobId=3D3517831296&amp;geoId=3D102890719&amp;keywords=3DReact.js&=
+amp;location=3DNederland&amp;refresh=3Dtrue</a></span></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van, </em></span><em>famous compani=
+es using react - Google Search</em>. (z.d.). <span><a href=3D"https://www.g=
+oogle.com/search?q=3Dfamous+companies+using+react&amp;oq=3Dfamous+companies=
++using+react&amp;aqs=3Dchrome..69i57j0i22i30l6.5091j0j7&amp;sourceid=3Dchro=
+me&amp;ie=3DUTF-8" class=3D"external-link" rel=3D"nofollow">https://www.goo=
+gle.com/search?q=3Dfamous+companies+using+react&amp;oq=3Dfamous+companies+u=
+sing+react&amp;aqs=3Dchrome..69i57j0i22i30l6.5091j0j7&amp;sourceid=3Dchrome=
+&amp;ie=3DUTF-8</a></span></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van,&nbsp;</em></span>Innocent, C. =
+(2023, 14 februari). <em>The guide to adding Google login to your React app=
+ - LogRocket Blog</em>. LogRocket Blog. <span><a href=3D"https://blog.logro=
+cket.com/guide-adding-google-login-react-app/" class=3D"external-link" rel=
+=3D"nofollow">https://blog.logrocket.com/guide-adding-google-login-react-ap=
+p/</a></span></p>
+<h2 id=3D"OnderzoekFrontEndFramework-Vue.1"><span class=3D"nh-number">7.3. =
+</span><span>Vue</span></h2>
+<p><span><em>Geraadpleegd op 13-04-2023 van, </em></span><em>Quick Start | =
+Vue.js</em>. (z.d.). <span><a href=3D"https://vuejs.org/guide/quick-start.h=
+tml#creating-a-vue-application" class=3D"external-link" rel=3D"nofollow">ht=
+tps://vuejs.org/guide/quick-start.html#creating-a-vue-application</a></span=
+></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van,&nbsp;</em></span><em>Vite</em>=
+. (z.d.). <span><a href=3D"https://vitejs.dev/guide/cli.html" class=3D"exte=
+rnal-link" rel=3D"nofollow">https://vitejs.dev/guide/cli.html</a></span></p=
+>
+<p><span><em>Geraadpleegd op 17-04-2023 van, </em></span><em>538 Vue.js job=
+s in Netherlands (13 new)</em>. (z.d.). <span><a href=3D"https://www.linked=
+in.com/jobs/search/?currentJobId=3D3517831296&amp;geoId=3D102890719&amp;key=
+words=3DVue.js&amp;location=3DNederland&amp;refresh=3Dtrue" class=3D"extern=
+al-link" rel=3D"nofollow">https://www.linkedin.com/jobs/search/?currentJobI=
+d=3D3517831296&amp;geoId=3D102890719&amp;keywords=3DVue.js&amp;location=3DN=
+ederland&amp;refresh=3Dtrue</a></span></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van, </em></span>Watmore, J. (2020)=
+. Vue + Axios - HTTP GET Request Examples. <em>Jason Watmore=E2=80=99s Blog=
+</em>. <span><a href=3D"https://jasonwatmore.com/post/2020/07/23/vue-axios-=
+http-get-request-examples" class=3D"external-link" rel=3D"nofollow">https:/=
+/jasonwatmore.com/post/2020/07/23/vue-axios-http-get-request-examples</a></=
+span></p>
+<p><span><em>Geraadpleegd op 13-04-2023 van,&nbsp;</em></span>Simon Suh. (2=
+022, 25 februari). <em>How to implement Google sign-in in Vue3 - npm packag=
+e - vue3-google-oauth2</em> [Video]. YouTube. <span><a href=3D"https://www.=
+youtube.com/watch?v=3DhQ5aqvTEqxU" class=3D"external-link" rel=3D"nofollow"=
+>https://www.youtube.com/watch?v=3DhQ5aqvTEqxU</a></span></p>
+<p><em><span>Geraadpleegd op 13-04-2023 van, </span>famous companies using =
+vue - Google Search</em>. (z.d.). <span><a href=3D"https://www.google.com/s=
+earch?q=3Dfamous+companies+using+vue&amp;sxsrf=3DAPwXEdffEGIiFelhtICOhU3ch5=
+kImJU0HA%3A1681479902775&amp;ei=3D3lg5ZML2LoztsAe_w6foBg&amp;ved=3D0ahUKEwj=
+C3bTiwKn-AhWMNuwKHb_hCW0Q4dUDCA8&amp;uact=3D5&amp;oq=3Dfamous+companies+usi=
+ng+vue&amp;gs_lcp=3DCgxnd3Mtd2l6LXNlcnAQAzIGCAAQFhAeMgYIABAWEB46CggAEEcQ1gQ=
+QsANKBAhBGABQpQRYkQZgqQhoAXABeACAAVOIAdoBkgEBM5gBAKABAcgBCMABAQ&amp;sclient=
+=3Dgws-wiz-serp" class=3D"external-link" rel=3D"nofollow">https://www.googl=
+e.com/search?q=3Dfamous+companies+using+vue&amp;sxsrf=3DAPwXEdffEGIiFelhtIC=
+OhU3ch5kImJU0HA%3A1681479902775&amp;ei=3D3lg5ZML2LoztsAe_w6foBg&amp;ved=3D0=
+ahUKEwjC3bTiwKn-AhWMNuwKHb_hCW0Q4dUDCA8&amp;uact=3D5&amp;oq=3Dfamous+compan=
+ies+using+vue&amp;gs_lcp=3DCgxnd3Mtd2l6LXNlcnAQAzIGCAAQFhAeMgYIABAWEB46CggA=
+EEcQ1gQQsANKBAhBGABQpQRYkQZgqQhoAXABeACAAVOIAdoBkgEBM5gBAKABAcgBCMABAQ&amp;=
+sclient=3Dgws-wiz-serp</a></span></p>
+<h2 id=3D"OnderzoekFrontEndFramework-Algemeen"><span class=3D"nh-number">7.=
+4. </span><span>Algemeen</span></h2>
+<p><span><em>Geraadpleegd op 13-04-2023 van,&nbsp;</em></span>GetDevDone Bl=
+og. (2022, 4 januari). Vue vs. React vs. Angular =E2=80=93 Pros, Cons, Use =
+Cases and Comparison - GetDevDone Blog. <em>GetDevDone Blog - Web design, d=
+evelopment news &amp; tips</em>. <span><a href=3D"https://getdevdone.com/bl=
+og/vue-vs-react-vs-angular-pros-cons-use-cases-and-comparison.html" class=
+=3D"external-link" rel=3D"nofollow">https://getdevdone.com/blog/vue-vs-reac=
+t-vs-angular-pros-cons-use-cases-and-comparison.html</a></span></p>
+<p><span><em>Geraadpleegd op 15-04-2023 van, </em></span>Patadiya, J. (2023=
+). Angular vs React | Angular vs Vue | React vs Vue - Know the Difference. =
+<em>Radixweb</em>. <span><a href=3D"https://radixweb.com/blog/angular-vs-re=
+act-vs-vue" class=3D"external-link" rel=3D"nofollow">https://radixweb.com/b=
+log/angular-vs-react-vs-vue</a></span></p>
+<p><span><em>Geraadpleegd op 14-04-2023 van, </em></span>Joshi, M. (2022). =
+Angular vs React vs Vue: Core Differences | BrowserStack. <em>BrowserStack<=
+/em>. <span><a href=3D"https://www.browserstack.com/guide/angular-vs-react-=
+vs-vue" class=3D"external-link" rel=3D"nofollow">https://www.browserstack.c=
+om/guide/angular-vs-react-vs-vue</a></span></p>
+<p><em>Geraadpleegd op 25-04-2023 van</em>, Davis, T. (2022). The Top 3 Jav=
+aScript Frameworks. <em>3Pillar Global</em>. <span><a href=3D"https://www.3=
+pillarglobal.com/insights/the-top-3-javascript-frameworks/" class=3D"extern=
+al-link" rel=3D"nofollow">https://www.3pillarglobal.com/insights/the-top-3-=
+javascript-frameworks/</a></span></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+    </div>
+</body>
+</html>
+------=_Part_9100_1306168508.1686305893399--
