@@ -9,7 +9,7 @@ import './assets/main.css'
 
 
 createApp(App)
-    .use(vue3GoogleLogin, {clientId: '677713096748-q92ovvf77ohrugdfsntmf25uiaqbf45q.apps.googleusercontent.com'})
+    .use(vue3GoogleLogin, {clientId: ''})
     .use(router)
     .use(store)
     .mount('#app')
